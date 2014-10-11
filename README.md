@@ -1,6 +1,5 @@
 ## SOABA KNX - A Service Oriented Architecture for Building Automation ##
 
-
 ### Project Goals ###
 
 Development of Gateway Driver for interaction with KNX devices. 
@@ -34,5 +33,9 @@ the KNX addresses, specifying their respective types (switch, percentage or floa
 
 ##### Objectives #####
 
-- Read the configuration of the Gateway Driver REST Interface available at a predefined ip address (typically the localhost)
+- Read the configuration of the Gateway Driver REST Interface available at a predefined IP Address
 - Display all the visual controls required to interact with the KNX devices
+
+## Author ##
+
+- João Pinho
