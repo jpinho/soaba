@@ -2,8 +2,7 @@
 
 ### Project Goals ###
 
-Development of Gateway Driver for interaction with KNX devices. 
-The Gateway Driver will be configured from a XML file containing all the KNX devices address and their underlying types. 
+Development of Gateway Driver for interaction with KNX devices. The Gateway Driver will be configured from a XML file containing all the KNX devices address and their underlying types. 
 
 The GatewayDriver will be accessible via HTTP by exposing a REST interface, receiving and sending serialized JSON data. The Web Prototype App will make use of this REST interface to control and expose the Gateway Driver functionalities.
 
