@@ -8,7 +8,7 @@ The GatewayDriver will be accessible via HTTP by exposing a REST interface, rece
 
 ### Components and Objectives ###
 
-#### 1. Implementation of a Gateway Driver to Interact with KNX Devices ####
+### 1. Implementation of a Gateway Driver to Interact with KNX Devices ###
 
 ##### Objectives #####
 
@@ -18,7 +18,7 @@ The GatewayDriver will be accessible via HTTP by exposing a REST interface, rece
 - Support basic datapoint data types, such as percentage (integer ∈ [0-100]), float and
 switch (boolean)
 
-#### 2. Development of a REST Interface to Interact with the KNX Gateway ####
+### 2. Development of a REST Interface to Interact with the KNX Gateway ###
 
 ##### Objectives #####
 
@@ -28,7 +28,7 @@ switch (boolean)
 the KNX addresses, specifying their respective types (switch, percentage or float)
 - Support configuration reading operation
 
-#### 3. Develop an HTML5 Prototype Web App to demonstrate the system ####
+### 3. Develop an HTML5 Prototype Web App to demonstrate the system ###
 
 ##### Objectives #####
 
