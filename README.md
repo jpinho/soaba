@@ -38,4 +38,4 @@ the KNX addresses, specifying their respective types (switch, percentage or floa
 
 ## Author ##
 
-- João Pinho
+João Pinho
