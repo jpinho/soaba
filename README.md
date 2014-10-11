@@ -1,5 +1,5 @@
 ## SOABA KNX - A Service Oriented Architecture for Building Automation ##
-## ## 
+##
  
 ![Building Automation](https://bitbucket.org/repo/enyMp6/images/1359602518-2013_01_Lufft_Building-automation.jpg "Building Automation")
 
