@@ -1,7 +1,6 @@
 package soaba.core.api;
 
 import java.lang.reflect.Type;
-import java.net.Inet4Address;
 
 public interface IDatapoint {
     public enum DATAPOINT_ACCESSTYPE {
@@ -14,15 +13,15 @@ public interface IDatapoint {
 
     public DATAPOINT_ACCESSTYPE getAccessType();
 
-    public Type getDataType();
+    public Type getNativeDataType();
+    
+    public DATAPOINT_DATATYPE getDataType();
 
     public String getDescription();
 
     public void setDescription(String description);
 
     public String getName();
-
-    public Inet4Address getGatewayAddress();
 
     public String getReadAddress();
 

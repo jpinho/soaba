@@ -1,7 +1,6 @@
 package soaba.core.models;
 
 import java.lang.reflect.Type;
-import java.net.Inet4Address;
 import java.util.stream.Stream;
 
 import org.json.simple.JSONObject;
@@ -16,27 +15,24 @@ public class Datapoint implements IDatapoint {
     private final String writeAddress;
     private final DATAPOINT_DATATYPE dataType;
     private final DATAPOINT_ACCESSTYPE accessType;
-    private final Inet4Address gatewayAddress;
 
     public Datapoint(String name,
                      DATAPOINT_ACCESSTYPE accessType,
                      DATAPOINT_DATATYPE dataType,
                      String readAddress,
-                     String writeAddress,
-                     Inet4Address gatewayAddress) {
+                     String writeAddress) {
         this.name = name;
         this.accessType = accessType;
         this.dataType = dataType;
         this.readAddress = readAddress;
         this.writeAddress = writeAddress;
-        this.gatewayAddress = gatewayAddress;
     }
 
     public DATAPOINT_ACCESSTYPE getAccessType() {
         return accessType;
     }
 
-    public Type getDataType() {
+    public Type getNativeDataType() {
         switch (dataType) {
             case BIT:
                 return Boolean.class;
@@ -52,6 +48,10 @@ public class Datapoint implements IDatapoint {
                 return Object.class;
         }
     }
+    
+    public DATAPOINT_DATATYPE getDataType(){
+        return dataType;
+    }
 
     public String getDescription() {
         return description;
@@ -63,10 +63,6 @@ public class Datapoint implements IDatapoint {
 
     public String getName() {
         return name;
-    }
-
-    public Inet4Address getGatewayAddress() {
-        return gatewayAddress;
     }
 
     public String getReadAddress() {
