@@ -41,6 +41,9 @@ the KNX addresses, specifying their respective types (switch, percentage or floa
 - Read the configuration of the Gateway Driver REST Interface available at a predefined IP Address
 - Display all the visual controls required to interact with the KNX devices
 
-### Author ###
+#### Rights and License ####
 
-João Pinho
+This repository is a contribution to the Open Source Community, fill free to use this code how you like.
+If you have any difficulties putting this together, please drop me an email at jpe[dot]pinho[at]gmail[dot]com.
+
+P.S: Sorry for the markdown notation on my email, but net bots are crazy this days.
