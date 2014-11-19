@@ -1,0 +1,68 @@
+/* ###########################################################################
+ *  Bootstrap
+ * ########################################################################### */
+
+.label.label-success {
+    position: relative;
+    left: 5px;
+    top: -2px;
+}
+
+.nav.nav-sidebar li{
+    cursor:hand;
+    cursor:pointer;
+}
+
+.btn:active, .btn.active{
+    box-shadow: none;
+    -webkit-box-shadow:none;
+    -moz-box-shadow: none;
+}
+
+.nav.tabs li a {
+    border: 1px solid silver;
+}
+
+.nav.tabs li.active a{
+    border: 1px solid #428bca;
+}
+
+.nav.tabs li .btn-group a{
+    border:0px none;
+}
+
+.nav.tabs li .btn-group button.active{
+    background-color: #428bca;
+    color:#fff;
+}
+
+.nav.tabs .btn{
+    position: relative;
+    display: block;
+    padding: 10px 10px;
+}
+
+/* ###########################################################################
+ *  DataTables
+ * ########################################################################### */
+
+.panel .dt-bootstrap {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.panel .dt-bootstrap div.row{
+    margin-left:0;
+    margin-right: 0;
+}
+
+.dataTables_info{
+    display: none;
+}
+
+select[name='tblDatapoints_length']{
+    margin: 0 5px;
+    height:25px;
+}
+
+#tblDatapoints_filter input{ height:25px; margin-left: 10px;}

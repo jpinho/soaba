@@ -19,13 +19,6 @@ public class GatewayDriverException extends
     public GatewayDriverException(String message, Throwable cause) {
         super(message, cause);
     }
-
-    public GatewayDriverException(String message,
-                                              Throwable cause,
-                                              boolean enableSuppression,
-                                              boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
     
     public static long getSerialversionUID() {
         return serialVersionUID;

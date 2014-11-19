@@ -1,44 +1,49 @@
 package soaba.core.api;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
+
+import javax.activation.UnsupportedDataTypeException;
 
 import soaba.core.exception.DatapointInvalidValueTypeException;
+import soaba.core.exception.DatapointReadonlyAccessTypeException;
+import soaba.core.exception.DatapointWriteonlyAccessTypeException;
 import soaba.core.exception.GatewayDriverException;
-import soaba.core.models.Datapoint;
+import soaba.core.models.DatapointValue;
+import tuwien.auto.calimero.exception.KNXException;
+import tuwien.auto.calimero.exception.KNXFormatException;
+import tuwien.auto.calimero.exception.KNXTimeoutException;
+import tuwien.auto.calimero.link.KNXLinkClosedException;
 
 public interface IGatewayDriver {
+
     public abstract void connect() throws GatewayDriverException, UnknownHostException;
 
     public abstract void disconnect() throws GatewayDriverException;
 
     public abstract void reconnectGateway();
 
-    public abstract boolean readBool(Datapoint datapoint) throws GatewayDriverException,
-            DatapointInvalidValueTypeException;
+    public abstract DatapointValue<?> read(IDatapoint datapoint) throws GatewayDriverException,
+            DatapointInvalidValueTypeException,
+            DatapointWriteonlyAccessTypeException,
+            DatapointReadonlyAccessTypeException,
+            UnsupportedDataTypeException; 
 
-    public abstract float read2ByteFloat(Datapoint datapoint) throws GatewayDriverException,
-            DatapointInvalidValueTypeException;
+    public abstract String getAddress();
 
-    public abstract String readString(Datapoint datapoint) throws GatewayDriverException,
-            DatapointInvalidValueTypeException;
+    public abstract void setAddress(String address);
 
-    public abstract float readPercentage(Datapoint datapoint) throws GatewayDriverException,
-            DatapointInvalidValueTypeException;
+    public abstract void write(DatapointValue<?> value) throws GatewayDriverException,
+            DatapointInvalidValueTypeException,
+            DatapointWriteonlyAccessTypeException,
+            DatapointReadonlyAccessTypeException,
+            UnsupportedDataTypeException;
 
-    public abstract void writeBool(Datapoint datapoint, boolean value) throws DatapointInvalidValueTypeException,
-            GatewayDriverException;
+    boolean isAddressOccupied(String addr) throws GatewayDriverException, InterruptedException, KNXFormatException, KNXException;
 
-    public abstract void write2ByteFloat(Datapoint datapoint, float value) throws DatapointInvalidValueTypeException,
-            GatewayDriverException;
+    List<String> scanNetworkDevices(int area, int line) throws GatewayDriverException, KNXLinkClosedException,
+            KNXTimeoutException,
+            InterruptedException;
 
-    public abstract void writeString(Datapoint datapoint, String value) throws DatapointInvalidValueTypeException,
-            GatewayDriverException;
-
-    public abstract void writePercentage(Datapoint datapoint, int value) throws DatapointInvalidValueTypeException,
-            GatewayDriverException;
-
-    public abstract InetAddress getAddress();
-
-    public abstract void setAddress(InetAddress address);
+    List<String> scanNetworkRouters() throws KNXLinkClosedException, KNXTimeoutException, InterruptedException, GatewayDriverException;
 }

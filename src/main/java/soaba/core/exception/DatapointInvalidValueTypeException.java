@@ -20,13 +20,6 @@ public class DatapointInvalidValueTypeException extends
         super(message, cause);
     }
 
-    public DatapointInvalidValueTypeException(String message,
-                                              Throwable cause,
-                                              boolean enableSuppression,
-                                              boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
-
     public static long getSerialversionUID() {
         return serialVersionUID;
     }

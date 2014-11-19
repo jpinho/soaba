@@ -1,21 +1,62 @@
 package soaba.core.api;
 
-import java.lang.reflect.Type;
-
 public interface IDatapoint {
-    public enum DATAPOINT_ACCESSTYPE {
-        WRITE_ONLY, READ_ONLY, READ_WRITE
+    public enum ACCESSTYPE {
+
+        /**
+         * Represents a datapoint access, restricted to write only.
+         */
+        WRITE_ONLY,
+
+        /**
+         * Represents a datapoint access, restricted to read only.
+         */
+        READ_ONLY,
+
+        /**
+         * Represents a datapoint access, without restrictions of read or write.
+         */
+        READ_WRITE
     }
 
-    public enum DATAPOINT_DATATYPE {
-        BIT, NUMBER, TEXT, STREAM, JSON_OBJECT
+    public enum DATATYPE {
+
+        /**
+         * Represents the boolean data type: true or false.
+         */
+        BIT,
+
+        /**
+         * Represents the float data type (2 Bytes).
+         */
+        TINY_NUMBER,
+
+        /**
+         * Represents the float data type (4 Bytes).
+         */
+        NUMBER,
+
+        /**
+         * Represents the string data type.
+         */
+        TEXT,
+
+        /**
+         * Represents the unsigned integer data type, limited to range [0, 100].
+         */
+        PERCENTAGE,
+        
+        /**
+         * Represents a data point type, whose underlyning type is not properly known.
+         */
+        UNKNOWN
     }
 
-    public DATAPOINT_ACCESSTYPE getAccessType();
-
-    public Type getNativeDataType();
+    public String getId();
     
-    public DATAPOINT_DATATYPE getDataType();
+    public ACCESSTYPE getAccessType();
+
+    public DATATYPE getDataType();
 
     public String getDescription();
 
@@ -26,4 +67,6 @@ public interface IDatapoint {
     public String getReadAddress();
 
     public String getWriteAddress();
+
+    public String getGatewayAddress();
 }

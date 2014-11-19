@@ -1,55 +1,92 @@
 package soaba.core.models;
 
-import java.lang.reflect.Type;
-import java.util.stream.Stream;
-
-import org.json.simple.JSONObject;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import soaba.core.api.IDatapoint;
 
-public class Datapoint implements IDatapoint {
+public class Datapoint
+        implements IDatapoint, Serializable {
 
-    private final String name;
+    private static final long serialVersionUID = 7462299013208883734L;
+
+    public static long getSerialversionUID() {
+        return serialVersionUID;
+    }
+
+    private ACCESSTYPE accessType;
+    private DATATYPE dataType;
     private String description;
-    private final String readAddress;
-    private final String writeAddress;
-    private final DATAPOINT_DATATYPE dataType;
-    private final DATAPOINT_ACCESSTYPE accessType;
+    private String gatewayAddress;
+    private String id;
+    private String name;
+    private String readAddress;
+    private String writeAddress;
 
-    public Datapoint(String name,
-                     DATAPOINT_ACCESSTYPE accessType,
-                     DATAPOINT_DATATYPE dataType,
+    public Datapoint() {
+    }
+
+    public Datapoint(String gatewayAddress,
+                     String name,
+                     ACCESSTYPE accessType,
+                     DATATYPE dataType,
                      String readAddress,
                      String writeAddress) {
+        this.gatewayAddress = gatewayAddress;
         this.name = name;
         this.accessType = accessType;
         this.dataType = dataType;
         this.readAddress = readAddress;
         this.writeAddress = writeAddress;
+
+        byte[] dpID = (gatewayAddress + name + readAddress + writeAddress).getBytes();
+
+        try {
+            this.id = new BigInteger(1, MessageDigest.getInstance("SHA-1").digest(dpID)).toString(16);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
-    public DATAPOINT_ACCESSTYPE getAccessType() {
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Datapoint other = (Datapoint) obj;
+        if (gatewayAddress == null) {
+            if (other.gatewayAddress != null)
+                return false;
+        } else if (!gatewayAddress.equals(other.gatewayAddress))
+            return false;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (readAddress == null) {
+            if (other.readAddress != null)
+                return false;
+        } else if (!readAddress.equals(other.readAddress))
+            return false;
+        if (writeAddress == null) {
+            if (other.writeAddress != null)
+                return false;
+        } else if (!writeAddress.equals(other.writeAddress))
+            return false;
+        return true;
+    }
+
+    public ACCESSTYPE getAccessType() {
         return accessType;
     }
 
-    public Type getNativeDataType() {
-        switch (dataType) {
-            case BIT:
-                return Boolean.class;
-            case NUMBER:
-                return Double.class;
-            case TEXT:
-                return String.class;
-            case STREAM:
-                return Stream.class;
-            case JSON_OBJECT:
-                return JSONObject.class;
-            default:
-                return Object.class;
-        }
-    }
-    
-    public DATAPOINT_DATATYPE getDataType(){
+    public DATATYPE getDataType() {
         return dataType;
     }
 
@@ -57,8 +94,14 @@ public class Datapoint implements IDatapoint {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    @Override
+    public String getGatewayAddress() {
+        return gatewayAddress;
+    }
+
+    @Override
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -71,5 +114,48 @@ public class Datapoint implements IDatapoint {
 
     public String getWriteAddress() {
         return writeAddress;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((gatewayAddress == null) ? 0 : gatewayAddress.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((readAddress == null) ? 0 : readAddress.hashCode());
+        result = prime * result + ((writeAddress == null) ? 0 : writeAddress.hashCode());
+        return result;
+    }
+
+    public void setAccessType(ACCESSTYPE accessType) {
+        this.accessType = accessType;
+    }
+
+    public void setDataType(DATATYPE dataType) {
+        this.dataType = dataType;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setGatewayAddress(String gatewayAddress) {
+        this.gatewayAddress = gatewayAddress;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setReadAddress(String readAddress) {
+        this.readAddress = readAddress;
+    }
+
+    public void setWriteAddress(String writeAddress) {
+        this.writeAddress = writeAddress;
     }
 }
