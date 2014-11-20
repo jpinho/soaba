@@ -10,6 +10,7 @@
 	<properties>
 		<runSuite>**/AllTests.class</runSuite>
 		<restlet-version>2.2.2</restlet-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<repositories>
@@ -45,9 +46,13 @@
 			<organization>CodeBox</organization>
 			<organizationUrl>http://pinho.icodebox.net/</organizationUrl>
 			<url>https://bitbucket.org/jpinho/soaba</url>
-			<roles><role>Black Belt Ninja Developer</role></roles>
+			<roles>
+				<role>Black Belt Ninja Developer</role>
+			</roles>
 			<timezone>+00</timezone>
-			<properties><skype>jpe.pinho</skype></properties>
+			<properties>
+				<skype>jpe.pinho</skype>
+			</properties>
 		</developer>
 	</developers>
 

@@ -53,18 +53,21 @@ public class RestletServer extends
         serverStart();
         printAvailableEndpoints();
 
-        System.out.println("Press CTRL+D to exist RestletServer.");
+        System.out.println("Press ENTER to exit [SOABA Rest Server]");
         while (true) {
             try {
-                if (System.in.read() == 4) {
+                int c = System.in.read();
+                if (c == 10) {
                     RestletServer.getInstance().shutdown();
                     RestletServer.getInstance().stop();
+                    System.out.println("Chillout time for my bits... Goodbye Human!");
                     break;
                 }
             } catch (IOException e) {
-                /* no catch */
+                /* no catch handling */
             } catch (Exception e) {
                 logger.error(e);
+                /* no catch handling */
             }
         }
     }
