@@ -39,7 +39,7 @@ public class BonjourService extends
         final String title = "SOABA REST API", footer = "Developed by João Pinho";
 
         final String globalStyle = "<style type='text/css'>body{ " + "background: url('"
-                + new String(Files.readAllBytes(java.nio.file.Paths.get(BGROUND_PATH))) + "');" + " }</style>";
+                + new String(Files.readAllBytes(java.nio.file.Paths.get(BGROUND_PATH))).trim() + "');" + " }</style>";
 
         final String stylesContainer = "margin:20px auto; width:600px; text-align:center; font-family: tahoma; font-size:0.9em; padding:20px;"
                 + "border-radius:10px; -webkit-box-shadow: 0px 0px 15px 1px rgba(73,147,237, 0.4);-moz-box-shadow: 0px 0px 15px 1px rgba(73,147,237, 0.4);"
