@@ -230,7 +230,7 @@ $(function(){
 
     $('#btnDatapointReadRAW').click(function () {
         var info = $('#tblDatapoints').DataTable().rows('.warning.selected').data()[0];
-        var url = APP_URL + 'datapoint/' + info.id;
+        var url = APP_URL + 'datapoints/' + info.gatewayAddress + '/' + info.readAddress.replace(/\//g, '.') + '/UNKNOWN';
         var $btn = $(this).button('loading');
         $('#dpOperationResult').slideUp().find('.panel-body').empty();
 

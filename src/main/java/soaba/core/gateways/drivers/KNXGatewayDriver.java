@@ -259,11 +259,9 @@ public class KNXGatewayDriver
                                 ProcessCommunicationBase.SCALING));
                         break;
                     case TEXT:
+                    default:
                         value.setValue(pc.readString(new GroupAddress(datapoint.getReadAddress())));
                         break;
-                    default:
-                        StateDP stateDP = new StateDP(new GroupAddress(datapoint.getReadAddress()), datapoint.getId());
-                        value.setValue(pc.read(stateDP));
                 }
 
                 return value;
