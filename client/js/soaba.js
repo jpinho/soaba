@@ -237,7 +237,8 @@ $(function(){
                     '<div><b>Exception:</b> ' + rsp.cause.class + ' </div><br/>' +
                     '<div><b>Message:</b> ' + rsp.message + ' </div>'
                 );
-                $('#dpReadOperationResult').slideDown().get(0).scrollIntoView();
+                $('#dpOperationResult').slideDown();
+                scrollIntoView('#dpOperationResult');
                 return;
             }
 

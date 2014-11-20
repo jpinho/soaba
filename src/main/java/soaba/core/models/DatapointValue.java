@@ -22,7 +22,26 @@ public class DatapointValue<T> {
 
     @SuppressWarnings("unchecked")
     public <U> void setValue(U newValue) throws DatapointReadonlyAccessTypeException {
-        this.value = ((T) newValue);
+        DATATYPE dataType = datapoint.getDataType();
+
+        if (dataType == null)
+            return;
+
+        switch (dataType) {
+            case BIT:
+                this.value = (T)new Boolean(String.valueOf(newValue));
+                break;
+            case PERCENTAGE:
+                this.value = (T)new Float(String.valueOf(newValue));
+                break;
+            case NUMBER:
+                this.value = (T)new Double(String.valueOf(newValue));
+                break;
+            case TEXT:
+            default:
+                this.value = (T)String.valueOf(newValue);
+                break;
+        }
     }
 
     public IDatapoint getDatapoint() {
