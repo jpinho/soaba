@@ -60,16 +60,20 @@ public class RestletServer extends
                 if (c == 10) {
                     RestletServer.getInstance().shutdown();
                     RestletServer.getInstance().stop();
-                    System.out.println("Chillout time for my bits... Goodbye Human!");
                     break;
                 }
             } catch (IOException e) {
-                /* no catch handling */
+                System.exit(-2);
+                return;
             } catch (Exception e) {
                 logger.error(e);
-                /* no catch handling */
+                System.exit(-1);
+                return;
             }
         }
+        
+        System.out.println("Chillout time for my bits... Goodbye Human!");
+        System.exit(0);
     }
 
     private RestletServer() {
