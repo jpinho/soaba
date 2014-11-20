@@ -97,13 +97,13 @@
                             <ul class="nav nav-pills tabs gateway" role="tablist">
                                 <li role="presentation" class="active"><a href="#tabDatapointInfo" role="tab" data-toggle="tab">Info</a></li>
                                 <li role="presentation">
-                                    <div class="btn-group">
+                                    <div class="btn-group operations">
                                         <button type="button" class="btn btn-default">Operations</button>
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                             <span class="caret"></span>
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
-                                        <ul class="dropdown-menu" role="menu">
+                                        <ul id="lstDPTabOperations" class="dropdown-menu" role="menu">
                                             <li><a href="#tabDatapointOperations" id="tbDPRead" role="tab" data-toggle="tab">Read</a></li>
                                             <li><a href="#tabDatapointOperations" id="tbDPReadRAW" role="tab" data-toggle="tab">Read (RAW)</a></li>
                                             <li><a href="#tabDatapointOperations" id="tbDPWrite" role="tab" data-toggle="tab">Write</a></li>
@@ -137,7 +137,7 @@
                                         </tr>
                                         <tr>
                                             <td><label for="txtDatapointWriteAddress">Write Address:</label></td>
-                                            <td><input type="text" id="txtDatapointWriteAddress" class="form-control" readonly /></td>
+                                            <td><input type="text" id="txtDatapointWriteAddress" class="form-control datapoint-write-address" readonly /></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -145,16 +145,16 @@
                                     <table class="table table-details">
                                         <tr>
                                             <td><label for="txtDReadAddr">Read Address:</label></td>
-                                            <td><input id="txtDReadAddr" type="text" class="form-control" readonly /></td>
+                                            <td><input id="txtDReadAddr" type="text" class="form-control datapoint-read-address" readonly /></td>
                                         </tr>
                                         <tr>
                                             <td><label for="txtDWriteAddr">Write Address:</label></td>
-                                            <td><input id="txtDWriteAddr" type="text" class="form-control" readonly /></td>
+                                            <td><input id="txtDWriteAddr" type="text" class="form-control datapoint-write-address" readonly /></td>
                                         </tr>
                                         <tr>
                                             <td><label>Value:</label></td>
                                             <td>
-                                                <div id="contDpointValue">
+                                                <div id="contDValue">
                                                 </div>
                                             </td>
                                         </tr>

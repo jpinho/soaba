@@ -236,7 +236,7 @@ public class KNXGatewayService {
     public static final class ReadDatapointFromGW extends
             ServerResource {
 
-        public final static String ROUTE_URI = "/datapoint/{gwaddr}/{datapointaddr}/{datapointtype}";
+        public final static String ROUTE_URI = "/datapoints/{gwaddr}/{datapointaddr}/{datapointtype}";
 
         @Get("json")
         public String doGet() throws DatapointInvalidValueTypeException,

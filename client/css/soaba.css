@@ -139,21 +139,25 @@ table.table-details tr td:first-child + td input{
 
 #tblDatapoints tr, #tblGatewayDrivers tr { cursor:pointer; cursor:hand; }
 
+#tblDatapoints tbody tr > td:first-child + td + td + td {
+    text-transform: capitalize;
+}
+
 .tabs {
     margin-top:20px;
     margin-bottom:20px;
     margin-left: 15px;
 }
 
-#dpReadOperationResult td{
+#dpOperationResult td{
     text-align: left;
 }
 
-#dpReadOperationResult .panel{
+#dpOperationResult .panel{
     margin-top: 15px;
     margin-bottom: 0px;
 }
-#tabDatapointOpRead table{
+#tabDatapointOperations table{
     margin-bottom: 0px;
 }
 
