@@ -42,6 +42,12 @@
 		<developer>
 			<name>João Pinho</name>
 			<email>jpe.pinho@gmail.com</email>
+			<organization>CodeBox</organization>
+			<organizationUrl>http://pinho.icodebox.net/</organizationUrl>
+			<url>https://bitbucket.org/jpinho/soaba</url>
+			<roles><role>Black Belt Ninja Developer</role></roles>
+			<timezone>+00</timezone>
+			<properties><skype>jpe.pinho</skype></properties>
 		</developer>
 	</developers>
 
@@ -81,6 +87,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.5</version>
 				<configuration>
 					<archive>
 						<manifest>
