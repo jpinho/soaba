@@ -1,1 +1,1 @@
-mvn exec:java -Dexec.mainClass="soaba.services.RestletServer"
+mvn -q exec:java -Dexec.mainClass="soaba.services.RestletServer"
