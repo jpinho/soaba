@@ -1,9 +1,9 @@
-## SOABA KNX - A Service Oriented Architecture for Building Automation ##
+## SOABA - A Service Oriented Architecture for Building Automation ##
 ##
- 
-![Building Automation](https://bitbucket.org/repo/enyMp6/images/1359602518-2013_01_Lufft_Building-automation.jpg "Building Automation")
 
-###### *Photo-Credit: Sergey Nivens – Fotolia.com*
+ ![Building Automation](https://bitbucket.org/repo/enyMp6/images/4034431923-Screen%20Shot%202014-11-19%20at%2017.21.27.png)
+
+###### *Illustration/Photo Credit: Compexin Experience Innovation – http://compexin.ro*
 
 
 ### Project Goals ###
@@ -11,6 +11,8 @@
 Development of Gateway Driver for interaction with KNX devices. The Gateway Driver will be configured from a XML file containing all the KNX devices address and their underlying types. 
 
 The GatewayDriver will be accessible via HTTP by exposing a REST interface, receiving and sending serialized JSON data. The Web Prototype App will make use of this REST interface to control and expose the Gateway Driver functionalities.
+
+The developed architecture will allow new drivers to be written for the system, exposing data points from different types of gateways via different kinds of protocols, not only KNX via TCP/IP sockets.
 
 ### Components and Objectives ###
 
@@ -41,7 +43,7 @@ the KNX addresses, specifying their respective types (switch, percentage or floa
 - Read the configuration of the Gateway Driver REST Interface available at a predefined IP Address
 - Display all the visual controls required to interact with the KNX devices
 
-#### Rights and License ####
+### Rights and License ###
 
 This repository is a contribution to the Open Source Community, fill free to use this code how you like.
 If you have any difficulties putting this together, please drop me an email at jpe[dot]pinho[at]gmail[dot]com.
