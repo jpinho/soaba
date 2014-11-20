@@ -18,7 +18,7 @@ $(function(){
 
         switch(accessType){
             case 'READ_ONLY':
-                $('#tbDPRead, #tbDPReadRAW').show().parent().siblings().find('a').hide();
+                $('#tbDPRead').show().parent().siblings().find('a').hide();
                 break;
             case 'WRITE_ONLY':
                 $('#tbDPWrite').show().parent().siblings().find('a').hide();
@@ -178,11 +178,6 @@ $(function(){
         $('#tabDatapointOperations #contDValue input').attr('readonly', 'readonly');
         $('#btnDatapointRead').show();
     });
-    $('.tabs .dropdown-menu #tbDPReadRAW').click(function(){
-        $('#tabDatapointOperations .operations .btn').hide();
-        $('#tabDatapointOperations #contDValue input').attr('readonly', 'readonly');
-        $('#btnDatapointReadRAW').show();
-    });
     $('.tabs .dropdown-menu #tbDPWrite').click(function(){
         $('#tabDatapointOperations .operations .btn').hide();
         $('#tabDatapointOperations #contDValue input').removeAttr('readonly');
@@ -228,9 +223,10 @@ $(function(){
         });
     });
 
-    $('#btnDatapointReadRAW').click(function () {
+    $('#btnDatapointRead').click(function () {
         var info = $('#tblDatapoints').DataTable().rows('.warning.selected').data()[0];
-        var url = APP_URL + 'datapoints/' + info.gatewayAddress + '/' + info.readAddress.replace(/\//g, '.') + '/UNKNOWN';
+        var value = $('#contDValue input').val();
+        var url = APP_URL + 'datapoints/' + info.id + '/' + value;
         var $btn = $(this).button('loading');
         $('#dpOperationResult').slideUp().find('.panel-body').empty();
 

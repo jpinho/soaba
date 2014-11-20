@@ -204,7 +204,7 @@ public class KNXGatewayService {
 
         @SuppressWarnings("unused")
         @Put("json")
-        public void doPut(Representation res) throws ServiceResourceErrorException,
+        public String doPut(Representation res) throws ServiceResourceErrorException,
                 DatapointReadonlyAccessTypeException,
                 UnknownHostException,
                 GatewayDriverException,
@@ -224,12 +224,17 @@ public class KNXGatewayService {
             if (gateway == null)
                 throw new ServiceResourceErrorException("Gateway not found.");
 
-            DatapointValue<?> value = DatapointValue.build(dpoint);
-            value.setValue(dpointValue);
+            try {
+                DatapointValue<?> value = DatapointValue.build(dpoint);
+                value.setValue(dpointValue);
 
-            gateway.connect();
-            gateway.write(value);
-            gateway.disconnect();
+                gateway.connect();
+                gateway.write(value);
+                gateway.disconnect();
+                return null;
+            } catch (Exception e) {
+                return toJSON(new ServiceResourceErrorException(e));
+            }
         }
     }
 
