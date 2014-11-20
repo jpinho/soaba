@@ -25,15 +25,15 @@ public class RestletServer extends
 
     private static final String ALLOW_ALL_FROM_ORIGIN = "*";
     private static final String ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin";
-    private static final String ROOT_URI = "/soaba";
     private static final int BOUND_BACKOFF_PERIOD = 15000;
-    private final static int SERVER_PORT = 8095;
     private static final String HEADERS_KEY = "org.restlet.http.headers";
     private final static RestletServer singleton = new RestletServer();
-
     @SuppressWarnings("rawtypes")
     private static final Map<String, Class> resx = new HashMap<String, Class>();
     private static final Logger logger = Logger.getLogger(RestletServer.class);
+
+    final static int SERVER_PORT = 8095;
+    final static String ROOT_URI = "/soaba";
 
     static {
         /**
@@ -71,7 +71,7 @@ public class RestletServer extends
                 return;
             }
         }
-        
+
         System.out.println("Chillout time for my bits... Goodbye Human!");
         System.exit(0);
     }
@@ -86,6 +86,11 @@ public class RestletServer extends
         final Router appRouter = new Router(getContext());
         for (String resxURI : resx.keySet())
             appRouter.attach(resxURI, (Class<ServerResource>) resx.get(resxURI));
+
+        // attachs bonjour service, which presents the API UI
+        appRouter.attach("", BonjourService.class);
+        appRouter.attach("/", BonjourService.class);
+        
         return appRouter;
     }
 
@@ -163,5 +168,10 @@ public class RestletServer extends
         // eventually here could be put some code that would iterate over all instances implementing
         // IGatewayDriver, and calling dispose over such instances. seems overkill for now.
         KNXGatewayDriver.dispose();
+    }
+
+    @SuppressWarnings("rawtypes")
+    public static Map<String, Class> getRoutes() {
+        return resx;
     }
 }
