@@ -1,6 +1,7 @@
 package soaba.core.gateways.drivers;
 
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -14,6 +15,7 @@ import javax.activation.UnsupportedDataTypeException;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.junit.experimental.theories.DataPoint;
 
 import soaba.core.api.IDatapoint;
 import soaba.core.api.IGatewayDriver;
@@ -30,6 +32,7 @@ import tuwien.auto.calimero.FrameEvent;
 import tuwien.auto.calimero.GroupAddress;
 import tuwien.auto.calimero.IndividualAddress;
 import tuwien.auto.calimero.Priority;
+import tuwien.auto.calimero.datapoint.Datapoint;
 import tuwien.auto.calimero.datapoint.StateDP;
 import tuwien.auto.calimero.exception.KNXException;
 import tuwien.auto.calimero.exception.KNXFormatException;
@@ -77,7 +80,7 @@ public class KNXGatewayDriver
     public KNXGatewayDriver(String gatewayAddress) {
         this.address = gatewayAddress;
     }
-    
+
     public KNXGatewayDriver(String description, String gatewayAddress) {
         this.description = description;
         this.address = gatewayAddress;
@@ -89,7 +92,7 @@ public class KNXGatewayDriver
             KNXNetworkLink link = null;
 
             if (connectionPool.containsKey(this.address) && connectionPool.get(this.address).isOpen()) {
-                link = connectionPool.get(this.address);                
+                link = connectionPool.get(this.address);
                 logger.info("KNXGatewayDriver connection to underlying gateway fetched from pool.");
             } else {
                 logger.info("KNXGatewayDriver establishing new connection to the underlying gateway.");
@@ -259,9 +262,11 @@ public class KNXGatewayDriver
                                 ProcessCommunicationBase.SCALING));
                         break;
                     case TEXT:
-                    default:
                         value.setValue(pc.readString(new GroupAddress(datapoint.getReadAddress())));
                         break;
+                    default:
+                        throw new GatewayDriverException(
+                                "Datapoint data type unknown, please specify a valid data type.");
                 }
 
                 return value;
@@ -307,9 +312,8 @@ public class KNXGatewayDriver
                                 (String) (value.getValue() == null ? "" : value.getValue()));
                         break;
                     default:
-                        StateDP stateDP = new StateDP(new GroupAddress(value.getDatapoint().getWriteAddress()), value
-                                .getDatapoint().getId());
-                        pc.write(stateDP, (value.getValue() == null ? "" : value.getValue().toString()));
+                        throw new GatewayDriverException(
+                                "Datapoint data type unknown, please specify a valid data type.");
                 }
             } catch (KNXException e) {
                 throw new GatewayDriverException(e);
