@@ -53,9 +53,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
-    <option name="width" value="1440" />
-    <option name="height" value="819" />
+    <option name="x" value="-253" />
+    <option name="y" value="-1058" />
+    <option name="width" value="1920" />
+    <option name="height" value="1058" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -166,9 +167,10 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="last_opened_file_path" value="/Applications/MAMP/htdocs/bimk" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -201,7 +203,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="819" extended-state="6" />
+    <frame x="-253" y="-1058" width="1920" height="1058" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -209,7 +211,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2087518" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15208112" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -287,16 +289,12 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/css/plugins.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="433" selection-end="433" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="14" column="0" selection-start="433" selection-end="433" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/soaba.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="118" selection-start="1668" selection-end="1668" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="40" column="118" selection-start="1668" selection-end="1668" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/robots.txt">
@@ -348,37 +346,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/plugins.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="3" selection-start="765" selection-end="765" vertical-scroll-proportion="0.60178304">
-          <folding />
-        </state>
+        <state line="27" column="3" selection-start="765" selection-end="765" vertical-scroll-proportion="0.60178304" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="29" selection-start="2903" selection-end="2903" vertical-scroll-proportion="-9.375">
-          <folding />
-        </state>
+        <state line="48" column="29" selection-start="2903" selection-end="2903" vertical-scroll-proportion="-9.375" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/soaba.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="17" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.37890044">
-          <folding />
-        </state>
+        <state line="107" column="17" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.37890044" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/plugins.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="15" selection-start="667" selection-end="667" vertical-scroll-proportion="0.78008914">
-          <folding />
-        </state>
+        <state line="35" column="15" selection-start="667" selection-end="667" vertical-scroll-proportion="0.78008914" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/soaba.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="57" selection-start="5722" selection-end="5722" vertical-scroll-proportion="0.55423474">
-          <folding />
-        </state>
+        <state line="146" column="57" selection-start="5722" selection-end="5722" vertical-scroll-proportion="0.55423474" />
       </provider>
     </entry>
   </component>
