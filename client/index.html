@@ -104,9 +104,9 @@
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#tabDatapointOpRead" role="tab" data-toggle="tab">Read</a></li>
-                                            <li><a href="#tabDatapointOpReadRaw" role="tab" data-toggle="tab">Read (Raw)</a></li>
-                                            <li><a href="#tabDatapointOpWrite" role="tab" data-toggle="tab">Write</a></li>
+                                            <li><a href="#tabDatapointOperations" id="tbDPRead" role="tab" data-toggle="tab">Read</a></li>
+                                            <li><a href="#tabDatapointOperations" id="tbDPReadRAW" role="tab" data-toggle="tab">Read (RAW)</a></li>
+                                            <li><a href="#tabDatapointOperations" id="tbDPWrite" role="tab" data-toggle="tab">Write</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -141,36 +141,46 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tabDatapointOpRead">
+                                <div role="tabpanel" class="tab-pane fade" id="tabDatapointOperations">
                                     <table class="table table-details">
                                         <tr>
-                                            <td><label for="txtDatapointName">Datapoint Address:</label></td>
-                                            <td><input type="text" class="form-control datapoint-read-address" readonly /></td>
+                                            <td><label for="txtDReadAddr">Read Address:</label></td>
+                                            <td><input id="txtDReadAddr" type="text" class="form-control" readonly /></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
-                                                <button type="button" id="btnDatapointRead" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
-                                                    Execute Operation
+                                            <td><label for="txtDWriteAddr">Write Address:</label></td>
+                                            <td><input id="txtDWriteAddr" type="text" class="form-control" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><label>Value:</label></td>
+                                            <td>
+                                                <div id="contDpointValue">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" class="operations">
+                                                <button type="button" id="btnDatapointRead" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off" style="display: none">
+                                                    Execute Read
+                                                </button>
+                                                <button type="button" id="btnDatapointReadRAW" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off" style="display: none">
+                                                    Execute Read (RAW)
+                                                </button>
+                                                <button type="button" id="btnDatapointWrite" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off" style="display: none">
+                                                    Execute Write
                                                 </button>
                                             </td>
                                         </tr>
-                                        <tr id="dpReadOperationResult" style="display:none">
+                                        <tr id="dpOperationResult" style="display:none">
                                             <td colspan="2">
                                                 <div class="panel panel-info">
                                                     <div class="panel-heading">Result</div>
                                                     <div class="panel-body">
-
                                                     </div>
                                                 </div>
                                             </td>
                                         </tr>
                                     </table>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tabDatapointOpReadRaw">
-B
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tabDatapointOpWrite">
-C
                                 </div>
                             </div>
                         </div>

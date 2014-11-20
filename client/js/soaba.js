@@ -1,6 +1,6 @@
 $(function(){
 
-    var APP_URL = '/soaba/';
+    var APP_URL = 'http://sb-dev.tagus.ist.utl.pt:9095/soaba/';
 
     function stripGatewayPackageName(gatewayDriverFullName){
         return gatewayDriverFullName.replace('soaba.core.gateways.drivers.', '');
@@ -56,6 +56,9 @@ $(function(){
         $('#txtDatapointDataType').val(data.dataType);
         $('.datapoint-read-address').val(data.readAddress);
         $('#txtDatapointWriteAddress').val(data.writeAddress);
+
+        if($('body').scrollTop() < $('.datapointMetaPanel').offset().top)
+            $('body').animate({scrollTop: $('.datapointMetaPanel').offset().top});
     });
 
 
@@ -115,23 +118,36 @@ $(function(){
         e.preventDefault();
         $(this).tab('show');
         $(this).parent().siblings().find('.btn-group > button, .btn-group .dropdown-menu li').removeClass('active');
-    })
+    });
 
     $('.tabs .dropdown-menu a').click(function(){
         $(this).parent().siblings().removeClass('active');
         $(this).parents('.btn-group').first().find('button').addClass('active');
     });
 
+    $('.tabs .dropdown-menu #tbDPRead').click(function(){
+        $('#tabDatapointOperations .operations .btn').hide();
+        $('#btnDatapointRead').show();
+    });
+    $('.tabs .dropdown-menu #tbDPReadRAW').click(function(){
+        $('#tabDatapointOperations .operations .btn').hide();
+        $('#btnDatapointReadRAW').show();
+    });
+    $('.tabs .dropdown-menu #tbDPWrite').click(function(){
+        $('#tabDatapointOperations .operations .btn').hide();
+        $('#btnDatapointWrite').show();
+    });
+
     $('#btnDatapointRead').click(function () {
         var data = $('#tblDatapoints').DataTable().rows('.warning.selected').data()[0];
         var url = APP_URL + 'datapoints/' + data.id;
         var $btn = $(this).button('loading');
-        $('#dpReadOperationResult').slideUp();
+        $('#dpOperationResult').slideUp().find('.panel-body').empty();
 
         $.getJSON(url, function(data){
             if(typeof data.stackTrace === 'object'){
-                $('#dpReadOperationResult .panel').removeClass('panel-info').addClass('panel-danger');
-                $('#dpReadOperationResult .panel-body').html(
+                $('#dpOperationResult .panel').removeClass('panel-info').addClass('panel-danger');
+                $('#dpOperationResult .panel-body').html(
                     '<div><b>Exception:</b> ' + data.cause.class + ' </div><br/>' +
                     '<div><b>Message:</b> ' + data.message + ' </div>'
                 );
@@ -139,22 +155,22 @@ $(function(){
                 return;
             }
 
-            $('#dpReadOperationResult .panel').removeClass('panel-danger').addClass('panel-info');
-            $('#dpReadOperationResult .panel-body').html(
+            $('#dpOperationResult .panel').removeClass('panel-danger').addClass('panel-info');
+            $('#dpOperationResult .panel-body').html(
                 '<div><b>Value:</b> ' + data.value + '</div><br/>' +
                 '<div><b>Data Type:</b> ' + data.datatpoint.dataType + '</div>'
             );
-            $('#dpReadOperationResult').slideDown().get(0).scrollIntoView();
+            $('#dpOperationResult').slideDown().get(0).scrollIntoView();
         })
         .always(function(){
             $btn.button('reset');
         })
         .fail(function(xhr, status, message){
-            $('#dpReadOperationResult').removeClass('panel-info').addClass('panel-danger');
-            $('#dpReadOperationResult .panel-body').html(
+            $('#dpOperationResult').removeClass('panel-info').addClass('panel-danger');
+            $('#dpOperationResult .panel-body').html(
                 '<div><b>Unknown Error:</b> ' + message + '</div>'
             );
-            $('#dpReadOperationResult').slideDown().get(0).scrollIntoView();
+            $('#dpOperationResult').slideDown().get(0).scrollIntoView();
         });
     });
 });

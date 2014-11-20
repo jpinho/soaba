@@ -20,7 +20,8 @@ import org.restlet.resource.ServerResource;
 public class BonjourService extends
         ServerResource {
 
-    private static final String BGROUND_PATH = "resources/bground-b64.txt";
+    private static final String BONJOUR_TMPL_PATH = "resources/bonjour.html.tmpl";
+    private static final String BGROUND_IMG_PATH = "resources/pic.base64.txt";
 
     @SuppressWarnings("rawtypes")
     @Get
@@ -34,41 +35,16 @@ public class BonjourService extends
         Arrays.sort(routes);
 
         /**
-         * HTML Helper Variables
-         */
-        final String title = "SOABA REST API", footer = "Developed by João Pinho";
-
-        final String globalStyle = "<style type='text/css'>body{ " + "background: url('"
-                + new String(Files.readAllBytes(java.nio.file.Paths.get(BGROUND_PATH))).trim() + "');" + " }</style>";
-
-        final String stylesContainer = "margin:20px auto; width:600px; text-align:center; font-family: tahoma; font-size:0.9em; padding:20px;"
-                + "border-radius:10px; -webkit-box-shadow: 0px 0px 15px 1px rgba(73,147,237, 0.4);-moz-box-shadow: 0px 0px 15px 1px rgba(73,147,237, 0.4);"
-                + "box-shadow:0px 0px 15px 1px rgba(73,147,237, 0.4);border:1px solid #ddd; background-color:#fff;";
-
-        final String stylesHeader = "background-color: #F0F0F0;margin: -20px;padding: 20px;padding-bottom: 0px;margin-bottom: 10px;border-top-left-radius: 10px;"
-                + "border-top-right-radius: 10px;";
-
-        final String stylesLineHeader = "border:0px none;border-top:1px solid #000;height:1px;margin-left: -20px;margin-right: -20px;";
-
-        final String stylesFooter = "text-align:right; font-size: 0.7em; background-color: #F0F0F0;margin: -20px;padding: 10px 20px; margin-top: 10px;"
-                + "border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;";
-
-        final String stylesLineFooter = "border:0px none;border-top:1px solid #000;height:1px;margin-left: -20px;margin-right: -20px; margin-top:-10px;";
-
-        /**
          * Bonjour Page Construction
          */
-        StringBuilder output = new StringBuilder();
-        output.append(globalStyle + "<div style='" + stylesContainer + "'>" + " <div style='" + stylesHeader + "'>"
-                + "<b style='letter-spacing: 1px;'>" + title + "</b>" + "<br/><br/><hr style='" + stylesLineHeader
-                + "'/>" + "</div>"
-                + " <table style='text-align:left;font-size:0.9em;width: 100%; border:1px solid #ddd; '>");
+        String htmlTemplate = new String(Files.readAllBytes(java.nio.file.Paths.get(BONJOUR_TMPL_PATH))).trim();
+        String imgContent = new String(Files.readAllBytes(java.nio.file.Paths.get(BGROUND_IMG_PATH))).trim();
+        final StringBuilder output = new StringBuilder();
 
         // listing available routes
         int i = 0;
         for (String uri : routes) {
-            output.append("<tr><td style='padding:5px;" + (i++ % 2 == 0 ? "background-color: #f9f9f9;" : "")
-                    + "'><a target='_blank' style='color:#444;' href='");
+            output.append("<tr><td class='" + (i++ % 2 == 0 ? "even" : "odd")+ "'><a target='_blank' href='");
             output.append(RestletServer.ROOT_URI);
             output.append(uri);
             output.append("'>");
@@ -77,9 +53,8 @@ public class BonjourService extends
             output.append("</a></td></tr>");
         }
 
-        output.append("</table><div style='" + stylesFooter + "'><hr style='" + stylesLineFooter + "'/>" + footer
-                + "</div></div>");
-
-        return new StringRepresentation(output.toString(), MediaType.TEXT_HTML);
+        htmlTemplate = htmlTemplate.replace("{#ROUTES#}", output.toString());
+        htmlTemplate = htmlTemplate.replace("{#BGROUND_IMG#}", imgContent);
+        return new StringRepresentation(htmlTemplate, MediaType.TEXT_HTML);
     }
 }
