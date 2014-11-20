@@ -32,7 +32,7 @@ public class RestletServer extends
     private static final Map<String, Class> resx = new HashMap<String, Class>();
     private static final Logger logger = Logger.getLogger(RestletServer.class);
 
-    final static int SERVER_PORT = 8095;
+    final static int SERVER_PORT = 9095;
     final static String ROOT_URI = "/soaba";
 
     static {

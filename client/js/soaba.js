@@ -1,6 +1,6 @@
 $(function(){
 
-    var APP_URL = 'http://sb-dev.tagus.ist.utl.pt:8095/soaba/';
+    var APP_URL = '/soaba/';
 
     function stripGatewayPackageName(gatewayDriverFullName){
         return gatewayDriverFullName.replace('soaba.core.gateways.drivers.', '');
