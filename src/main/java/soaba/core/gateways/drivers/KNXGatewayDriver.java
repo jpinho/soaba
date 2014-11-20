@@ -1,7 +1,6 @@
 package soaba.core.gateways.drivers;
 
 import java.io.Serializable;
-import java.lang.annotation.Annotation;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -15,7 +14,6 @@ import javax.activation.UnsupportedDataTypeException;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.junit.experimental.theories.DataPoint;
 
 import soaba.core.api.IDatapoint;
 import soaba.core.api.IGatewayDriver;
@@ -32,8 +30,6 @@ import tuwien.auto.calimero.FrameEvent;
 import tuwien.auto.calimero.GroupAddress;
 import tuwien.auto.calimero.IndividualAddress;
 import tuwien.auto.calimero.Priority;
-import tuwien.auto.calimero.datapoint.Datapoint;
-import tuwien.auto.calimero.datapoint.StateDP;
 import tuwien.auto.calimero.exception.KNXException;
 import tuwien.auto.calimero.exception.KNXFormatException;
 import tuwien.auto.calimero.exception.KNXRemoteException;
