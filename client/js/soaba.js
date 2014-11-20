@@ -35,6 +35,36 @@ $(function(){
         $('body').animate({scrollTop: $(target).offset().top});
     }
 
+    function showResult(){
+        $('#dpOperationResult').slideDown();
+        scrollIntoView('#dpOperationResult');
+    }
+
+    function hideResult(){
+        $('#dpOperationResult').slideUp();
+        $('#dpOperationResult .panel-body').empty();
+    }
+
+    function setErrorMessage(message){
+        $('#dpOperationResult').removeClass('panel-info').addClass('panel-danger');
+        $('#dpOperationResult .panel-body').html(
+            '<div><b>Unknown Error:</b> ' + message + '</div>'
+        );
+    }
+
+    function setExceptionMessage(message, cause){
+        $('#dpOperationResult .panel').removeClass('panel-info').addClass('panel-danger');
+        $('#dpOperationResult .panel-body').html(
+            '<div><b>Exception:</b> ' + cause + ' </div><br/>' +
+            '<div><b>Message:</b> ' + message + ' </div>'
+        );
+    }
+
+    function setResultText(message){
+        $('#dpOperationResult .panel').removeClass('panel-danger').addClass('panel-info');
+        $('#dpOperationResult .panel-body').html(message);
+    }
+
 
     /**
      * Datapoints
@@ -134,8 +164,9 @@ $(function(){
     });
 
     $('#tblGatewayDrivers tbody').on('click', 'tr', function () {
-        $(this).addClass('warning selected').siblings().removeClass('warning selected');
-        var data = $('#tblGatewayDrivers').DataTable().rows('.warning.selected').data()[0];
+        $('#tblGatewayDrivers tr').removeClass('warning selected');
+        $(this).addClass('warning selected');
+        var data = $('#tblGatewayDrivers').DataTable().row(this).data();
 
         $('.gatewayMetaPanel a[href="#tabGatewaysInfo"]').tab('show');
         $('.gatewayMetaPanel').slideDown();
@@ -166,6 +197,7 @@ $(function(){
         e.preventDefault();
         $(this).tab('show');
         $(this).parent().siblings().find('.btn-group > button, .btn-group .dropdown-menu li').removeClass('active');
+        hideResult();
     });
 
     $('.tabs .dropdown-menu a').click(function(){
@@ -185,82 +217,56 @@ $(function(){
     });
 
     $('#btnDatapointRead').click(function () {
-        var info = $('#tblDatapoints').DataTable().rows('.warning.selected').data()[0];
+        var info = $('#tblDatapoints').DataTable().rows($('#tblDatapoints tr.warning.selected').get(0)).data()[0];
         var url = APP_URL + 'datapoints/' + info.id;
         var $btn = $(this).button('loading');
         $('#dpOperationResult').slideUp().find('.panel-body').empty();
 
         $.getJSON(url, function(rsp){
-            if(typeof rsp.stackTrace === 'object'){
-                $('#dpOperationResult .panel').removeClass('panel-info').addClass('panel-danger');
-                $('#dpOperationResult .panel-body').html(
-                    '<div><b>Exception:</b> ' + rsp.cause.class + ' </div><br/>' +
-                    '<div><b>Message:</b> ' + rsp.message + ' </div>'
+            if(typeof rsp !== "undefined" && typeof rsp.stackTrace === 'object')
+                setExceptionMessage(rsp.message, rsp.cause.class);
+            else if(typeof rsp !== "undefined") {
+                setResultText(
+                    '<div><b>Value:</b> ' + rsp.value + '</div><br/>' +
+                    '<div><b>Data Type:</b> ' + rsp.datapoint.dataType + '</div>'
                 );
-                $('#dpReadOperationResult').slideDown().get(0).scrollIntoView();
-                return;
+                $('#contDValue input').val(rsp.value);
             }
+            else
+                setResultText('Request sent, but received response is "null"!');
 
-            $('#dpOperationResult .panel').removeClass('panel-danger').addClass('panel-info');
-            $('#dpOperationResult .panel-body').html(
-                '<div><b>Value:</b> ' + rsp.value + '</div><br/>' +
-                '<div><b>Data Type:</b> ' + rsp.datapoint.dataType + '</div>'
-            );
-            $('#dpOperationResult').slideDown();
-            scrollIntoView('#dpOperationResult');
-
-            $('#contDValue input').val(rsp.value);
+            showResult();
         })
         .always(function(){
             $btn.button('reset');
         })
         .fail(function(xhr, status, message){
-            $('#dpOperationResult').removeClass('panel-info').addClass('panel-danger');
-            $('#dpOperationResult .panel-body').html(
-                '<div><b>Unknown Error:</b> ' + message + '</div>'
-            );
-            $('#dpOperationResult').slideDown().get(0).scrollIntoView();
+            setErrorMessage(message);
+            showResult();
         });
     });
 
     $('#btnDatapointWrite').click(function () {
-        var info = $('#tblDatapoints').DataTable().rows('.warning.selected').data()[0];
+        var info = $('#tblDatapoints').DataTable().rows($('#tblDatapoints tr.warning.selected').get(0)).data()[0];
         var value = $('#contDValue input').val();
         var url = APP_URL + 'datapoints/' + info.id + '/' + value;
         var $btn = $(this).button('loading');
         $('#dpOperationResult').slideUp().find('.panel-body').empty();
 
         $.getJSON(url, function(rsp){
-            if(typeof rsp.stackTrace === 'object'){
-                $('#dpOperationResult .panel').removeClass('panel-info').addClass('panel-danger');
-                $('#dpOperationResult .panel-body').html(
-                    '<div><b>Exception:</b> ' + rsp.cause.class + ' </div><br/>' +
-                    '<div><b>Message:</b> ' + rsp.message + ' </div>'
-                );
-                $('#dpOperationResult').slideDown();
-                scrollIntoView('#dpOperationResult');
-                return;
-            }
+            if(typeof rsp !== "undefined" && typeof rsp.stackTrace === 'object')
+                setExceptionMessage(rsp.message, rsp.cause.class);
+            else
+                setResultText('Done!');
 
-            $('#dpOperationResult .panel').removeClass('panel-danger').addClass('panel-info');
-            $('#dpOperationResult .panel-body').html(
-                '<div><b>Value:</b> ' + rsp.value + '</div><br/>' +
-                '<div><b>Data Type:</b> ' + rsp.datapoint.dataType + '</div>'
-            );
-            $('#dpOperationResult').slideDown();
-            scrollIntoView('#dpOperationResult');
-
-            $('#contDValue input').val(rsp.value);
+            showResult();
         })
-            .always(function(){
-                $btn.button('reset');
-            })
-            .fail(function(xhr, status, message){
-                $('#dpOperationResult').removeClass('panel-info').addClass('panel-danger');
-                $('#dpOperationResult .panel-body').html(
-                    '<div><b>Unknown Error:</b> ' + message + '</div>'
-                );
-                $('#dpOperationResult').slideDown().get(0).scrollIntoView();
-            });
+        .always(function(){
+            $btn.button('reset');
+        })
+        .fail(function(xhr, status, message){
+            setErrorMessage(message);
+            showResult();
+        });
     });
 });
