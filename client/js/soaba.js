@@ -223,7 +223,7 @@ $(function(){
         });
     });
 
-    $('#btnDatapointRead').click(function () {
+    $('#btnDatapointWrite').click(function () {
         var info = $('#tblDatapoints').DataTable().rows('.warning.selected').data()[0];
         var value = $('#contDValue input').val();
         var url = APP_URL + 'datapoints/' + info.id + '/' + value;

@@ -7,7 +7,6 @@ import javax.activation.UnsupportedDataTypeException;
 
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
-import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
 import soaba.core.api.IDatapoint;
@@ -203,7 +202,7 @@ public class KNXGatewayService {
         public final static String ROUTE_URI = "/datapoints/{datapointaddr}/{value}";
 
         @SuppressWarnings("unused")
-        @Put("json")
+        @Get("json")
         public String doPut(Representation res) throws ServiceResourceErrorException,
                 DatapointReadonlyAccessTypeException,
                 UnknownHostException,
