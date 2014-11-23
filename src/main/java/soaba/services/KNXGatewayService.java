@@ -65,7 +65,7 @@ public class KNXGatewayService {
     public static final class ProbeDatapointStatus extends
             ServerResource {
 
-        public final static String ROUTE_URI = "/management/probesstatus/{datapointaddr}";
+        public final static String ROUTE_URI = "/management/probesbusystatus/{datapointaddr}";
 
         @SuppressWarnings("unused")
         @Get("json")

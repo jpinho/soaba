@@ -128,7 +128,10 @@ table.table-details tr td:first-child{
 
 table.table-details tr td:first-child label{ margin-bottom:0px; }
 table.table-details tr td:first-child + td input{  width:250px; }
+
 .datapointMetaPanel, .gatewayMetaPanel{ display:none; }
+#txtDatapointAccess, #txtDatapointDataType{ text-transform: capitalize; }
+
 #tblDatapoints tr, #tblGatewayDrivers tr { cursor:pointer; cursor:hand; }
 #tblDatapoints tbody tr > td:first-child + td + td + td { text-transform: capitalize;   }
 #tblDatapoints_filter input{ height:25px; margin-left: 10px;}

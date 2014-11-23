@@ -350,7 +350,7 @@ public class KNXGatewayDriver
         List<String> result = new ArrayList<String>();
 
         for (IndividualAddress addr : networkRouters)
-            result.add(new String(addr.toByteArray()));
+            result.add(String.format("%d/%d/%d [typeof %s]", addr.getArea(), addr.getLine(), addr.getDevice(), addr.getType()));
 
         return result;
     }

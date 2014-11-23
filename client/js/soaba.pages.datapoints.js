@@ -40,6 +40,19 @@
         }
     }
 
+    function getDataTypeDisplayValue(dataType){
+        return dataType.toLowerCase().replace(/_/g, ' ').replace('tiny number', 'number (2B)')
+    }
+
+    function getAccessTypeDisplayValue(accessType){
+        switch(accessType.toUpperCase()){
+            case 'READ_ONLY': return 'Read Only';
+            case 'WRITE_ONLY': return 'Write Only';
+            case 'READ_WRITE': return 'Read/Write';
+            default: return '---';
+        }
+    }
+
     function trimUnsupportedOperations(accessType){
         $('.btn-group.operations').show();
 
@@ -102,17 +115,12 @@
             ]
             ,'columnDefs': [{
                     'render': function (data, type, row) {
-                        switch(data){
-                            case 'READ_ONLY': return 'Read Only';
-                            case 'WRITE_ONLY': return 'Write Only';
-                            case 'READ_WRITE': return 'Read/Write';
-                            default: return '---';
-                        }
+                        return getAccessTypeDisplayValue(data);
                     }
                     , 'targets': 2 }
                 , {
                     'render': function (data, type, row) {
-                        return data.toLowerCase();
+                        return getDataTypeDisplayValue(data);
                     }
                     , 'targets': 3 }
                 , {
@@ -148,8 +156,8 @@
             $('.datapointMetaPanel').slideDown();
             $('#txtDatapointName').val(data.name);
             $('#txtGatewayAddress').val(data.gatewayAddress);
-            $('#txtDatapointAccess').val(data.accessType);
-            $('#txtDatapointDataType').val(data.dataType);
+            $('#txtDatapointAccess').val(getAccessTypeDisplayValue(data.accessType));
+            $('#txtDatapointDataType').val(getDataTypeDisplayValue(data.dataType));
 
             $('.datapoint-read-address').val(
                 typeof data.readAddress === 'undefined' || data.readAddress == null || data.readAddress.length == 0 ?
