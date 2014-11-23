@@ -250,10 +250,19 @@ public class AppConfig {
         return result;
     }
 
+    /**
+     * Searchs for a datapoint by their id, read address or write address, the first to match
+     * returns the underlyining datapoint.
+     * 
+     * @param dpointIdOrAddress, the id, read address or write address of the datapoint to be found
+     * @return the datapoint found or null if none matches the query
+     */
     public IDatapoint findDatapoint(String dpointIdOrAddress) {        
         for (IDatapoint dp : datapoints)
-            if (dp.getId().equals(dpointIdOrAddress) || dp.getReadAddress().equals(dpointIdOrAddress) || dp.getWriteAddress().equals(dpointIdOrAddress))
-                return dp;
+            if (dp.getId().equals(dpointIdOrAddress) || 
+               (dp.getReadAddress() != null && dp.getReadAddress().equals(dpointIdOrAddress)) || 
+               (dp.getWriteAddress() != null && dp.getWriteAddress().equals(dpointIdOrAddress)))
+               return dp;
         return null;
     }
 
