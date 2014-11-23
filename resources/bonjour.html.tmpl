@@ -11,10 +11,10 @@
 		font-family: tahoma; 
 		font-size:0.9em; 
 		padding:20px;
-		border-radius:10px; 
-		-webkit-box-shadow: 0px 0px 15px 1px rgba(73,147,237, 0.4);
-		-moz-box-shadow: 0px 0px 15px 1px rgba(73,147,237, 0.4);
-		box-shadow:0px 0px 15px 1px rgba(73,147,237, 0.4);
+		border-radius:0px; 
+		-webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0, 0.4);
+		-moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0, 0.4);
+		box-shadow:0px 0px 15px 1px rgba(0,0,0, 0.4);
 		border:1px solid #ddd; 
 		background-color:#fff;
 	}
@@ -25,8 +25,7 @@
 		padding: 20px;
 		padding-bottom: 0px;
 		margin-bottom: 10px;
-		border-top-left-radius: 10px;
-		border-top-right-radius: 10px;
+		letter-spacing: 0.5px;
 	}
 
 	header .title{
@@ -75,7 +74,24 @@
 	}
 
 	footer{
-		text-align:right; font-size: 0.7em; background-color: #F0F0F0;margin: -20px;padding: 10px 20px; margin-top: 10px;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;
+		text-align:right; 
+		font-size: 0.7em; 
+		background-color: #F0F0F0;
+		margin: -20px;
+		padding: 10px 20px; 
+		margin-top: 10px;
+	}
+
+	.copyrights a:link,
+	.copyrights a:visited,
+	.copyrights a:hover {
+		color: navy;
+		text-decoration: none;
+		font-weight: bold;
+	}
+
+	html{
+		font-size: 1em;
 	}
 
 	body{ 
@@ -89,12 +105,16 @@
 		<hr class="line"/>
 	</header> 
 
-	<table id="routes" border="0">
-		{#ROUTES#}
-	</table>
+	<div class="content">
+		<table id="routes" border="0">
+			{#ROUTES#}
+		</table>
+		<iframe src="http://pinho.icodebox.net" width="100%" height="100%" id="frmThanks" style="display:none;" seamless>
+		</iframe>
+	</div>
 
 	<footer>
 		<hr class="line"/>
-		<span>Developed by <a target="_blank" href="http://pinho.icodebox.net">João Pinho</a></span>
+		<span class="copyrights">Developed by <a id="lkAuthor" target="_blank" href="http://pinho.icodebox.net">João Pinho</a></span>
 	</footer>
 </section>
