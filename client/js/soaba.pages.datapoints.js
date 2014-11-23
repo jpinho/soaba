@@ -27,6 +27,7 @@
                     });
                 $('<span class="slider-text label label-primary">0</span>').appendTo($cont);
                 break;
+            case 'tiny_number':
             case 'number':
                 $('<input class="updown dpoint-value" value="0" />')
                     .appendTo($cont).spinner({
@@ -243,6 +244,7 @@
             case 'percentage':
                 $value.slider('option', 'value', value);
                 break;
+            case 'tiny_number':
             case 'number':
                 $value.spinner('value', value);
                 break;
@@ -260,6 +262,7 @@
                 return $value.bootstrapSwitch('state');
             case 'percentage':
                 return $value.slider('option', 'value');
+            case 'tiny_number':
             case 'number':
                 return $value.spinner('value');
             case 'string':
@@ -294,6 +297,7 @@
                 case 'percentage':
                     $value.slider('disable');
                     break;
+                case 'tiny_number':
                 case 'number':
                     $value.spinner('disable');
                     break;
@@ -318,6 +322,7 @@
                 case 'percentage':
                     $value.slider('enable');
                     break;
+                case 'tiny_number':
                 case 'number':
                     $value.spinner('enable');
                     break;

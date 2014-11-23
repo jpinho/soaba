@@ -31,8 +31,11 @@ public class DatapointValue<T> {
             case BIT:
                 this.value = (T)new Boolean(String.valueOf(newValue));
                 break;
-            case PERCENTAGE:
+            case TINY_NUMBER:
                 this.value = (T)new Float(String.valueOf(newValue));
+                break;
+            case PERCENTAGE:
+                this.value = (T)new Integer(String.valueOf(newValue));
                 break;
             case NUMBER:
                 this.value = (T)new Double(String.valueOf(newValue));
@@ -60,8 +63,10 @@ public class DatapointValue<T> {
         switch (dataType) {
             case BIT:
                 return new DatapointValue<Boolean>(datapointSource);
+            case TINY_NUMBER:
+                return new DatapointValue<Float>(datapointSource);  
             case PERCENTAGE:
-                return new DatapointValue<Float>(datapointSource);
+                return new DatapointValue<Integer>(datapointSource);  
             case NUMBER:
                 return new DatapointValue<Double>(datapointSource);
             case TEXT:
