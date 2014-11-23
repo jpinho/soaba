@@ -250,9 +250,9 @@ public class AppConfig {
         return result;
     }
 
-    public IDatapoint findDatapoint(String dpointAddress) {
+    public IDatapoint findDatapoint(String dpointIdOrAddress) {        
         for (IDatapoint dp : datapoints)
-            if (dp.getId().equals(dpointAddress))
+            if (dp.getId().equals(dpointIdOrAddress) || dp.getReadAddress().equals(dpointIdOrAddress) || dp.getWriteAddress().equals(dpointIdOrAddress))
                 return dp;
         return null;
     }
