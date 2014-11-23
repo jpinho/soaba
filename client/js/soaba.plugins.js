@@ -1,4 +1,10 @@
 /**
+ * SOABA Plugins Setup
+ *
+ * @author João Pinho
+ */
+
+/**
  * Avoid `console` errors in browsers that lack a console.
  */
 (function() {
@@ -15,14 +21,17 @@
 
     while (length--) {
         method = methods[length];
-
-        // Only stub undefined methods.
-        if (!console[method]) {
+        if (!console[method])
             console[method] = noop;
-        }
     }
 }());
 
+
+/**
+ * Plugins Setup
+ */
 $(function(){
+
+    // switch plugin
     $('input[type="checkbox"]').bootstrapSwitch();
 });

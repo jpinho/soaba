@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,700,600);
 
 /* ###########################################################################
- * Global styles
+ *  Global styles
  * ########################################################################### */
 
 html,
@@ -86,8 +86,9 @@ textarea {
     padding: 0.2em 0;
 }
 
+
 /* ###########################################################################
- * SOABA styles
+ *  SOABA styles
  * ########################################################################### */
 
 html, body {
@@ -116,9 +117,7 @@ html, body {
     opacity: 1;
 }
 
-.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{
-    margin-left: 20px;
-}
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{ margin-left: 20px; }
 
 table.table-details tr td:first-child{
     width: 170px;
@@ -127,21 +126,13 @@ table.table-details tr td:first-child{
     vertical-align: middle;
 }
 
-table.table-details tr td:first-child label{
-    margin-bottom:0px;
-}
-
-table.table-details tr td:first-child + td input{
-    width:250px;
-}
-
+table.table-details tr td:first-child label{ margin-bottom:0px; }
+table.table-details tr td:first-child + td input{  width:250px; }
 .datapointMetaPanel, .gatewayMetaPanel{ display:none; }
-
 #tblDatapoints tr, #tblGatewayDrivers tr { cursor:pointer; cursor:hand; }
-
-#tblDatapoints tbody tr > td:first-child + td + td + td {
-    text-transform: capitalize;
-}
+#tblDatapoints tbody tr > td:first-child + td + td + td { text-transform: capitalize;   }
+#tblDatapoints_filter input{ height:25px; margin-left: 10px;}
+select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
 
 .tabs {
     margin-top:20px;
@@ -149,17 +140,36 @@ table.table-details tr td:first-child + td input{
     margin-left: 15px;
 }
 
-#dpOperationResult td{
-    text-align: left;
+#dpOperationResult td{ text-align: left; }
+#dpOperationResult .panel{ margin-top: 15px; margin-bottom: 0px; }
+#tabDatapointOperations table{ margin-bottom: 0px; }
+
+#contDValue{ width: 350px; }
+
+#contDValue .slider{
+    width: 233px;
+    float: left;
+    margin-top: 4px;
+    margin-left: 10px;
+    margin-right: 15px;
 }
 
-#dpOperationResult .panel{
-    margin-top: 15px;
-    margin-bottom: 0px;
+#contDValue .slider-text{
+    position: relative;
+    top: -1px;
+    margin-left: 11px;
+    padding: .2em 1em .3em;
+    font-size: 83%;
 }
-#tabDatapointOperations table{
-    margin-bottom: 0px;
+
+#contDValue .updown{
+    width: 220px;
 }
+
+a[href="http://www.amcharts.com/javascript-charts/"]{
+    opacity: 0.3 !important;
+}
+
 
 /* ###########################################################################
  * Helper classes
@@ -262,22 +272,6 @@ table.table-details tr td:first-child + td input{
     *zoom: 1;
 }
 
-/* ############################################################################
- * EXAMPLE Media Queries for Responsive Design.
- * These examples override the primary ('mobile first') styles.
- * Modify as content requires.
- * ############################################################################ */
-
-@media only screen and (min-width: 35em) {
-    /* Style adjustments for viewports that meet the condition */
-}
-
-@media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
-    /* Style adjustments for high resolution devices */
-}
 
 /* ############################################################################
  * Print styles.

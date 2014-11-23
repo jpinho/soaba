@@ -10,38 +10,55 @@
         <link rel="apple-touch-icon" sizes="142x142" href="apple-touch-icon-precomposed.png" />
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 
+        <!-- styles: third-party -->
         <link rel="stylesheet" href="css/normalize.css" />
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/380cb78f450/integration/bootstrap/3/dataTables.bootstrap.css" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.1.0/css/bootstrap3/bootstrap-switch.css" />
+
+        <!-- styles: soaba application -->
         <link rel="stylesheet" href="css/dashboard.css" />
-        <link rel="stylesheet" href="css/bootstrap-switch.css" />
         <link rel="stylesheet" href="css/plugins.css" />
         <link rel="stylesheet" href="css/soaba.css" />
 
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <!-- scripts: framework libraries -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="js/vendor/jquery.dataTables.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/380cb78f450/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.3/js/jquery.dataTables.js"></script>
+        <script src="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.1.0/js/bootstrap-switch.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
+        <script type="text/javascript" src="js/vendor/amcharts.js"></script>
+        <script type="text/javascript" src="js/vendor/gauge.js"></script>
+        <script type="text/javascript" src="js/vendor/light.js"></script>
+        <script src="//builds.emberjs.com/release/ember.js"></script>
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <script src="js/vendor/bootstrap-switch.js"></script>
-        <script src="js/plugins.js"></script>
+        <!-- scripts: soaba application -->
         <script src="js/soaba.js"></script>
+        <script src="js/soaba.plugins.js"></script>
+        <script src="js/soaba.utils.js"></script>
+
+        <script src="js/soaba.pages.datapoints.js"></script>
+        <script src="js/soaba.pages.gateways.js"></script>
+
+        <!-- scripts: unit tests: add "?test" to query string for activation -->
+        <script src="tests/runner.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -85,7 +102,9 @@
                         <div class="panel-heading">
                             Available Datapoints <span id="datapointsCount" class="label label-success">New</span>
                         </div>
-                        <table id="tblDatapoints" class="table table-striped table-condensed table-hover" cellPadding="0" cellSpacing="0" width="100%"></table>
+                        <table id="tblDatapoints" class="table table-striped table-condensed table-hover"
+                               cellPadding="0" cellSpacing="0" width="100%">
+                        </table>
                     </div>
 
                     <div class="panel panel-default">
@@ -207,7 +226,6 @@
                         <div class="gatewayMetaPanel">
                             <ul class="nav nav-pills tabs gateway" role="tablist">
                                 <li role="presentation" class="active"><a href="#tabGatewaysInfo" role="tab" data-toggle="tab">Info</a></li>
-                                <li role="presentation"><a href="#tabGatewaysOperations" role="tab" data-toggle="tab">Operations</a></li>
                             </ul>
 
                             <div class="tab-content">
@@ -223,12 +241,9 @@
                                         </tr>
                                         <tr>
                                             <td><label for="ckbGatewayConnected">Is Connected:</label></td>
-                                            <td><input  name="ckbGatewayConnected" id="ckbGatewayConnected" type="checkbox" checked disabled></td>
+                                            <td><input  name="ckbGatewayConnected" id="ckbGatewayConnected" type="checkbox" checked disabled /></td>
                                         </tr>
                                     </table>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tabGatewaysOperations">
-                                    Black Ops
                                 </div>
                             </div>
                         </div>
@@ -243,6 +258,67 @@
                     </ol>
 
                     <h1 class="page-header">Diagnostics</h1>
+
+
+                    <style type="text/css">
+                        #chartdiv {
+                            width	: 250px;
+                            height	: 250px;
+                        }
+                        #chartdiv svg{
+                            margin-top: 15px;
+                        }
+                    </style>
+
+                    <script type="text/javascript">
+                        var gaugeChart = AmCharts.makeChart("chartdiv", {
+                            "type": "gauge",
+                            "theme": "light",
+                            "axes": [{
+                                "axisThickness":1,
+                                "axisAlpha":0.2,
+                                "tickAlpha":0.2,
+                                "valueInterval":20,
+                                "bands": [{
+                                    "color": "#84b761",
+                                    "endValue": 90,
+                                    "startValue": 0
+                                }, {
+                                    "color": "#fdd400",
+                                    "endValue": 130,
+                                    "startValue": 90
+                                }, {
+                                    "color": "#cc4748",
+                                    "endValue": 220,
+                                    "innerRadius": "95%",
+                                    "startValue": 130
+                                }],
+                                "bottomText": "0 km/h",
+                                "bottomTextYOffset": -20,
+                                "endValue": 220
+                            }],
+                            "arrows": [{}]
+                        });
+
+                        setInterval(randomValue, 2000);
+
+                        // set random value
+                        function randomValue() {
+                            var value = Math.round(Math.random() * 200);
+                            if(gaugeChart){
+                                if(gaugeChart.arrows){
+                                    if(gaugeChart.arrows[0]){
+                                        if(gaugeChart.arrows[0].setValue){
+                                            gaugeChart.arrows[0].setValue(value);
+                                            gaugeChart.axes[0].setBottomText(value + " km/h");
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    </script>
+
+                    <div id="chartdiv"></div>
                 </div>
             </div>
         </div>

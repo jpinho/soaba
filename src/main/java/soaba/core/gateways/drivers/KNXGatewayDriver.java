@@ -250,6 +250,7 @@ public class KNXGatewayDriver
                         break;
                     case TINY_NUMBER:
                         value.setValue(pc.readFloat(new GroupAddress(datapoint.getReadAddress()), false));
+                        break;
                     case NUMBER:
                         value.setValue(pc.readFloat(new GroupAddress(datapoint.getReadAddress()), true));
                         break;
@@ -294,6 +295,7 @@ public class KNXGatewayDriver
                     case TINY_NUMBER:
                         pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
                                 (Float) (value.getValue() == null ? 0 : value.getValue()), false);
+                        break;
                     case NUMBER:
                         pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
                                 (Float) (value.getValue() == null ? 0 : value.getValue()), false);
