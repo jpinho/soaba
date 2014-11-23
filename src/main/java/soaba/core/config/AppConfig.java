@@ -95,11 +95,11 @@ public class AppConfig {
             datapoints.add(new Datapoint(gwLab158, prefix + "Door", ACCESSTYPE.WRITE_ONLY, DATATYPE.BIT, null, "0/3/0"));
 
             // meteo station sensors
-            datapoints.add(new Datapoint(gwLab158, prefix + "CO2", ACCESSTYPE.READ_ONLY, DATATYPE.NUMBER, "0/4/0", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Humidity", ACCESSTYPE.READ_ONLY, DATATYPE.NUMBER, "0/4/1", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Temperature", ACCESSTYPE.READ_ONLY, DATATYPE.NUMBER, "0/4/3", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Temperature Door", ACCESSTYPE.READ_ONLY, DATATYPE.NUMBER, "0/4/5", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Lux", ACCESSTYPE.READ_ONLY, DATATYPE.NUMBER, "0/4/4", null));
+            datapoints.add(new Datapoint(gwLab158, prefix + "CO2", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/4/0", null));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Humidity", ACCESSTYPE.READ_ONLY, DATATYPE.PERCENTAGE, "0/4/1", null));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Temperature", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/4/3", null));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Temperature Door", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/4/5", null));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Lux", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/4/4", null));
 
             // hvac
             datapoints.add(new Datapoint(gwLab158, prefix + "HVAC ONOFF", ACCESSTYPE.READ_WRITE, DATATYPE.BIT, "1/0/8", "1/0/0"));

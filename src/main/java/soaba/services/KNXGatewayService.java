@@ -173,7 +173,7 @@ public class KNXGatewayService {
             RestletServer.configureRestForm(getResponse());
 
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
-            final IDatapoint dpoint = config.findDatapoint(dpointAddress);
+            final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
             final IGatewayDriver gateway = config.findGateway(dpoint.getGatewayAddress());
 
             if (dpoint == null)
@@ -214,7 +214,7 @@ public class KNXGatewayService {
 
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
             final String dpointValue = getRequest().getAttributes().get("value").toString();
-            final IDatapoint dpoint = config.findDatapoint(dpointAddress);
+            final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
             final IGatewayDriver gateway = config.findGateway(dpoint.getGatewayAddress());
 
             if (dpoint == null)

@@ -218,7 +218,7 @@
                 setExceptionMessage(rsp.message, rsp.cause.class);
             else {
                 updateDatapointValue(info, value);
-                setResultText('Done!');
+                setResultText('Write Request Sent!');
             }
             showResult();
         })
@@ -243,6 +243,7 @@
                 break;
             case 'percentage':
                 $value.slider('option', 'value', value);
+                $('#contDValue .slider-text').text(value);
                 break;
             case 'tiny_number':
             case 'number':
