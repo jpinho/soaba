@@ -51,6 +51,7 @@
         <script src="js/soaba.pages.gateways.js"></script>
         <script src="js/soaba.pages.meteo.js"></script>
         <script src="js/soaba.pages.eviewer.js"></script>
+        <script src="js/soaba.pages.cpanel.js"></script>
 
         <!-- scripts: unit tests: add "?test" to query string for activation -->
         <script src="tests/runner.js"></script>
@@ -88,10 +89,15 @@
             <div class="row">
                 <div class="col-sm-3 col-md-2 sidebar">
                     <ul class="nav nav-sidebar">
+                        <li><a href="#" class="header">Configuration</a></li>
                         <li class="active"><a href="#pageDatapoints">Datapoints</a></li>
                         <li><a href="#pageGateways">Gateways</a></li>
+                        <li><br/></li>
+                        <li><br/></li>
+                        <li><a href="#" class="header">Applications</a></li>
                         <li><a href="#pageMeteoStation">Meteo Station</a></li>
                         <li><a href="#pageEnergyViewer">Energy Viewer</a></li>
+                        <li><a href="#pageSwitchControlPanel">Control Panel</a></li>
                     </ul>
                 </div>
                 <div id="pageDatapoints" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page">
@@ -280,13 +286,31 @@
                     <h1 class="page-header">Sensors Live Feed</h1>
 
                     <div class="row">
-                        <div class="col-md-5" style="padding-right: 0px;">
-                            <div id="energyGaugeContainer"></div>
-                        </div>
-                        <div class="col-md-7" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
                             <div id="energyLineChartContainer"></div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12" style="padding-right: 0px;">
+                            <div id="energyGaugeContainer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pageSwitchControlPanel" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
+                    <ol class="breadcrumb">
+                        <li><a href="#">SOABA</a></li>
+                        <li><a href="#">Applications</a></li>
+                        <li class="active">Control Panel</li>
+                    </ol>
+                    <h1 class="page-header">Switch Control</h1>
+                    <div id="switchControls"></div>
+
+                    <br>
+                    <br>
+
+                    <h1 class="page-header" style="display: block;clear: both;padding-top: 40px;">Dim/Blind Control</h1>
+                    <div id="percentageControls"></div>
                 </div>
             </div>
         </div>

@@ -80,7 +80,7 @@
                 console.log('Datapoint "' + info.address + '" info received was "'+rsp.value+'".');
                 var datapoint = rsp.datapoint;
 
-                var $dpointCont = $('<div class="cnt soaba-gauge"></div>');
+                var $dpointCont = $('<div class="cnt soaba-energy-gauge"></div>');
                 $cont.append($dpointCont);
 
                 soaba.utils.createGauge($dpointCont, datapoint,
@@ -115,7 +115,7 @@
                 console.log('Datapoint "' + datapointAddress+ '" info received was "'+rsp.value+'".');
                 var datapoint = rsp.datapoint;
 
-                var $dpointCont = $('<div class="cnt soaba-linechart"></div>');
+                var $dpointCont = $('<div class="cnt soaba-energy-linechart"></div>');
                 $cont.append($dpointCont);
 
                 soaba.utils.createLineChart($dpointCont, datapoint,

@@ -19,7 +19,7 @@
                     'title': 'Description',
                     'data': 'description'
                 }, {'title': 'Gateway Address (IP Address)', 'data': 'address'}, {
-                    'title': 'IsConnected',
+                    'title': 'Is Connected',
                     'data': 'connected'
                 }
             ], 'columnDefs': [{

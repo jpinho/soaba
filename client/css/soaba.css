@@ -119,6 +119,8 @@ html, body {
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{ margin-left: 20px; }
 
+.nav .header{ background-color: #F0F0F0; font-weight: normal;}
+
 table.table-details tr td:first-child{
     width: 170px;
     text-align: right;
@@ -186,8 +188,81 @@ select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
     float:left;
 }
 
-#gaugeContainer, #energyGaugeContainer{
+#gaugeContainer{
     margin-left: -20px;
+}
+
+#energyGaugeContainer{
+    margin-left: 3px;
+}
+
+.soaba-energy-linechart{
+    margin-left: 18px;
+    margin-bottom: 19px;
+    width: 360px;
+    height: 200px;
+    float:left;
+}
+
+.soaba-energy-gauge{
+    width: 279px;
+    height: 210px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    float: left;
+}
+
+.switch-ctn{
+    text-align: center;
+    margin: 2px;
+    min-height: 100px;
+    float: left;
+    width: 16.29%;
+    background-color: #daedde;
+    padding: 10px;
+    border-radius: 5px;
+    padding-bottom: 20px;
+}
+
+.switch-ctn > span{
+    display: block;
+    margin-bottom: -8px;
+    height: 30px;
+    max-height: 40px;
+    font-size: 0.9em;
+}
+
+.percentage-ctn{
+    text-align: center;
+    margin: 2px;
+    min-height: 100px;
+    float: left;
+    width: 16.29%;
+    background-color: #EEC;
+    padding: 10px 23px;
+    border-radius: 5px;
+    padding-bottom: 20px;
+}
+
+.percentage-ctn > span:first-child{
+    display: block;
+    max-height: 40px;
+    height: 30px;
+    font-size: 0.9em;
+}
+
+.percentage-ctn .slider-text{
+    float: left;
+    max-width: 30px;
+    display: block;
+    position: relative;
+    top: -2px;
+    left: 15px;
+}
+
+.percentage-ctn .p-control{
+    width: 75%;
+    float: left;
 }
 
 @media only screen and (max-device-width : 1024px) {
@@ -206,16 +281,44 @@ select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
         width: 220px;
         height: 200px;
         float:left;
-    
-        margin-left: 0px;
-}
 
-    #gaugeContainer, #energyGaugeContainer{
+        margin-left: 0px;
+    }
+
+    #gaugeContainer{
         margin-left: -10px;
     }
 
     #lineChartContainer{
         margin-left: 13px;
+    }
+
+    #energyLineChartContainer{
+        margin-left: 0px;
+    }
+
+    .soaba-energy-linechart{
+        margin-left: 18px;
+        margin-bottom: 19px;
+        width: 244px;
+        height: 200px;
+        float:left;
+    }
+
+    .soaba-energy-gauge{
+        width: 192px;
+        height: 210px;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        float: left;
+    }
+
+    .switch-ctn {
+        width: 24.46%;
+    }
+
+    .percentage-ctn{
+        width: 24.46%;
     }
 }
 
