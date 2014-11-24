@@ -138,17 +138,17 @@ public class AppConfig {
             datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Meter - Circ. B - Hall Lights", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/1", null));
             datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Meter - Circ. C - HVAC Supply", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/2", null));
             datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Meter - Circ. D - HVAC Supply", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/3", null));
-            datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Time Counter - Circ. A - Hall Lights", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/4", null));
-            datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Time Counter - Circ. B - Hall Lights", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/5", null));
-            datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Time Counter - Circ. C - HVAC Supply", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/6", null));
-            datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Time Counter - Circ. D - HVAC Supply", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/7", null));
+            datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Time Counter - Circ. A - Hall Lights", "Time CNT - Circ.A Hall Lights", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/4", null, "h" /* ? */));
+            datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Time Counter - Circ. B - Hall Lights", "Time CNT - Circ.B Hall Lights", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/5", null, "h" /* ? */));
+            datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Time Counter - Circ. C - HVAC Supply", "Time CNT - Circ.C Hall Lights", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/6", null, "h" /* ? */));
+            datapoints.add(new Datapoint(gwNucleus14, prefix + "Energy Time Counter - Circ. D - HVAC Supply", "Time CNT - Circ.D Hall Lights", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/7", null, "h" /* ? */));
             datapoints.add(new Datapoint(gwNucleus14, prefix + "Status - Circ. A - Hall Lights", ACCESSTYPE.READ_ONLY, DATATYPE.BIT, "0/2/12", null));
             datapoints.add(new Datapoint(gwNucleus14, prefix + "Status - Circ. B - Hall Lights", ACCESSTYPE.READ_ONLY, DATATYPE.BIT, "0/2/13", null));
             datapoints.add(new Datapoint(gwNucleus14, prefix + "Status - Circ. C - HVAC Supply", ACCESSTYPE.READ_ONLY, DATATYPE.BIT, "0/2/14", null));
             datapoints.add(new Datapoint(gwNucleus14, prefix + "Status - Circ. D - HVAC Supply", ACCESSTYPE.READ_WRITE, DATATYPE.BIT, "0/2/15", "0/2/15"));
-            datapoints.add(new Datapoint(gwNucleus14, prefix + "Luminosity - Hall - North Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/16", null));
-            datapoints.add(new Datapoint(gwNucleus14, prefix + "Luminosity - Hall - Middle Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/17", null));
-            datapoints.add(new Datapoint(gwNucleus14, prefix + "Luminosity - Hall - South Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/18", null));
+            datapoints.add(new Datapoint(gwNucleus14, prefix + "Luminosity - Hall - North Sensor", "Luminosity - Hall North", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/16", null, "W"));
+            datapoints.add(new Datapoint(gwNucleus14, prefix + "Luminosity - Hall - Middle Sensor", "Luminosity - Hall Middle",  ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/17", null, "W"));
+            datapoints.add(new Datapoint(gwNucleus14, prefix + "Luminosity - Hall - South Sensor", "Luminosity - Hall South", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/2/18", null, "W"));
             
             
             // hvac hot H2O valves

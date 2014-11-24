@@ -49,7 +49,8 @@
 
         <script src="js/soaba.pages.datapoints.js"></script>
         <script src="js/soaba.pages.gateways.js"></script>
-        <script src="js/soaba.pages.diagnostics.js"></script>
+        <script src="js/soaba.pages.meteo.js"></script>
+        <script src="js/soaba.pages.eviewer.js"></script>
 
         <!-- scripts: unit tests: add "?test" to query string for activation -->
         <script src="tests/runner.js"></script>
@@ -90,6 +91,7 @@
                         <li class="active"><a href="#pageDatapoints">Datapoints</a></li>
                         <li><a href="#pageGateways">Gateways</a></li>
                         <li><a href="#pageMeteoStation">Meteo Station</a></li>
+                        <li><a href="#pageEnergyViewer">Energy Viewer</a></li>
                     </ul>
                 </div>
                 <div id="pageDatapoints" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page">
@@ -259,12 +261,32 @@
                     </ol>
                     <h1 class="page-header">Sensors Live Feed</h1>
 
-                    <table class="meteo" border="0" cellpadding="0" cellspacing="0">
-                        <tr>
-                            <td class="gauges"><div id="gaugeContainer"></div></td>
-                            <td class="charts"><div id="lineChartContainer"></div></td>
-                        </tr>
-                    </table>
+                    <div class="row">
+                        <div class="col-md-5" style="padding-right: 0px;">
+                            <div id="gaugeContainer"></div>
+                        </div>
+                        <div class="col-md-7" style="padding-left: 0px; padding-right: 0px;">
+                            <div id="lineChartContainer"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="pageEnergyViewer" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
+                    <ol class="breadcrumb">
+                        <li><a href="#">SOABA</a></li>
+                        <li><a href="#">Applications</a></li>
+                        <li class="active">Energy Viewer</li>
+                    </ol>
+                    <h1 class="page-header">Sensors Live Feed</h1>
+
+                    <div class="row">
+                        <div class="col-md-5" style="padding-right: 0px;">
+                            <div id="energyGaugeContainer"></div>
+                        </div>
+                        <div class="col-md-7" style="padding-left: 0px; padding-right: 0px;">
+                            <div id="energyLineChartContainer"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

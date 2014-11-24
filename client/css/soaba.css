@@ -171,23 +171,53 @@ select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
 
 .soaba-gauge{
     width: 220px;
-    height: 250px;
+    height: 210px;
     margin-bottom: 0px;
-    margin-right: 0;
+    margin-left: 20px;
     float: left;
 }
 .cnt svg text[text-anchor="end"]{ display: none; }
 
 .soaba-linechart{
-    margin-left: 10px;
-    margin-bottom: 40px;
-    width: 320px;
+    margin-left: 17px;
+    margin-bottom: 19px;
+    width: 310px;
     height: 200px;
     float:left;
 }
 
-table.meteo .gauges{ width: 40%; }
-table.meteo td{ vertical-align: top; }
+#gaugeContainer, #energyGaugeContainer{
+    margin-left: -20px;
+}
+
+@media only screen and (max-device-width : 1024px) {
+
+    .soaba-gauge{
+        width: 150px;
+        height: 210px;
+        margin-bottom: 0px;
+        margin-left: 10px;
+        float: left;
+    }
+    .cnt svg text[text-anchor="end"]{ display: none; }
+
+    .soaba-linechart{
+        margin-bottom: 19px;
+        width: 220px;
+        height: 200px;
+        float:left;
+    
+        margin-left: 0px;
+}
+
+    #gaugeContainer, #energyGaugeContainer{
+        margin-left: -10px;
+    }
+
+    #lineChartContainer{
+        margin-left: 13px;
+    }
+}
 
 /* ###########################################################################
  * Helper classes
