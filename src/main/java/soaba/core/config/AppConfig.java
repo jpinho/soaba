@@ -103,7 +103,7 @@ public class AppConfig {
             datapoints.add(new Datapoint(gwLab158, prefix + "Rain Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.BIT, "0/6/13", null));
             datapoints.add(new Datapoint(gwLab158, prefix + "Outside Temp. Sensor Precision", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/16", null));
             datapoints.add(new Datapoint(gwLab158, prefix + "Max. Temp Reached Precision", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/19", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Min. Temp Reached Precision", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/20", null));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Min. Temp Reached Precision", "Min. Temp. Reached",ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/20", null, "Cº"));
             datapoints.add(new Datapoint(gwLab158, prefix + "Relative Hum. Sensor Precision", "Relative Humidity", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/22", null, "%"));
             datapoints.add(new Datapoint(gwLab158, prefix + "Dew Point", "Dew Point", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/25", null, "Cº"));
             datapoints.add(new Datapoint(gwLab158, prefix + "Absolute Humidity", "Absolute Humidity", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/27", null, "Kg/m^3"));

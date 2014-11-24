@@ -19,7 +19,7 @@ soaba.utils = Ember.Namespace.create({
                 plotBorderWidth: 0,
                 plotShadow: false
             },
-            title: { text: datapoint.displayName },
+            title: { text: datapoint.displayName, style: { fontSize: '1.2em' } },
             pane: {
                 startAngle: -150,
                 endAngle: 150,
@@ -93,14 +93,14 @@ soaba.utils = Ember.Namespace.create({
                     }
                 }
             },
-            title: { text: datapoint.displayName },
+            title: { text: datapoint.displayName, style: { fontSize: '1.2em' } },
             xAxis: {
                 type: 'datetime',
                 tickPixelInterval: 150
             },
             yAxis: {
                 title: {
-                    text: 'value'
+                    text: 'values'
                 },
                 plotLines: [{
                     value: 0,

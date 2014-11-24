@@ -29,9 +29,17 @@
                 { from: 0, to: 15, color: '#DDDF0D'  /* yellow */ },
                 { from: 15, to: 30, color: '#55BF3B'    /* green */ },
                 { from: 30, to: 40, color: '#DDDF0D'  /* yellow */ },
-                { from: 40, to: 100, color: '#DF5353'  /* red */ }]}];
+                { from: 40, to: 100, color: '#DF5353'  /* red */ }]},
 
-        var lineChartDatapoints = ['0.6.27', '0.6.22', '0.6.25','0.6.28'];
+            {address:'0.6.20', min:0, max:100, plotBands: [
+                { from: 0, to: 15, color: '#DDDF0D'  /* yellow */ },
+                { from: 15, to: 30, color: '#55BF3B'    /* green */ },
+                { from: 30, to: 40, color: '#DDDF0D'  /* yellow */ },
+                { from: 40, to: 100, color: '#DF5353'  /* red */ }]}
+        ];
+
+        var lineChartDatapoints = [
+            '0.6.27', '0.6.22', '0.6.25','0.6.28'];
 
         $.each(gaugeDatapoints, function(i, info){
             var $cont = $('#gaugeContainer');
@@ -47,7 +55,7 @@
                 console.log('Datapoint "' + info.address + '" info received was "'+rsp.value+'".');
                 var datapoint = rsp.datapoint;
 
-                var $dpointCont = $('<div class="container soaba-gauge"></div>');
+                var $dpointCont = $('<div class="cnt soaba-gauge"></div>');
                 $cont.append($dpointCont);
 
                 soaba.utils.createGauge($dpointCont, datapoint,
@@ -82,7 +90,7 @@
                 console.log('Datapoint "' + datapointAddress+ '" info received was "'+rsp.value+'".');
                 var datapoint = rsp.datapoint;
 
-                var $dpointCont = $('<div class="container soaba-linechart"></div>');
+                var $dpointCont = $('<div class="cnt soaba-linechart"></div>');
                 $cont.append($dpointCont);
 
                 soaba.utils.createLineChart($dpointCont, datapoint,
