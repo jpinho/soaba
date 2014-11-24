@@ -4,10 +4,12 @@
  * @author João Pinho
  */
 
+"use strict";
+
 (function(){
 
-    function stripGatewayPackageName(package) {
-        return package.replace('soaba.core.gateways.drivers.', '');
+    function stripGatewayPackageName(pkg) {
+        return pkg.replace('soaba.core.gateways.drivers.', '');
     }
 
     function dataBind() {

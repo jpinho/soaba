@@ -169,10 +169,13 @@ select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
     width: 220px;
 }
 
-a[href="http://www.amcharts.com/javascript-charts/"]{
-    opacity: 0.3 !important;
+.soaba-gauge{
+    min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto;
 }
 
+.soaba-linechart{
+    min-width: 310px; height: 400px; margin: 0 auto;
+}
 
 /* ###########################################################################
  * Helper classes

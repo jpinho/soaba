@@ -3,6 +3,7 @@
  *
  * @author João Pinho
  */
+"use strict";
 
 (function(){
 

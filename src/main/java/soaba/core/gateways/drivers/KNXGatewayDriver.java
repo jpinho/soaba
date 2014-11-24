@@ -242,7 +242,7 @@ public class KNXGatewayDriver
         DatapointValue<?> value = DatapointValue.build(datapoint);
         logger.info(String.format("KNXGatewayDriver#read('%s')", value.getDatapoint().getReadAddress()));
 
-        synchronized (pc) {
+        //synchronized (pc) {
             try {
                 switch (datapoint.getDataType()) {
                     case BIT:
@@ -270,7 +270,7 @@ public class KNXGatewayDriver
             } catch (KNXException | InterruptedException e) {
                 throw new GatewayDriverException(e);
             }
-        }
+        //}
     }
 
     @Override
@@ -285,7 +285,7 @@ public class KNXGatewayDriver
         if (isReconnecting)
             throw new GatewayConnectionLostException("Gateway Address: " + this.address);
 
-        synchronized (pc) {
+        //synchronized (pc) {
             try {
                 switch (value.getDatapoint().getDataType()) {
                     case BIT:
@@ -316,7 +316,7 @@ public class KNXGatewayDriver
             } catch (KNXException e) {
                 throw new GatewayDriverException(e);
             }
-        }
+        //}
     }
 
     @Override

@@ -3,25 +3,20 @@
  *
  * @author João Pinho
  */
+"use strict";
 
-App = Ember.Application.create();
+var App = Ember.Application.create();
 
-App.Router.map(function() { });
-
-App.IndexRoute = Ember.Route.extend({
-    model: function() { return; }
-});
-
-soaba = Ember.Namespace.create({
+var soaba = Ember.Namespace.create({
     VERSION: '1.0.0',
     APP_URL: 'http://sb-dev.tagus.ist.utl.pt:9095/soaba/'
 });
-
 
 /**
  * App Startup
  */
 $(function(){
+    Highcharts.setOptions({ global: { useUTC: false }});
 
     /** page navigation setup **/
     $('.nav.nav-sidebar a').click(function(e){
