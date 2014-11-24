@@ -89,7 +89,7 @@
                     <ul class="nav nav-sidebar">
                         <li class="active"><a href="#pageDatapoints">Datapoints</a></li>
                         <li><a href="#pageGateways">Gateways</a></li>
-                        <li><a href="#pageDiagnostics">Diagnostics</a></li>
+                        <li><a href="#pageMeteoStation">Meteo Station</a></li>
                     </ul>
                 </div>
                 <div id="pageDatapoints" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page">
@@ -251,15 +251,20 @@
                     </div>
                 </div>
 
-                <div id="pageDiagnostics" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
+                <div id="pageMeteoStation" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
                     <ol class="breadcrumb">
                         <li><a href="#">SOABA</a></li>
-                        <li><a href="#">Datapoints</a></li>
-                        <li class="active">Diagnostics</li>
+                        <li><a href="#">Applications</a></li>
+                        <li class="active">Meteo Station</li>
                     </ol>
-                    <h1 class="page-header">Diagnostics</h1>
+                    <h1 class="page-header">Meteo Sensors Data</h1>
 
-                    <div id="gaugeContainer"></div>
+                    <table class="meteo" border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="gauges"><div id="gaugeContainer"></div></td>
+                            <td class="charts"><div id="lineChartContainer"></div></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

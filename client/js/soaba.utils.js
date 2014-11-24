@@ -48,7 +48,7 @@ soaba.utils = Ember.Namespace.create({
             },
             yAxis: { /* the value axis */
                 min: 0,
-                max: 200,
+                max: 100,
                 minorTickInterval: 'auto',
                 minorTickWidth: 1,
                 minorTickLength: 10,
@@ -65,6 +65,9 @@ soaba.utils = Ember.Namespace.create({
                     { from: 0, to: 120, color: '#55BF3B'    /* green */ },
                     { from: 120, to: 160, color: '#DDDF0D'  /* yellow */ },
                     { from: 160, to: 200, color: '#DF5353'  /* red */ }]
+            },
+            exporting: {
+                enabled: false
             },
             series: [{
                 name: typeof datapoint.displayName === 'undefined' ? 'Value' : datapoint.displayName,
@@ -86,25 +89,21 @@ soaba.utils = Ember.Namespace.create({
                 marginRight: 10,
                 events: {
                     load: function () {
-                        /* set up the updating of the chart each second */
-                        var series = this.series[0];
-
+                        var chart=this;
                         setInterval(function () {
-                            fnUpdate(series);
+                            fnUpdate(chart);
                         }, updateInterval);
                     }
                 }
             },
-            title: {
-                text: 'Live random data'
-            },
+            title: { text: datapoint.displayName },
             xAxis: {
                 type: 'datetime',
                 tickPixelInterval: 150
             },
             yAxis: {
                 title: {
-                    text: 'Value'
+                    text: 'value'
                 },
                 plotLines: [{
                     value: 0,
@@ -127,7 +126,20 @@ soaba.utils = Ember.Namespace.create({
             },
             series: [{
                 name: 'Data',
-                data: null
+                data: (function () {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+
+                    for (i = -19; i <= 0; i += 1) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: 0
+                        });
+                    }
+                    return data;
+                }())
             }]
         });
     }
