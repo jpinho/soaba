@@ -61,6 +61,8 @@ public interface IDatapoint {
     public String getDescription();
 
     public String getName();
+    
+    public String getDisplayName();
 
     public String getReadAddress();
 
@@ -74,6 +76,8 @@ public interface IDatapoint {
     public void setDataType(DATATYPE dataType);
 
     public void setName(String name);
+    
+    public void setDisplayName(String displayName);
 
     public void setDescription(String description);
 

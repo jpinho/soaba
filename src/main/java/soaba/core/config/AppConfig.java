@@ -232,6 +232,7 @@ public class AppConfig {
             
             if(origin != null){
                 logger.info(String.format("AppConfig#update() :: updating datapoint '%s'.", newDP.getName()));
+                origin.setDisplayName(newDP.getDisplayName());
                 origin.setDescription(newDP.getDescription());
                 origin.setAccessType(newDP.getAccessType());
                 origin.setDataType(newDP.getDataType());
