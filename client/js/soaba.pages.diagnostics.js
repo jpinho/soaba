@@ -13,21 +13,38 @@
      * Page Load
      */
     $(function () {
-        var gaugeDatapoints = ['0.4.0', '0.4.1', '0.4.3'];
+        var gaugeDatapoints = [
+            {address:'0.4.0', min:0, max:1000, plotBands: [
+                { from: 0, to: 400, color: '#55BF3B'    /* green */ },
+                { from: 400, to: 700, color: '#DDDF0D'  /* yellow */ },
+                { from: 700, to: 1000, color: '#DF5353'  /* red */ }]},
+
+            {address:'0.4.1', min:0, max:100, plotBands: [
+                { from: 0, to: 30, color: '#DDDF0D'    /* yellow */ },
+                { from: 30, to: 80, color: '#55BF3B'  /* green */ },
+                { from: 80, to: 90, color: '#DDDF0D'    /* yellow */ },
+                { from: 90, to: 100, color: '#DF5353'  /* red */ }]},
+
+            {address:'0.4.3', min:0, max:100, plotBands: [
+                { from: 0, to: 15, color: '#DDDF0D'  /* yellow */ },
+                { from: 15, to: 30, color: '#55BF3B'    /* green */ },
+                { from: 30, to: 40, color: '#DDDF0D'  /* yellow */ },
+                { from: 40, to: 100, color: '#DF5353'  /* red */ }]}];
+
         var lineChartDatapoints = ['0.6.27', '0.6.22', '0.6.25','0.6.28'];
 
-        $.each(gaugeDatapoints, function(i, datapointAddress){
+        $.each(gaugeDatapoints, function(i, info){
             var $cont = $('#gaugeContainer');
-            console.log('Adding datapoint "' + datapointAddress+ '" to diagnostics panel.');
+            console.log('Adding datapoint "' + info.address + '" to diagnostics panel.');
 
-            $.getJSON(soaba.APP_URL + 'datapoints/' + datapointAddress, function(rsp){
-                console.log('Datapoint "' + datapointAddress+ '" info received.');
+            $.getJSON(soaba.APP_URL + 'datapoints/' + info.address, function(rsp){
+                console.log('Datapoint "' + info.address+ '" info received.');
                 if(typeof rsp.stackTrace !== 'undefined'){
-                    console.log('Error: datapoint ' + datapointAddress + ' read exception '
+                    console.log('Error: datapoint ' + info.address + ' read exception '
                     + rsp.message + ' -->> ' + rsp.cause.class);
                     return;
                 }
-                console.log('Datapoint "' + datapointAddress+ '" info received was "'+rsp.value+'".');
+                console.log('Datapoint "' + info.address + '" info received was "'+rsp.value+'".');
                 var datapoint = rsp.datapoint;
 
                 var $dpointCont = $('<div class="container soaba-gauge"></div>');
@@ -45,7 +62,7 @@
                              var point = chart.series[0].points[0];
                              point.update(rsp.value);
                          });
-                    }, GAUGE_UPD_INTERVAL);
+                    }, GAUGE_UPD_INTERVAL, info.min, info.max, info.plotBands);
 
                 $dpointCont.highcharts().series[0].points[0].update(rsp.value);
             });
@@ -64,7 +81,7 @@
                 }
                 console.log('Datapoint "' + datapointAddress+ '" info received was "'+rsp.value+'".');
                 var datapoint = rsp.datapoint;
-                
+
                 var $dpointCont = $('<div class="container soaba-linechart"></div>');
                 $cont.append($dpointCont);
 

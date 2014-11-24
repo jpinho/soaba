@@ -239,6 +239,7 @@ public class AppConfig {
                 origin.setGatewayAddress(newDP.getGatewayAddress());
                 origin.setReadAddress(newDP.getReadAddress());
                 origin.setWriteAddress(newDP.getWriteAddress());
+                origin.setUnit(newDP.getUnit());
             }
             else {
                 logger.info(String.format("AppConfig#update() :: adding new datapoint '%s'.", newDP.getName()));

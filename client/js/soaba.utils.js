@@ -10,7 +10,7 @@ soaba.utils = Ember.Namespace.create({
         return $('body').animate({scrollTop: $(target).offset().top});
     },
 
-    createGauge: function($container, datapoint, fnUpdate, updateFrequency) {
+    createGauge: function($container, datapoint, fnUpdate, updateFrequency, yMin, yMax, gaugePlotBands) {
         return $container.highcharts({
             chart: {
                 type: 'gauge',
@@ -47,8 +47,8 @@ soaba.utils = Ember.Namespace.create({
                 }]
             },
             yAxis: { /* the value axis */
-                min: 0,
-                max: 100,
+                min: yMin,
+                max: yMax,
                 minorTickInterval: 'auto',
                 minorTickWidth: 1,
                 minorTickLength: 10,
@@ -61,10 +61,7 @@ soaba.utils = Ember.Namespace.create({
                 tickColor: '#666',
                 labels: { step: 2, rotation: 'auto' },
                 title: { text: (typeof datapoint.unit === 'undefined' ? '' : datapoint.unit) },
-                plotBands: [
-                    { from: 0, to: 120, color: '#55BF3B'    /* green */ },
-                    { from: 120, to: 160, color: '#DDDF0D'  /* yellow */ },
-                    { from: 160, to: 200, color: '#DF5353'  /* red */ }]
+                plotBands: gaugePlotBands
             },
             exporting: {
                 enabled: false

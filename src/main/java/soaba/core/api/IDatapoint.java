@@ -70,6 +70,8 @@ public interface IDatapoint {
 
     public String getGatewayAddress();
     
+    public String getUnit();
+    
     
     public void setAccessType(ACCESSTYPE accessType);
 
@@ -86,4 +88,6 @@ public interface IDatapoint {
     public void setWriteAddress(String writeAddress);
 
     public void setGatewayAddress(String gatewayAddress);
+    
+    public void setUnit(String unit);
 }
