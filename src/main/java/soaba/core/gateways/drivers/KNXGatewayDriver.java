@@ -242,35 +242,32 @@ public class KNXGatewayDriver
         DatapointValue<?> value = DatapointValue.build(datapoint);
         logger.info(String.format("KNXGatewayDriver#read('%s')", value.getDatapoint().getReadAddress()));
 
-        //synchronized (pc) {
-            try {
-                switch (datapoint.getDataType()) {
-                    case BIT:
-                        value.setValue(pc.readBool(new GroupAddress(datapoint.getReadAddress())));
-                        break;
-                    case TINY_NUMBER:
-                        value.setValue(pc.readFloat(new GroupAddress(datapoint.getReadAddress()), false));
-                        break;
-                    case NUMBER:
-                        value.setValue(pc.readFloat(new GroupAddress(datapoint.getReadAddress()), true));
-                        break;
-                    case PERCENTAGE:
-                        value.setValue(pc.readUnsigned(new GroupAddress(datapoint.getReadAddress()),
-                                ProcessCommunicationBase.SCALING));
-                        break;
-                    case TEXT:
-                        value.setValue(pc.readString(new GroupAddress(datapoint.getReadAddress())));
-                        break;
-                    default:
-                        throw new GatewayDriverException(
-                                "Datapoint data type unknown, please specify a valid data type.");
-                }
-
-                return value;
-            } catch (KNXException | InterruptedException e) {
-                throw new GatewayDriverException(e);
+        try {
+            switch (datapoint.getDataType()) {
+                case BIT:
+                    value.setValue(pc.readBool(new GroupAddress(datapoint.getReadAddress())));
+                    break;
+                case TINY_NUMBER:
+                    value.setValue(pc.readFloat(new GroupAddress(datapoint.getReadAddress()), false));
+                    break;
+                case NUMBER:
+                    value.setValue(pc.readFloat(new GroupAddress(datapoint.getReadAddress()), true));
+                    break;
+                case PERCENTAGE:
+                    value.setValue(pc.readUnsigned(new GroupAddress(datapoint.getReadAddress()),
+                            ProcessCommunicationBase.SCALING));
+                    break;
+                case TEXT:
+                    value.setValue(pc.readString(new GroupAddress(datapoint.getReadAddress())));
+                    break;
+                default:
+                    throw new GatewayDriverException("Datapoint data type unknown, please specify a valid data type.");
             }
-        //}
+
+            return value;
+        } catch (KNXException | InterruptedException e) {
+            throw new GatewayDriverException(e);
+        }
     }
 
     @Override
@@ -285,38 +282,35 @@ public class KNXGatewayDriver
         if (isReconnecting)
             throw new GatewayConnectionLostException("Gateway Address: " + this.address);
 
-        //synchronized (pc) {
-            try {
-                switch (value.getDatapoint().getDataType()) {
-                    case BIT:
-                        pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
-                                (Boolean) (value.getValue() == null ? false : value.getValue()));
-                        break;
-                    case TINY_NUMBER:
-                        pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
-                                (Float) (value.getValue() == null ? 0 : value.getValue()), false);
-                        break;    
-                    case NUMBER:
-                        pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
-                                (Float) (value.getValue() == null ? 0 : value.getValue()), false);
-                        break;
-                    case PERCENTAGE:
-                        pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
-                                (Integer) (value.getValue() == null ? 0 : value.getValue()),
-                                ProcessCommunicationBase.SCALING);
-                        break;
-                    case TEXT:
-                        pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
-                                (String) (value.getValue() == null ? "" : value.getValue()));
-                        break;
-                    default:
-                        throw new GatewayDriverException(
-                                "Datapoint data type unknown, please specify a valid data type.");
-                }
-            } catch (KNXException e) {
-                throw new GatewayDriverException(e);
+        try {
+            switch (value.getDatapoint().getDataType()) {
+                case BIT:
+                    pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
+                            (Boolean) (value.getValue() == null ? false : value.getValue()));
+                    break;
+                case TINY_NUMBER:
+                    pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
+                            (Float) (value.getValue() == null ? 0 : value.getValue()), false);
+                    break;
+                case NUMBER:
+                    pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
+                            (Float) (value.getValue() == null ? 0 : value.getValue()), false);
+                    break;
+                case PERCENTAGE:
+                    pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
+                            (Integer) (value.getValue() == null ? 0 : value.getValue()),
+                            ProcessCommunicationBase.SCALING);
+                    break;
+                case TEXT:
+                    pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
+                            (String) (value.getValue() == null ? "" : value.getValue()));
+                    break;
+                default:
+                    throw new GatewayDriverException("Datapoint data type unknown, please specify a valid data type.");
             }
-        //}
+        } catch (KNXException e) {
+            throw new GatewayDriverException(e);
+        }
     }
 
     @Override
@@ -350,7 +344,8 @@ public class KNXGatewayDriver
         List<String> result = new ArrayList<String>();
 
         for (IndividualAddress addr : networkRouters)
-            result.add(String.format("%d/%d/%d [typeof %s]", addr.getArea(), addr.getLine(), addr.getDevice(), addr.getType()));
+            result.add(String.format("%d/%d/%d [typeof %s]", addr.getArea(), addr.getLine(), addr.getDevice(),
+                    addr.getType()));
 
         return result;
     }

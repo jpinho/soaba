@@ -60,8 +60,6 @@ public interface IDatapoint {
 
     public String getDescription();
 
-    public void setDescription(String description);
-
     public String getName();
 
     public String getReadAddress();
@@ -69,4 +67,19 @@ public interface IDatapoint {
     public String getWriteAddress();
 
     public String getGatewayAddress();
+    
+    
+    public void setAccessType(ACCESSTYPE accessType);
+
+    public void setDataType(DATATYPE dataType);
+
+    public void setName(String name);
+
+    public void setDescription(String description);
+
+    public void setReadAddress(String readAddress);
+
+    public void setWriteAddress(String writeAddress);
+
+    public void setGatewayAddress(String gatewayAddress);
 }

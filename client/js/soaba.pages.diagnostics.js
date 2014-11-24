@@ -6,7 +6,7 @@
 "use strict";
 
 (function() {
-    var GAUGE_UPD_INTERVAL = 10 * 1000, LINECHART_UPD_INTERVAL = 0.5 * 1000;
+    var GAUGE_UPD_INTERVAL = 0.5 * 1000, LINECHART_UPD_INTERVAL = 0.5 * 1000;
     var METEO_STATION_PREFIX = 'meteo station';
 
     /**
@@ -15,10 +15,7 @@
     $(function () {
         var $cont = $('#gaugeContainer');
 
-        var datapoints = [
-            '0.6.27', '0.6.5', '0.6.6', '0.6.7', '0.6.8', '0.6.10',
-            '0.6.11', '0.6.22', '0.6.25', '0.6.27','0.6.28','0.6.29'
-        ];
+        var datapoints = ['0.6.27', '0.6.22', '0.6.25','0.6.28','0.6.29'];
 
         $.each(datapoints, function(i, datapointAddress){
             console.log('Adding datapoint "' + datapointAddress+ '" to diagnostics panel.');

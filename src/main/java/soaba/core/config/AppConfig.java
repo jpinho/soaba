@@ -46,20 +46,6 @@ public class AppConfig {
     public AppConfig init() {
         logger.info("calling AppConfig#init()");
         
-        // loads the config from disk if it exists
-        File f = new File(APP_CONFIG_FILE);
-
-        if (f.exists()){
-            logger.info("AppConfig#init() :: configuration found on disk, loading from file.");
-            AppConfig config = AppConfig.load();
-            logger.info(
-                    String.format("%nAppConfig#init() :: configuration summary%n - datapoints count: %d%n - gateways count: %d%n%n",
-                    config.datapoints != null ? config.datapoints.size() : 0, 
-                    config.gateways != null ? config.gateways.size() : 0));
-            return config;
-        }
-        
-        logger.info("AppConfig#init() :: configuration not found, generating new file to disk.");
         String gwNucleus14 = null;
         String gwLab158 = null;
 
@@ -199,9 +185,30 @@ public class AppConfig {
             //TODO: add more datapoints of N14
         }
 
-        // persists the config file to disk
-        AppConfig.save(this);
+        // loads the config from disk if it exists
+        File f = new File(APP_CONFIG_FILE);
+
+        if (f.exists()){
+            logger.info("AppConfig#init() :: configuration found on disk, loading from file.");
+            
+            AppConfig config = AppConfig.load();
+            
+            logger.info("AppConfig#init() :: updating disk configuration with codebased configuration.");
+            config.update(this);
+            logger.info("AppConfig#init() :: file system configuration updated.");
+            
+            logger.info(
+                    String.format("AppConfig#init() :: configuration summary%n - datapoints count: %d%n - gateways count: %d",
+                    config.datapoints != null ? config.datapoints.size() : 0, 
+                    config.gateways != null ? config.gateways.size() : 0));
+            
+            AppConfig.save(config);
+            return config;
+        }
         
+        // persists the config file to disk
+        logger.info("AppConfig#init() :: configuration not found, generating new file to disk.");
+        AppConfig.save(this);
         return this;
     }
 
@@ -213,6 +220,26 @@ public class AppConfig {
         return datapoints;
     }
 
+    public void update(AppConfig newConfig){
+        for(IDatapoint newDP : newConfig.datapoints){
+            IDatapoint origin = findDatapointByName(newDP.getName());
+            
+            if(origin != null){
+                logger.info(String.format("AppConfig#update() :: updating datapoint '%s'.", newDP.getName()));
+                origin.setDescription(newDP.getDescription());
+                origin.setAccessType(newDP.getAccessType());
+                origin.setDataType(newDP.getDataType());
+                origin.setGatewayAddress(newDP.getGatewayAddress());
+                origin.setReadAddress(newDP.getReadAddress());
+                origin.setWriteAddress(newDP.getWriteAddress());
+            }
+            else {
+                logger.info(String.format("AppConfig#update() :: adding new datapoint '%s'.", newDP.getName()));
+                this.datapoints.add(newDP);
+            }
+        }
+    }
+    
     /**
      * Stores the AppConfig to disk persistence.
      * 
@@ -262,6 +289,13 @@ public class AppConfig {
             if (dp.getId().equals(dpointIdOrAddress) || 
                (dp.getReadAddress() != null && dp.getReadAddress().equals(dpointIdOrAddress)) || 
                (dp.getWriteAddress() != null && dp.getWriteAddress().equals(dpointIdOrAddress)))
+               return dp;
+        return null;
+    }
+    
+    public IDatapoint findDatapointByName(String name) {        
+        for (IDatapoint dp : datapoints)
+            if (dp.getName().equalsIgnoreCase(name))
                return dp;
         return null;
     }

@@ -42,7 +42,8 @@ public class Datapoint
         this.dataType = dataType;
         this.readAddress = readAddress;
         this.writeAddress = writeAddress;
-
+        this.setDisplayName(name);
+        
         byte[] dpID = (gatewayAddress + name + readAddress + writeAddress).getBytes();
 
         try {
@@ -61,6 +62,7 @@ public class Datapoint
                      String unit) {
         this(gatewayAddress, name, accessType, dataType, readAddress, writeAddress);
         this.setUnit(unit);
+        this.setDisplayName(name);
     }
     
     public Datapoint(String gatewayAddress,

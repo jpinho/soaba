@@ -19,7 +19,7 @@ soaba.utils = Ember.Namespace.create({
                 plotBorderWidth: 0,
                 plotShadow: false
             },
-            title: { text: datapoint.name },
+            title: { text: datapoint.displayName },
             pane: {
                 startAngle: -150,
                 endAngle: 150,
