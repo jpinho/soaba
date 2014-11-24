@@ -55,7 +55,7 @@ public class KNXGatewayDriver
     /**
      * KNX Process Communicator request timeout in seconds.
      */
-    private static final int PROCESS_COMM_TIMEOUT = 60;
+    private static final int PROCESS_COMM_TIMEOUT = 30;
     private static final int BROADCAST_PORT = 0;
     private static final int DEFAULT_GATEWAY_PORT = 3671;
     private static final String BROADCAST_ADDRESS = "0.0.0.0";
