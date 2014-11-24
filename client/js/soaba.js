@@ -11,7 +11,8 @@ var soaba = Ember.Namespace.create({
     VERSION: '0.5.0-beta',
     APP_URL: 'http://sb-dev.tagus.ist.utl.pt:9095/soaba/',
     AUTHOR: 'João Pinho',
-    AUTHOR_URL: 'http://pinho.icodebox.net'
+    AUTHOR_URL: 'http://pinho.icodebox.net',
+    appLoadingThreads: []
 });
 
 /**
@@ -140,4 +141,14 @@ $(function(){
 
     $('.soaba-footer').append(
         $('<span>Release '+soaba.VERSION+' :: Developed by &nbsp;</span><a target="_blank" href="'+soaba.AUTHOR_URL+'"><b>'+soaba.AUTHOR+'</b></a>'));
+
+
+    var loader = setInterval(function(){
+        if(soaba.appLoadingThreads.length > 0)
+            return;
+
+        clearInterval(loader);
+        $('#loader-wrapper').hide();
+        $('#pageDatapoints').fadeIn();
+    }, 2*1000)
 });

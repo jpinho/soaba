@@ -12,6 +12,8 @@
      * Page Load
      */
     $(function () {
+        soaba.appLoadingThreads.push({page: 'eviewer'});
+
         var gaugeDatapoints = [
             {address:'e0f2bcacb07b775f53c892bb8765cb0ec17b581d', min:0, max:100, plotBands: [
                 { from: 0, to: 30, color: '#DDDF0D'    /* yellow */ },
@@ -138,5 +140,9 @@
                 $dpointCont.highcharts().series[0].addPoint([(new Date()).getTime(), parseFloat(rsp.value)], true, true);
             });
         });
+
+        setTimeout(function(){
+            soaba.appLoadingThreads.pop();
+        }, 5000);
     });
 })();

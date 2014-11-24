@@ -12,6 +12,8 @@
      * Page Load
      */
     $(function () {
+        soaba.appLoadingThreads.push({page: 'meteo'});
+
         var gaugeDatapoints = [
             {address:'0.4.0', min:0, max:1000, plotBands: [
                 { from: 0, to: 400, color: '#55BF3B'    /* green */ },
@@ -112,5 +114,9 @@
                 $dpointCont.highcharts().series[0].addPoint([(new Date()).getTime(), parseFloat(rsp.value)], true, true);
             });
         });
+
+        setTimeout(function(){
+            soaba.appLoadingThreads.pop();
+        }, 5000);
     });
 })();

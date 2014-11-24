@@ -75,11 +75,11 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Settings</a></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href="#" onclick="return false;">Settings</a></li>
+                        <li><a href="#" onclick="return false;">Help</a></li>
                     </ul>
                     <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Search...">
+                        <input type="text" class="form-control" placeholder="Search..." readonly>
                     </form>
                 </div>
             </div>
@@ -100,7 +100,14 @@
                         <li><a href="#pageSwitchControlPanel">Control Panel</a></li>
                     </ul>
                 </div>
-                <div id="pageDatapoints" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page">
+                <div id="loader-wrapper">
+                    <div id="loader"></div>
+
+                    <div class="loader-section section-left"></div>
+                    <div class="loader-section section-right"></div>
+
+                </div>
+                <div id="pageDatapoints" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
                     <ol class="breadcrumb">
                         <li><a href="#">SOABA</a></li>
                         <li class="active">Datapoints</li>

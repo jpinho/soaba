@@ -12,6 +12,8 @@
      * Page Load
      */
     $(function () {
+        soaba.appLoadingThreads.push({page: 'cpanel'});
+
         $.getJSON(soaba.APP_URL + 'datapoints', function(rsp){
             if(typeof rsp.stackTrace !== 'undefined'){
                 console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause.class);
@@ -94,5 +96,9 @@
                 }
             });
         });
+
+        setTimeout(function(){
+            soaba.appLoadingThreads.pop();
+        }, 5000);
     });
 })();

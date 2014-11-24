@@ -14,7 +14,10 @@
 
     function dataBind() {
         $('#tblGatewayDrivers').DataTable({
-            'ajax': soaba.APP_URL + 'gateways', 'sAjaxDataProp': null, 'columns': [
+            'ajax': soaba.APP_URL + 'gateways'
+            , 'sAjaxDataProp': null
+            , 'fnDrawCallback':function(){ soaba.appLoadingThreads.pop(); }
+            , 'columns': [
                 {'title': 'Driver Type', 'data': 'class'}, {
                     'title': 'Description',
                     'data': 'description'
@@ -28,6 +31,8 @@
                 }, 'targets': 0
             }]
         });
+
+        soaba.appLoadingThreads.push({page: 'gateways'});
     }
 
     function attachDataTableEvents() {
