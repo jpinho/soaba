@@ -8,8 +8,10 @@
 var App = Ember.Application.create();
 
 var soaba = Ember.Namespace.create({
-    VERSION: '1.0.0',
-    APP_URL: 'http://sb-dev.tagus.ist.utl.pt:9095/soaba/'
+    VERSION: '0.5.0-beta',
+    APP_URL: 'http://sb-dev.tagus.ist.utl.pt:9095/soaba/',
+    AUTHOR: 'João Pinho',
+    AUTHOR_URL: 'http://pinho.icodebox.net'
 });
 
 /**
@@ -135,4 +137,7 @@ $(function(){
 
         return false;
     });
+
+    $('.soaba-footer').append(
+        $('<span>Release '+soaba.VERSION+' :: Developed by &nbsp;</span><a target="_blank" href="'+soaba.AUTHOR_URL+'"><b>'+soaba.AUTHOR+'</b></a>'));
 });

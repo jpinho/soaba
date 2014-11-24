@@ -265,6 +265,36 @@ select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
     float: left;
 }
 
+.soaba-footer{
+    background-color: #000;
+    font-size: 0.75em;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 5px 10px;
+    text-align: right;
+    z-index: 1000;
+    margin: 0;
+    left: 0;
+    right: 0;
+    color:#9D9D9D;
+}
+
+.soaba-footer:hover span{
+    color:#fff;
+    cursor:hand;
+    cursor:pointer;
+}
+
+.soaba-footer a:link,
+.soaba-footer a:visited,
+.soaba-footer a:hover,
+.soaba-footer a:focus,
+.soaba-footer a:active{
+    text-decoration: none !important;
+    color:#428BCA;
+}
+
 @media only screen and (max-device-width : 1024px) {
 
     .soaba-gauge{
