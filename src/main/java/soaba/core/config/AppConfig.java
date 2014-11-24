@@ -193,9 +193,15 @@ public class AppConfig {
             
             AppConfig config = AppConfig.load();
             
-            logger.info("AppConfig#init() :: updating disk configuration with codebased configuration.");
+            // DEVELOPER MODE: use this code if typically changes are made on the code itself.
+            logger.info("AppConfig#init() :: updating disk configuration with code based configuration.");
             config.update(this);
             logger.info("AppConfig#init() :: file system configuration updated.");
+
+            // PRODUCTION MODE: or use this code if typically changes are made on the running app config file.
+            //logger.info("AppConfig#init() :: updating code based configuration with disk configuration.");
+            //this.update(config);
+            //logger.info("AppConfig#init() :: configuration updated.");
             
             logger.info(
                     String.format("AppConfig#init() :: configuration summary%n - datapoints count: %d%n - gateways count: %d",
