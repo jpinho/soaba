@@ -107,22 +107,22 @@ public class AppConfig {
 
             // meteo station (bus Q.E. floor 1)
             prefix = "Meteo Station BUS[Q.E] Floor1 - ";
-            datapoints.add(new Datapoint(gwLab158, prefix + "Luminosity - East Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/5", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Luminosity - South Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/6", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Luminosity - West Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/7", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Luminosity - Crepuscular Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/8", null));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Luminosity - East Sensor", "Campus East Luminosity", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/5", null, "W"));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Luminosity - South Sensor", "Campus South Luminosity", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/6", null, "W"));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Luminosity - West Sensor", "Campus West Luminosity", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/7", null, "W"));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Luminosity - Crepuscular Sensor", "Crepuscular Luminosity", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/8", null, "W"));
             datapoints.add(new Datapoint(gwLab158, prefix + "Wind Speed Warn Interval", ACCESSTYPE.READ_WRITE, DATATYPE.TINY_NUMBER, "0/6/9", "0/6/9"));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Wind Speed Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/10", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Outside Temp. Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/11", null));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Wind Speed Sensor", "Wind Speed", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/10", null, "Km/h"));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Outside Temp. Sensor", "Outside Temperature", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/11", null, "Cº"));
             datapoints.add(new Datapoint(gwLab158, prefix + "Rain Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.BIT, "0/6/13", null));
             datapoints.add(new Datapoint(gwLab158, prefix + "Outside Temp. Sensor Precision", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/16", null));
             datapoints.add(new Datapoint(gwLab158, prefix + "Max. Temp Reached Precision", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/19", null));
             datapoints.add(new Datapoint(gwLab158, prefix + "Min. Temp Reached Precision", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/20", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Relative Hum. Sensor Precision", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/22", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Drew Point", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/25", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Absolute Humidity", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/27", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Exterior Entalpia", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/28", null));
-            datapoints.add(new Datapoint(gwLab158, prefix + "Global Solar Radiation Sensor", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/29", null));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Relative Hum. Sensor Precision", "Relative Humidity", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/22", null, "%"));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Dew Point", "Dew Point", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/25", null, "Cº"));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Absolute Humidity", "Absolute Humidity", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/27", null, "Kg/m^3"));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Exterior Entalpia", "Exterior Entalpia",  ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/28", null, "J/Kg"));
+            datapoints.add(new Datapoint(gwLab158, prefix + "Global Solar Radiation Sensor", "Global Solar Radiation", ACCESSTYPE.READ_ONLY, DATATYPE.TINY_NUMBER, "0/6/29", null, "W/m^2"));
         }
 
         /** MIT - NUCLEUS 14 **/

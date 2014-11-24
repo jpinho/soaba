@@ -24,6 +24,8 @@ public class Datapoint
     private String name;
     private String readAddress;
     private String writeAddress;
+    private String unit;
+    private String displayName;
 
     public Datapoint() {
     }
@@ -48,6 +50,40 @@ public class Datapoint
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
+    }
+    
+    public Datapoint(String gatewayAddress,
+                     String name,
+                     ACCESSTYPE accessType,
+                     DATATYPE dataType,
+                     String readAddress,
+                     String writeAddress,
+                     String unit) {
+        this(gatewayAddress, name, accessType, dataType, readAddress, writeAddress);
+        this.setUnit(unit);
+    }
+    
+    public Datapoint(String gatewayAddress,
+                     String name,
+                     String displayName, 
+                     ACCESSTYPE accessType,
+                     DATATYPE dataType,
+                     String readAddress,
+                     String writeAddress,
+                     String unit) {
+        this(gatewayAddress, name, accessType, dataType, readAddress, writeAddress, unit);
+        this.setDisplayName(displayName);
+    }
+    
+    public Datapoint(String gatewayAddress,
+                     String name,
+                     String displayName, 
+                     ACCESSTYPE accessType,
+                     DATATYPE dataType,
+                     String readAddress,
+                     String writeAddress) {
+        this(gatewayAddress, name, accessType, dataType, readAddress, writeAddress);
+        this.setDisplayName(displayName);
     }
 
     @Override
@@ -157,5 +193,21 @@ public class Datapoint
 
     public void setWriteAddress(String writeAddress) {
         this.writeAddress = writeAddress;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

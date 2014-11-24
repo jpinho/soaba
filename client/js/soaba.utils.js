@@ -7,11 +7,11 @@
 
 soaba.utils = Ember.Namespace.create({
     scrollIntoView: function(target){
-        $('body').animate({scrollTop: $(target).offset().top});
+        return $('body').animate({scrollTop: $(target).offset().top});
     },
 
     createGauge: function($container, datapoint, fnUpdate, updateFrequency) {
-        $container.highcharts({
+        return $container.highcharts({
             chart: {
                 type: 'gauge',
                 plotBackgroundColor: null,
@@ -79,7 +79,7 @@ soaba.utils = Ember.Namespace.create({
     },
 
     createLineChart: function($container, datapoint, fnUpdate, updateInterval){
-        $container.highcharts({
+        return $container.highcharts({
             chart: {
                 type: 'spline',
                 animation: Highcharts.svg, /* don't animate in old IE */
