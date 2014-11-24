@@ -89,7 +89,7 @@
                 }
 
                 if(update != null){
-                    setInterval(update, UPD_INTERVAL);
+                    var interval = setInterval(update, UPD_INTERVAL);
                     update();
                 }
             });
