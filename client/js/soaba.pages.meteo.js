@@ -42,6 +42,11 @@
         var lineChartDatapoints = [
             '0.6.27', '0.6.22', '0.6.25','0.6.28'];
 
+        var dataLength = gaugeDatapoints.length + lineChartDatapoints.length,
+            loadedDataCount = 0;
+
+        $('.loader-info').html('loading datapoints (1 of '+dataLength+') for "Meteo Station" app');
+
         $.each(gaugeDatapoints, function(i, info){
             var $cont = $('#gaugeContainer');
             console.log('Adding datapoint "' + info.address + '" to diagnostics panel.');
@@ -74,6 +79,9 @@
                     }, GAUGE_UPD_INTERVAL, info.min, info.max, info.plotBands);
 
                 $dpointCont.highcharts().series[0].points[0].update(rsp.value);
+            }).always(function(){
+                loadedDataCount++;
+                $('.loader-info').html('loaded datapoints ('+loadedDataCount+' of '+dataLength+') for "Meteo Station" app');
             });
         });
 
@@ -109,14 +117,23 @@
                             console.log('Adding point values x:"'+x+'" and y:"'+y+'"');
                             chart.series[0].addPoint([x, y], true, true);
                         });
-                    }, LINECHART_UPD_INTERVAL);
+                    }, LINECHART_UPD_INTERVAL, rsp.value);
 
                 $dpointCont.highcharts().series[0].addPoint([(new Date()).getTime(), parseFloat(rsp.value)], true, true);
+            }).always(function(){
+                loadedDataCount++;
+                $('.loader-info').html('loaded datapoints ('+loadedDataCount+' of '+dataLength+') for "Meteo Station" app');
             });
         });
 
-        setTimeout(function(){
-            soaba.appLoadingThreads.pop();
-        }, 5000);
+        var loader = setInterval(function(){
+            if(loadedDataCount == dataLength){
+                $('.loader-info').html('loading of "Meteo Station" app completed');
+                soaba.appLoadingThreads.pop();
+                clearTimeout(loader);
+                $('#pageMeteoStation').attr('loaded', 'true');
+                $('#loader-wrapper').hide();
+            }
+        }, 1000);
     });
 })();

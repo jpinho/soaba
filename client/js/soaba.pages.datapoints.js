@@ -107,7 +107,12 @@
         $('#tblDatapoints').DataTable({
             'ajax': soaba.APP_URL + 'datapoints'
             ,'sAjaxDataProp': null
-            ,'fnDrawCallback':function(){ soaba.appLoadingThreads.pop(); }
+            ,'fnInitComplete':function(){
+                $('.loader-info').html('loading "datapoints" operation completed');
+                soaba.appLoadingThreads.pop();
+                $('#pageDatapoints').attr('loaded', 'true').fadeIn();
+                $('#loader-wrapper').hide();
+            }
             ,'columns': [
                 { 'title': 'Name', 'data': 'name' }
                 ,{ 'title': 'Gateway (IP Address)', 'data': 'gatewayAddress' }
@@ -347,6 +352,7 @@
     $(function(){
 
         /** datapoints page setup **/
+        $('.loader-info').html('loading "datapoints"');
         dataBind();
         attachDataTableEvents();
 

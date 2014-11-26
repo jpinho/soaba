@@ -16,7 +16,12 @@
         $('#tblGatewayDrivers').DataTable({
             'ajax': soaba.APP_URL + 'gateways'
             , 'sAjaxDataProp': null
-            , 'fnDrawCallback':function(){ soaba.appLoadingThreads.pop(); }
+            , 'fnInitComplete':function(){
+                $('.loader-info').html('loading "gateways" operation completed');
+                soaba.appLoadingThreads.pop();
+                $('#pageGateways').attr('loaded', 'true');
+                $('#loader-wrapper').hide();
+            }
             , 'columns': [
                 {'title': 'Driver Type', 'data': 'class'}, {
                     'title': 'Description',
@@ -64,6 +69,7 @@
      */
     $(function(){
         /** gateways page setup **/
+        $('.loader-info').html('loading "gateways"');
         dataBind();
         attachDataTableEvents();
     });

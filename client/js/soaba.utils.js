@@ -78,7 +78,7 @@ soaba.utils = Ember.Namespace.create({
         });
     },
 
-    createLineChart: function($container, datapoint, fnUpdate, updateInterval){
+    createLineChart: function($container, datapoint, fnUpdate, updateInterval, initialValue){
         return $container.highcharts({
             chart: {
                 type: 'spline',
@@ -127,12 +127,17 @@ soaba.utils = Ember.Namespace.create({
                     // generate an array of random data
                     var data = [],
                         time = (new Date()).getTime(),
-                        i;
+                        i,
+                        value = 0;
+
+                    if(typeof initialValue !== 'undefined' || initialValue != null)
+                        value = initialValue;
 
                     for (i = -19; i <= 0; i += 1) {
                         data.push({
                             x: time + i * 1000,
-                            y: 0
+                            y: value,
+                            marker: { enabled: false }
                         });
                     }
                     return data;

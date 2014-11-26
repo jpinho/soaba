@@ -14,8 +14,14 @@
     $(function () {
         soaba.appLoadingThreads.push({page: 'cpanel'});
 
+        var dataLength= 1,
+            loadedDataCount= 0,
+            updateFunctions = [];
+
+        $('.loader-info').html('loading "Control Panel" app');
+
         $.getJSON(soaba.APP_URL + 'datapoints', function(rsp){
-            if(typeof rsp.stackTrace !== 'undefined'){
+            if(typeof rsp.stackTrace !== 'undefined') {
                 console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause.class);
                 return;
             }
@@ -41,7 +47,7 @@
                         });
                     }});
 
-                    update = function(){
+                    updateFunctions.push(function(){
                         $.getJSON(soaba.APP_URL + 'datapoints/' + datapoint.id, function(rsp){
                             if(typeof rsp.stackTrace !== 'undefined'){
                                 console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause.class);
@@ -49,12 +55,15 @@
                             }
                             $cont.find('input').bootstrapSwitch('state', rsp.value, true);
                         });
-                    };
+                    });
                 }
                 else if(datapoint.dataType.toLowerCase() == 'percentage' &&
                     datapoint.accessType.toLowerCase() != 'read_only'){
+
+                    var isHVACRelated = datapoint.name.toLowerCase().indexOf('hvac') >= 0;
+
                     var $cont = $('<div class="percentage-ctn"><span>'+ datapoint.name +'</span><br/><div class="p-control"></div>'
-                        + '<span class="slider-text label label-primary">0</span></div>').appendTo('#percentageControls');
+                        + '<span class="slider-text label label-primary">0</span></div>').appendTo(isHVACRelated ? '#hvacControls' : '#percentageControls');
 
                     $cont.find('.p-control').slider({
                         range: "min",
@@ -78,7 +87,7 @@
                         }
                     });
 
-                    update = function(){
+                    updateFunctions.push(function(){
                         $.getJSON(soaba.APP_URL + 'datapoints/' + datapoint.id, function(rsp){
                             if(typeof rsp.stackTrace !== 'undefined'){
                                 console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause.class);
@@ -87,18 +96,25 @@
                             $cont.find('.p-control').slider('option', 'value', rsp.value);
                             $cont.find('.slider-text').text(rsp.value);
                         });
-                    };
+                    });
                 }
-
-                if(update != null){
-                    var interval = setInterval(update, UPD_INTERVAL);
-                    update();
-                }
+            });
+        }).always(function(){
+            loadedDataCount++;
+            $.each(updateFunctions, function(i, fn){
+                setInterval(fn, UPD_INTERVAL);
+                fn();
             });
         });
 
-        setTimeout(function(){
-            soaba.appLoadingThreads.pop();
-        }, 5000);
+        var loader = setInterval(function(){
+            if(loadedDataCount == dataLength){
+                $('.loader-info').html('loading of "Control Panel" app completed');
+                soaba.appLoadingThreads.pop();
+                clearTimeout(loader);
+                $('#pageSwitchControlPanel').attr('loaded', 'true');
+                $('#loader-wrapper').hide();
+            }
+        }, 1000);
     });
 })();

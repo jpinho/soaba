@@ -225,6 +225,8 @@ select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
     opacity: 0.5;
 }
 
+.hi
+
 .switch-ctn:hover {
     opacity: 1;
 }
@@ -358,6 +360,15 @@ select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
 
     -webkit-animation: spin 1.5s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
     animation: spin 1.5s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+.loader-info{
+    font-style: italic;
+    font-size: 0.95em;
+    top: 60%;position: absolute;left: 50%;margin-left: -200px;width: 400px;text-align: center; margin-top:50px;
+}
+.loader-info:after{
+    content:" ...";
 }
 
 @-webkit-keyframes spin {

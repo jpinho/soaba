@@ -68,6 +68,11 @@
             'd6e53cd9291b660bbbe6eed278e9b78046ff5dbb', '6fad55fda63d4be648e13bd29336c0ab809adaff',
             '3d6afcee653f419069fe5134d14b830348b1fa7f'];
 
+        var dataLength = gaugeDatapoints.length + lineChartDatapoints.length,
+            loadedDataCount = 0;
+
+        $('.loader-info').html('loading datapoints (1 of '+dataLength+') for "Energy Viewer" app');
+
         $.each(gaugeDatapoints, function(i, info){
             var $cont = $('#energyGaugeContainer');
             console.log('Adding datapoint "' + info.address + '" to diagnostics panel.');
@@ -100,6 +105,9 @@
                     }, GAUGE_UPD_INTERVAL, info.min, info.max, info.plotBands);
 
                 $dpointCont.highcharts().series[0].points[0].update(rsp.value);
+            }).always(function(){
+                loadedDataCount++;
+                $('.loader-info').html('loaded datapoints ('+loadedDataCount+' of '+dataLength+') for "Energy Viewer" app');
             });
         });
 
@@ -135,14 +143,23 @@
                             console.log('Adding point values x:"'+x+'" and y:"'+y+'"');
                             chart.series[0].addPoint([x, y], true, true);
                         });
-                    }, LINECHART_UPD_INTERVAL);
+                    }, LINECHART_UPD_INTERVAL, rsp.value);
 
                 $dpointCont.highcharts().series[0].addPoint([(new Date()).getTime(), parseFloat(rsp.value)], true, true);
+            }).always(function(){
+                loadedDataCount++;
+                $('.loader-info').html('loaded datapoints ('+loadedDataCount+' of '+dataLength+') for "Energy Viewer" app');
             });
         });
 
-        setTimeout(function(){
-            soaba.appLoadingThreads.pop();
-        }, 5000);
+        var loader = setInterval(function(){
+            if(loadedDataCount == dataLength){
+                $('.loader-info').html('loading of "Energy Viewer" app completed');
+                soaba.appLoadingThreads.pop();
+                clearTimeout(loader);
+                $('#pageEnergyViewer').attr('loaded', 'true');
+                $('#loader-wrapper').hide();
+            }
+        }, 1000);
     });
 })();

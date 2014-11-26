@@ -134,6 +134,11 @@ $(function(){
             $page.show('fade');
             $('.nav.nav-sidebar li').removeClass('active');
             $(this).parent().addClass('active');
+
+            if($page.attr('loaded') != 'true'){
+                $('#loader-wrapper').show()
+                return;
+            }
         }
 
         return false;
@@ -149,6 +154,5 @@ $(function(){
 
         clearInterval(loader);
         $('#loader-wrapper').hide();
-        $('#pageDatapoints').fadeIn();
     }, 2*1000)
 });
