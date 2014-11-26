@@ -18,8 +18,6 @@ import org.restlet.resource.ServerResource;
 import org.restlet.routing.Router;
 import org.restlet.util.Series;
 
-import soaba.core.gateways.drivers.KNXGatewayDriver;
-
 public class RestletServer extends
         Application {
 
@@ -165,9 +163,7 @@ public class RestletServer extends
     }
 
     public void shutdown() {
-        // eventually here could be put some code that would iterate over all instances implementing
-        // IGatewayDriver, and calling dispose over such instances. seems overkill for now.
-        KNXGatewayDriver.dispose();
+        KNXGatewayService.dispose();
     }
 
     @SuppressWarnings("rawtypes")

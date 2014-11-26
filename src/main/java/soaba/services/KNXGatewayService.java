@@ -277,4 +277,8 @@ public class KNXGatewayService {
             return toJSON(result);
         }
     }
+    
+    public static void dispose(){
+        KNXGatewayDriver.dispose();
+    }
 }
