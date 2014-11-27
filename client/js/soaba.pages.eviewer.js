@@ -6,7 +6,7 @@
 "use strict";
 
 (function() {
-    var GAUGE_UPD_INTERVAL = 5 * 1000, LINECHART_UPD_INTERVAL = 2 * 1000;
+    var GAUGE_UPD_INTERVAL = 15 * 1000, LINECHART_UPD_INTERVAL = 2 * 1000;
 
     /**
      * Page Load

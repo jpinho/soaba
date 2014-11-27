@@ -225,8 +225,6 @@ select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
     opacity: 0.5;
 }
 
-.hi
-
 .switch-ctn:hover {
     opacity: 1;
 }
