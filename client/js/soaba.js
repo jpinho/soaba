@@ -9,7 +9,7 @@ var App = Ember.Application.create();
 
 var soaba = Ember.Namespace.create({
     VERSION: '0.5.0-beta',
-    APP_URL: 'http://sb-dev.tagus.ist.utl.pt:9095/soaba/',
+    APP_URL: 'http://6b1696a.ngrok.com/soaba/',
     AUTHOR: 'João Pinho',
     AUTHOR_URL: 'http://pinho.icodebox.net',
     appLoadingThreads: []
