@@ -106,7 +106,7 @@ public class KNXGatewayDriver
             pc = new ProcessCommunicatorImpl(link);
             pc.setResponseTimeout(PROCESS_COMM_TIMEOUT);
             pc.setPriority(Priority.SYSTEM);
-            attachProcessListener(pc);
+            //attachProcessListener(pc);
 
             knxLink = link;
             isConnected = link.isOpen();
