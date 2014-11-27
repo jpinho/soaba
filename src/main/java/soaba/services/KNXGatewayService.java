@@ -175,6 +175,8 @@ public class KNXGatewayService {
 
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
             final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
+            Logger.getLogger(KNXGatewayService.class).info("gw address:" + dpoint.getGatewayAddress());
+            
             final IGatewayDriver gateway = config.findGateway(dpoint.getGatewayAddress());
 
             if (dpoint == null)
