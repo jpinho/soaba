@@ -40,7 +40,7 @@
 
                         $.getJSON(url, function (rsp) {
                             if (typeof rsp !== "undefined" && rsp != null && typeof rsp.stackTrace === 'object')
-                                console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause.class);
+                                console.log('Error: ' + rsp.message);
                         })
                         .fail(function (xhr, status, message) {
                                 console.log('Error: ' + message);
@@ -50,7 +50,7 @@
                     updateFunctions.push(function(){
                         $.getJSON(soaba.APP_URL + 'datapoints/' + datapoint.id, function(rsp){
                             if(typeof rsp.stackTrace !== 'undefined'){
-                                console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause.class);
+                                console.log('Error: ' + rsp.message);
                                 return;
                             }
                             $cont.find('input').bootstrapSwitch('state', rsp.value, true);
@@ -79,7 +79,7 @@
 
                             $.getJSON(url, function (rsp) {
                                 if (typeof rsp !== "undefined" && rsp != null && typeof rsp.stackTrace === 'object')
-                                    console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause.class);
+                                    console.log('Error: ' + rsp.message);
                             })
                             .fail(function (xhr, status, message) {
                                 console.log('Error: ' + message);
@@ -90,7 +90,7 @@
                     updateFunctions.push(function(){
                         $.getJSON(soaba.APP_URL + 'datapoints/' + datapoint.id, function(rsp){
                             if(typeof rsp.stackTrace !== 'undefined'){
-                                console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause.class);
+                                console.log('Error: ' + rsp.message);
                                 return;
                             }
                             $cont.find('.p-control').slider('option', 'value', rsp.value);

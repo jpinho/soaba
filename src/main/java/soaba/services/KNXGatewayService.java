@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.activation.UnsupportedDataTypeException;
 
+import org.apache.log4j.Logger;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
@@ -183,12 +184,14 @@ public class KNXGatewayService {
                 return toJSON(new ServiceResourceErrorException("Gateway not found."));
 
             try {
+                Logger.getLogger(KNXGatewayService.class).info("calling ReadDatapoint service.");
                 DatapointValue<?> result;
                 gateway.connect();
 
                 result = gateway.read(dpoint);
 
                 gateway.disconnect();
+                Logger.getLogger(KNXGatewayService.class).info("returning from ReadDatapoint service.");
                 return toJSON(result);
             } catch (Exception e) {
                 return toJSON(new ServiceResourceErrorException(e));
