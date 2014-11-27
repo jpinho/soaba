@@ -175,6 +175,12 @@ public class KNXGatewayService {
 
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
             final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
+            
+            if(dpoint == null){
+                Logger.getLogger(KNXGatewayService.class).error("datapoint not found.");
+                return toJSON(new ServiceResourceErrorException("datapoint not found"));
+            }
+                
             Logger.getLogger(KNXGatewayService.class).info("gw address:" + dpoint.getGatewayAddress());
             
             final IGatewayDriver gateway = config.findGateway(dpoint.getGatewayAddress());
