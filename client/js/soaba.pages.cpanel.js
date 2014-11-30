@@ -22,7 +22,7 @@
 
         $.getJSON(soaba.APP_URL + 'datapoints', function(rsp){
             if(typeof rsp.stackTrace !== 'undefined') {
-                console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause.class);
+                console.log('Error: ' + rsp.message + ' -->> ' + rsp.cause ? rsp.cause.class : '');
                 return;
             }
 

@@ -93,7 +93,7 @@
                 console.log('Datapoint "' + datapointAddress+ '" info received.');
                 if(typeof rsp.stackTrace !== 'undefined'){
                     console.log('Error: datapoint ' + datapointAddress + ' read exception '
-                    + rsp.message + ' -->> ' + rsp.cause.class);
+                    + rsp.message + ' -->> ' + rsp.cause ? rsp.cause.class : '');
                     return;
                 }
                 console.log('Datapoint "' + datapointAddress+ '" info received was "'+rsp.value+'".');

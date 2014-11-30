@@ -31,7 +31,6 @@ import tuwien.auto.calimero.GroupAddress;
 import tuwien.auto.calimero.IndividualAddress;
 import tuwien.auto.calimero.Priority;
 import tuwien.auto.calimero.exception.KNXException;
-import tuwien.auto.calimero.exception.KNXFormatException;
 import tuwien.auto.calimero.exception.KNXRemoteException;
 import tuwien.auto.calimero.exception.KNXTimeoutException;
 import tuwien.auto.calimero.link.KNXLinkClosedException;
@@ -125,6 +124,7 @@ public class KNXGatewayDriver
         }
     }
 
+    @SuppressWarnings("unused")
     private void attachProcessListener(ProcessCommunicator pcomm) {
         processListener = new ProcessListener() {
             public void groupWrite(ProcessEvent evt) {
@@ -315,16 +315,28 @@ public class KNXGatewayDriver
 
     @Override
     public List<String> scanNetworkRouters() throws GatewayDriverException,
-            KNXLinkClosedException,
-            KNXTimeoutException,
             InterruptedException {
         if (isReconnecting)
             throw new GatewayConnectionLostException("Gateway Address: " + this.address);
 
-        ManagementProcedures man = new ManagementProceduresImpl(this.knxLink);
-        IndividualAddress[] networkRouters = man.scanNetworkRouters();
+        ManagementProcedures man=null;
+        
+        try {
+            man = new ManagementProceduresImpl(this.knxLink);
+        } catch (KNXLinkClosedException e) {
+            throw new GatewayConnectionLostException(e.getMessage());
+        }
+        
+        IndividualAddress[] networkRouters=null;
+        try {
+            networkRouters = man.scanNetworkRouters();
+        } catch (KNXTimeoutException e) {
+            throw new GatewayDriverException(e);
+        } catch (KNXLinkClosedException e) {
+            throw new GatewayConnectionLostException(e.getMessage());
+        }
+        
         List<String> result = new ArrayList<String>();
-
         for (IndividualAddress addr : networkRouters)
             result.add(new String(addr.toByteArray()));
 
@@ -332,17 +344,29 @@ public class KNXGatewayDriver
     }
 
     @Override
-    public List<String> scanNetworkDevices(int area, int line) throws KNXLinkClosedException,
-            KNXTimeoutException,
+    public List<String> scanNetworkDevices(int area, int line) throws 
             InterruptedException,
-            GatewayConnectionLostException {
+            GatewayDriverException {
         if (isReconnecting)
             throw new GatewayConnectionLostException("Gateway Address: " + this.address);
 
-        ManagementProcedures man = new ManagementProceduresImpl(this.knxLink);
-        IndividualAddress[] networkRouters = man.scanNetworkDevices(area, line);
+        ManagementProcedures man = null;
+        try {
+            man = new ManagementProceduresImpl(this.knxLink);
+        } catch (KNXLinkClosedException e) {
+            throw new GatewayConnectionLostException(e.getMessage());
+        }
+        
+        IndividualAddress[] networkRouters=null;
+        try {
+            networkRouters = man.scanNetworkDevices(area, line);
+        } catch (KNXTimeoutException e) {
+            throw new GatewayDriverException(e);
+        } catch (KNXLinkClosedException e) {
+            throw new GatewayConnectionLostException(e.getMessage());
+        }
+        
         List<String> result = new ArrayList<String>();
-
         for (IndividualAddress addr : networkRouters)
             result.add(String.format("%d/%d/%d [typeof %s]", addr.getArea(), addr.getLine(), addr.getDevice(),
                     addr.getType()));
@@ -351,14 +375,19 @@ public class KNXGatewayDriver
     }
 
     public boolean isAddressOccupied(String addr) throws InterruptedException,
-            KNXFormatException,
-            KNXException,
-            GatewayConnectionLostException {
+            GatewayDriverException {
         if (isReconnecting)
             throw new GatewayConnectionLostException("Gateway Address: " + this.address);
 
-        ManagementProcedures man = new ManagementProceduresImpl(this.knxLink);
-        return man.isAddressOccupied(new IndividualAddress(addr));
+        ManagementProcedures man;
+        try {
+            man = new ManagementProceduresImpl(this.knxLink);
+            return man.isAddressOccupied(new IndividualAddress(addr));
+        } catch (KNXLinkClosedException e) {
+            throw new GatewayConnectionLostException(e.getMessage());
+        } catch (KNXException e) {
+            throw new GatewayDriverException(e);
+        }
     }
 
     @Override

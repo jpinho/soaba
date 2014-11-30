@@ -10,10 +10,6 @@ import soaba.core.exception.DatapointReadonlyAccessTypeException;
 import soaba.core.exception.DatapointWriteonlyAccessTypeException;
 import soaba.core.exception.GatewayDriverException;
 import soaba.core.models.DatapointValue;
-import tuwien.auto.calimero.exception.KNXException;
-import tuwien.auto.calimero.exception.KNXFormatException;
-import tuwien.auto.calimero.exception.KNXTimeoutException;
-import tuwien.auto.calimero.link.KNXLinkClosedException;
 
 public interface IGatewayDriver {
 
@@ -39,11 +35,9 @@ public interface IGatewayDriver {
             DatapointReadonlyAccessTypeException,
             UnsupportedDataTypeException;
 
-    boolean isAddressOccupied(String addr) throws GatewayDriverException, InterruptedException, KNXFormatException, KNXException;
+    boolean isAddressOccupied(String addr) throws GatewayDriverException, InterruptedException;
 
-    List<String> scanNetworkDevices(int area, int line) throws GatewayDriverException, KNXLinkClosedException,
-            KNXTimeoutException,
-            InterruptedException;
+    List<String> scanNetworkDevices(int area, int line) throws GatewayDriverException, InterruptedException;
 
-    List<String> scanNetworkRouters() throws KNXLinkClosedException, KNXTimeoutException, InterruptedException, GatewayDriverException;
+    List<String> scanNetworkRouters() throws InterruptedException, GatewayDriverException;
 }
