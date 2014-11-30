@@ -31,6 +31,20 @@ Development of a Gateway Driver for interaction with KNX devices. The Gateway Dr
  – Sample application to preview energy measure- ments from meters installed on nucleus 14
  – Sample application to control switchs, HVACs, blinders and dimmers
 
+### Screen Shots ###
+
+**Management Interface - Data Points Listing**
+[Management Interface 1](https://bitbucket.org/jpinho/soaba/downloads/mminterface1.png)
+#
+**Management Interface - Data Points read/write Interface**
+[Management Interface 2](https://bitbucket.org/jpinho/soaba/downloads/mminterface2.png)
+#
+#
+**Applications**
+#
+**Meteo Station**
+[Meteo Station](https://bitbucket.org/jpinho/soaba/downloads/meteo-station.png)
+
 ### Rights and License ###
 
 This repository is a contribution to the Open Source Community, fill free to use this code how you like.
