@@ -7,45 +7,33 @@
 
 
 ### Project Goals ###
+ 
 
-Development of Gateway Driver for interaction with KNX devices. The Gateway Driver will be configured from a XML file containing all the KNX devices address and their underlying types. 
-
-The GatewayDriver will be accessible via HTTP by exposing a REST interface, receiving and sending serialized JSON data. The Web Prototype App will make use of this REST interface to control and expose the Gateway Driver functionalities.
-
-The developed architecture will allow new drivers to be written for the system, exposing data points from different types of gateways via different kinds of protocols, not only KNX via TCP/IP sockets.
+Development of a Gateway Driver for interaction with KNX devices. The Gateway Driver is configurable from a XML file containing all the KNX device addresses and their underlying types. The Gateway Driver will be accessible via HTTP by exposing a REST interface, receiving and sending serialized JSON data. The Web Prototype App will make use of this REST interface to control and expose the Gateway Driver functionalities.
 
 ### Components and Objectives ###
 
-### 1. Implementation of a Gateway Driver to Interact with KNX Devices ###
+* **Gateway Driver**, for interaction with KNX devices. A gateway driver main purpose is to abstract the complexities of dealing with a particular type of gateway, thus abstracting their subjacent particularities of communication and so forth. With this in mind the proposed objectives for a gateway driver, specific for the KNX technology are:
+– To establish a communication with KNX devices through an ethernet KNX gateway
+– Support data point reading functionality from de- vices by address/group address
+– Support data point writing functionality from de- vices by address/group address
+– Support for manipulating basic data point data types, such as percentage, float and boolean
 
-##### Objectives #####
+* **RESTful Service**, for remote interaction with the system. Gateway drivers by them selfs are not enough, over that some orchestration of the available drivers are need to make the complete architecture abstract from it’s implementation. The RESTful Service developed provides and demonstrates that abstraction, by dealing with data points and gateways that are completely independent of their representative technology. This service exposes basic operations to read and control data points, such as:
+– Read operation from data point address/group address
+– Write operation to data point address/group ad- dress
+– Gateway awareness of the devices bound to it, based on a XML file containing the data point addresses, specifying their respective data types and source gateways
 
-- Establish communication with KNX devices through an Ethernet KNX Gateway
-- Provide datapoint reading functionality from devices by address/group address
-- Provide datapoint writing functionality from devices by address/group address
-- Support basic datapoint data types, such as percentage (integer ∈ [0-100]), float and
-switch (boolean)
-
-### 2. Development of a REST Interface to Interact with the KNX Gateway ###
-
-##### Objectives #####
-
-- Support read operation from datapoint address/group address
-- Support write operation to datapoint address/group address
-- Support gateway awareness of the devices set available, based on a XML file containing
-the KNX addresses, specifying their respective types (switch, percentage or float)
-- Support configuration reading operation
-
-### 3. Develop an HTML5 Prototype Web App to demonstrate the system ###
-
-##### Objectives #####
-
-- Read the configuration of the Gateway Driver REST Interface available at a predefined IP Address
-- Display all the visual controls required to interact with the KNX devices
+* **HTML5 Demo Application**, for demonstration of the system. This application exposes some of the basic applications that this system as to offer, and demonstrates how easy their are to develop, by depending only on the data point concept. This demo contains the following functionalities:
+ – List all the data points configured in the application
+ – Interface for reading and manipulating data point values
+ – Sample application to preview meteo station data points, such as outside temperature, exterior entalpia and absolute/relative humidity
+ – Sample application to preview energy measure- ments from meters installed on nucleus 14
+ – Sample application to control switchs, HVACs, blinders and dimmers
 
 ### Rights and License ###
 
 This repository is a contribution to the Open Source Community, fill free to use this code how you like.
 If you have any difficulties putting this together, please drop me an email at jpe[dot]pinho[at]gmail[dot]com.
 
-P.S: Sorry for the markdown notation on my email, but net bots are crazy this days.
+You can download the full project report ![here](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf)
