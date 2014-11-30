@@ -136,7 +136,8 @@ $(function(){
             $(this).parent().addClass('active');
 
             if($page.attr('loaded') != 'true'){
-                $('#loader-wrapper').show()
+                $('#loader-wrapper').show();
+                $('#loader-wrapper .loader-info').text('"'+ $(this).text() +'" is still loading... please wait!');
                 return;
             }
         }
