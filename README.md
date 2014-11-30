@@ -50,11 +50,11 @@ Development of a Gateway Driver for interaction with KNX devices. The Gateway Dr
 #
 **Energy Viewer**
 #
-![Energy Viewer](https://bitbucket.org/jpinho/soaba/downloads/energy-viewer.png)
+![Energy Viewer](https://bitbucket.org/jpinho/soaba/downloads/energyviewer.png)
 #
 **Control Panel**
 #
-![Control Panel](https://bitbucket.org/jpinho/soaba/downloads/control-panel.png)
+![Control Panel](https://bitbucket.org/jpinho/soaba/downloads/controlpanel.png)
 #
 ### Rights and License ###
 
