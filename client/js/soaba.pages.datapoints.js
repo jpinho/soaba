@@ -195,7 +195,7 @@
 
         $.getJSON(url, function(rsp){
             if(typeof rsp !== "undefined" && typeof rsp.stackTrace === 'object')
-                setExceptionMessage(rsp.message, rsp.cause.class);
+                setExceptionMessage(rsp.message, rsp.cause != null ? rsp.cause.class : '');
             else if(typeof rsp !== "undefined" && rsp != null) {
                 setResultText(
                     '<div><b>Value:</b> ' + rsp.value + '</div><br/>' +
@@ -224,7 +224,7 @@
 
         $.getJSON(url, function (rsp) {
             if (typeof rsp !== "undefined" && rsp != null && typeof rsp.stackTrace === 'object')
-                setExceptionMessage(rsp.message, rsp.cause.class);
+                setExceptionMessage(rsp.message, rsp.cause != null ? rsp.cause.class : '');
             else {
                 updateDatapointValue(info, value);
                 setResultText('Write Request Sent!');
