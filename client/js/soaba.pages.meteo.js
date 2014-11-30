@@ -55,7 +55,7 @@
                 console.log('Datapoint "' + info.address+ '" info received.');
                 if(typeof rsp.stackTrace !== 'undefined'){
                     console.log('Error: datapoint ' + info.address + ' read exception '
-                    + rsp.message + ' -->> ' + rsp.cause != null ? rsp.cause.class : '');
+                    + rsp.message);
                     return;
                 }
                 console.log('Datapoint "' + info.address + '" info received was "'+rsp.value+'".');
@@ -69,7 +69,7 @@
                          $.getJSON(soaba.APP_URL + 'datapoints/' + datapoint.id, function(rsp){
                              if(typeof rsp.stackTrace !== 'undefined'){
                                  console.log('Error: datapoint ' + datapoint.name + ' read exception '
-                                 + rsp.message + ' -->> ' + rsp.cause != null ? rsp.cause.class : '');
+                                 + rsp.message);
                                  return;
                              }
 
@@ -93,7 +93,7 @@
                 console.log('Datapoint "' + datapointAddress+ '" info received.');
                 if(typeof rsp.stackTrace !== 'undefined'){
                     console.log('Error: datapoint ' + datapointAddress + ' read exception '
-                    + rsp.message + ' -->> ' + rsp.cause != null ? rsp.cause.class : '');
+                    + rsp.message);
                     return;
                 }
                 console.log('Datapoint "' + datapointAddress+ '" info received was "'+rsp.value+'".');
@@ -107,7 +107,7 @@
                         $.getJSON(soaba.APP_URL + 'datapoints/' + datapoint.id, function(rsp){
                             if(typeof rsp.stackTrace !== 'undefined'){
                                 console.log('Error: datapoint ' + datapoint.readAddress + ' read exception '
-                                + rsp.message + ' -->> ' + rsp.cause != null ? rsp.cause.class : '');
+                                + rsp.message);
                                 return;
                             }
 
