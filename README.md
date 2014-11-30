@@ -31,23 +31,34 @@ Development of a Gateway Driver for interaction with KNX devices. The Gateway Dr
  – Sample application to preview energy measure- ments from meters installed on nucleus 14
  – Sample application to control switchs, HVACs, blinders and dimmers
 
-### Screen Shots ###
+### SOABA Screen Shots ###
 
 **Management Interface - Data Points Listing**
-[Management Interface 1](https://bitbucket.org/jpinho/soaba/downloads/mminterface1.png)
+#
+![Management Interface 1](https://bitbucket.org/jpinho/soaba/downloads/mminterface1.png)
 #
 **Management Interface - Data Points read/write Interface**
-[Management Interface 2](https://bitbucket.org/jpinho/soaba/downloads/mminterface2.png)
+#
+![Management Interface 2](https://bitbucket.org/jpinho/soaba/downloads/mminterface2.png)
 #
 #
 **Applications**
 #
 **Meteo Station**
-[Meteo Station](https://bitbucket.org/jpinho/soaba/downloads/meteo-station.png)
-
+#
+![Meteo Station](https://bitbucket.org/jpinho/soaba/downloads/meteo-station.png)
+#
+**Energy Viewer**
+#
+![Energy Viewer](https://bitbucket.org/jpinho/soaba/downloads/energy-viewer.png)
+#
+**Control Panel**
+#
+![Control Panel](https://bitbucket.org/jpinho/soaba/downloads/control-panel.png)
+#
 ### Rights and License ###
 
 This repository is a contribution to the Open Source Community, fill free to use this code how you like.
 If you have any difficulties putting this together, please drop me an email at jpe[dot]pinho[at]gmail[dot]com.
 
-You can download the full project report ![here](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf).
+You can download the full project report [here](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf)!
