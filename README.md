@@ -5,10 +5,8 @@
 
 ###### *Illustration/Photo Credit: Compexin Experience Innovation – http://compexin.ro*
 
-
 ### Project Goals ###
  
-
 Development of a Gateway Driver for interaction with KNX devices. The Gateway Driver is configurable from a XML file containing all the KNX device addresses and their underlying types. The Gateway Driver will be accessible via HTTP by exposing a REST interface, receiving and sending serialized JSON data. The Web Prototype App will make use of this REST interface to control and expose the Gateway Driver functionalities.
 
 ### Components and Objectives ###
@@ -56,9 +54,14 @@ Development of a Gateway Driver for interaction with KNX devices. The Gateway Dr
 #
 ![Control Panel](https://bitbucket.org/jpinho/soaba/downloads/controlpanel.png)
 #
+
+### Available Documentation ###
+
+Download the full project report [here](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf)!
+
+Check it out [Project Presentation](https://bitbucket.org/jpinho/soaba/downloads/slides.pdf).
+
 ### Rights and License ###
 
 This repository is a contribution to the Open Source Community, fill free to use this code how you like.
 If you have any difficulties putting this together, please drop me an email at jpe[dot]pinho[at]gmail[dot]com.
-
-You can download the full project report [here](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf)!
