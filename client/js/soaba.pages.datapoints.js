@@ -223,14 +223,14 @@
         $('#dpOperationResult').slideUp().find('.panel-body').empty();
 
         $.getJSON(url, function (rsp) {
-            if (typeof rsp !== "undefined" && rsp != null && typeof rsp.stackTrace === 'object')
-                setExceptionMessage(rsp.message, '');
-            else {
-                updateDatapointValue(info, value);
-                setResultText('Write Request Sent!');
-            }
-            showResult();
-        })
+                if (typeof rsp !== "undefined" && rsp != null && typeof rsp.stackTrace === 'object')
+                    setExceptionMessage(rsp.message, '');
+                else {
+                    updateDatapointValue(info, value);
+                    setResultText('Write Request Sent!');
+                }
+                showResult();
+            })
         .always(function () {
             $btn.button('reset');
         })

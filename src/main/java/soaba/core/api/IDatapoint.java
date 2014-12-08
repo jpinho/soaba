@@ -1,5 +1,11 @@
 package soaba.core.api;
 
+/**
+ * This interface provides the abstraction for a concrete Datapoint.
+ * 
+ * @author João Pinho (jpe.pinho@gmail.com)
+ * @since 0.5
+ */
 public interface IDatapoint {
     public enum ACCESSTYPE {
 

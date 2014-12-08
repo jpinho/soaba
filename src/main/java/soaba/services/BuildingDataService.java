@@ -1,6 +1,7 @@
 package soaba.services;
 
 import java.net.UnknownHostException;
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 import javax.activation.UnsupportedDataTypeException;
@@ -29,7 +30,13 @@ import tuwien.auto.calimero.exception.KNXTimeoutException;
 import tuwien.auto.calimero.link.KNXLinkClosedException;
 import flexjson.JSONSerializer;
 
-public class KNXGatewayService {
+/**
+ * The Building Data Service provides ways for interacting with gateways and datapoints.
+ * 
+ * @author João Pinho (jpe.pinho@gmail.com)
+ * @since 0.5
+ */
+public class BuildingDataService {
 
     private static AppConfig config = AppConfig.getInstance();
 
@@ -37,19 +44,25 @@ public class KNXGatewayService {
         return new JSONSerializer().deepSerialize(obj);
     }
 
+    /**
+     * Lists all datapoints configured in the application.
+     */
     public static class ListDatapoints extends
             ServerResource {
 
         public final static String ROUTE_URI = "/datapoints";
 
         @Get
-        public String doGet() {
+        public String doGet() throws AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
             JSONSerializer serializer = new JSONSerializer();
             return serializer.deepSerialize(config.getDatapoints());
         }
     }
 
+    /**
+     * Lists all gateways configured in the application.
+     */
     public static class ListGateways extends
             ServerResource {
 
@@ -63,6 +76,9 @@ public class KNXGatewayService {
         }
     }
 
+    /**
+     * Checks if a given datapoint is busy for read/write operations.
+     */
     public static final class ProbeDatapointStatus extends
             ServerResource {
 
@@ -99,6 +115,9 @@ public class KNXGatewayService {
         }
     }
 
+    /**
+     * Scans network devices on the field bus of a given gateway.
+     */
     public static final class DiscoverDevices extends
             ServerResource {
 
@@ -132,6 +151,9 @@ public class KNXGatewayService {
         }
     }
 
+    /**
+     * Scans network routers on the field bus of a given gateway.
+     */
     public static final class DiscoverRouters extends
             ServerResource {
 
@@ -163,6 +185,9 @@ public class KNXGatewayService {
         }
     }
 
+    /**
+     * Reads the datapoint value of the specified datapoint address.
+     */
     public static final class ReadDatapoint extends
             ServerResource {
 
@@ -177,11 +202,11 @@ public class KNXGatewayService {
             final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
             
             if(dpoint == null){
-                Logger.getLogger(KNXGatewayService.class).error("datapoint not found.");
+                Logger.getLogger(BuildingDataService.class).error("datapoint not found.");
                 return toJSON(new ServiceResourceErrorException("datapoint not found"));
             }
                 
-            Logger.getLogger(KNXGatewayService.class).info("gw address:" + dpoint.getGatewayAddress());
+            Logger.getLogger(BuildingDataService.class).info("gw address:" + dpoint.getGatewayAddress());
             
             final IGatewayDriver gateway = config.findGateway(dpoint.getGatewayAddress());
 
@@ -192,14 +217,14 @@ public class KNXGatewayService {
                 return toJSON(new ServiceResourceErrorException("Gateway not found."));
 
             try {
-                Logger.getLogger(KNXGatewayService.class).info("calling ReadDatapoint service.");
+                Logger.getLogger(BuildingDataService.class).info("calling ReadDatapoint service.");
                 DatapointValue<?> result;
                 gateway.connect();
 
                 result = gateway.read(dpoint);
 
                 gateway.disconnect();
-                Logger.getLogger(KNXGatewayService.class).info("returning from ReadDatapoint service.");
+                Logger.getLogger(BuildingDataService.class).info("returning from ReadDatapoint service.");
                 return toJSON(result);
             } catch (Exception e) {
                 return toJSON(new ServiceResourceErrorException(e));
@@ -207,6 +232,9 @@ public class KNXGatewayService {
         }
     }
 
+    /**
+     * Writes the datapoint value into the specified datapoint address.
+     */
     public static final class WriteDatapoint extends
             ServerResource {
 
@@ -221,8 +249,20 @@ public class KNXGatewayService {
                 UnsupportedDataTypeException,
                 DatapointInvalidValueTypeException,
                 DatapointWriteonlyAccessTypeException {
-            RestletServer.configureRestForm(getResponse());
 
+            /**
+             * Authentication Sample
+             * (under development)
+             * 
+                RestletServer app = (soaba.services.RestletServer) getApplication();
+                if (!app.authenticate(getRequest(), getResponse())) {
+                    // not authenticated
+                    getResponse().setStatus(Status.CLIENT_ERROR_FORBIDDEN);
+                    return null;
+                }
+            */
+            
+            RestletServer.configureRestForm(getResponse());
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
             final String dpointValue = getRequest().getAttributes().get("value").toString();
             final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
@@ -248,6 +288,9 @@ public class KNXGatewayService {
         }
     }
 
+    /**
+     * Reads the datapoint value from the specied datapoint address through a specific gatway address.
+     */
     public static final class ReadDatapointFromGW extends
             ServerResource {
 
@@ -289,6 +332,9 @@ public class KNXGatewayService {
         }
     }
     
+    /**
+     * Releases all allocated resources, for this service.
+     */
     public static void dispose(){
         KNXGatewayDriver.dispose();
     }

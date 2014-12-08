@@ -11,6 +11,12 @@ import soaba.core.exception.DatapointWriteonlyAccessTypeException;
 import soaba.core.exception.GatewayDriverException;
 import soaba.core.models.DatapointValue;
 
+/**
+ * This interface provides the abstraction for a Gateway Driver implementation.
+ * 
+ * @author João Pinho (jpe.pinho@gmail.com)
+ * @since 0.5
+ */
 public interface IGatewayDriver {
 
     public abstract void connect() throws GatewayDriverException, UnknownHostException;

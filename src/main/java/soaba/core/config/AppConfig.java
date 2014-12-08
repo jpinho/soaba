@@ -20,6 +20,13 @@ import flexjson.JSON;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
 
+/**
+ * This class provides application-wide persisted configurations to a JSON file,
+ * ultimately persisted on disk storage. 
+ * 
+ * @author João Pinho (jpe.pinho@gmail.com)
+ * @since 0.5
+ */
 public class AppConfig {
     private static final String GATEWAY_NUCLEUS_14 = "172.20.70.241";
     private static final String GATEWAY_LAB_158 = "172.20.70.209";

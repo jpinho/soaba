@@ -7,6 +7,18 @@ import java.security.NoSuchAlgorithmException;
 
 import soaba.core.api.IDatapoint;
 
+/**
+ * This class represents the concept of Datapoint.
+ * 
+ * In this context, a Data Point is a set of meta data containing information about, the access type, the data type carried, 
+ * the gateway address bounded with the data point and also it’s id, name, description and unit if applicable. 
+ * 
+ * Such meta data gives us the ability to decide whether or not a data point can be read and/or written, and what type of 
+ * handling its data requires for being manipulated or represented.
+ * 
+ * @author João Pinho (jpe.pinho@gmail.com)
+ * @since 0.5
+ */
 public class Datapoint
         implements IDatapoint, Serializable {
 

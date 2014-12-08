@@ -148,12 +148,11 @@ $(function(){
     $('.soaba-footer').append(
         $('<span>Release '+soaba.VERSION+' :: Developed by &nbsp;</span><a target="_blank" href="'+soaba.AUTHOR_URL+'"><b>'+soaba.AUTHOR+'</b></a>'));
 
-
     var loader = setInterval(function(){
         if(soaba.appLoadingThreads.length > 0)
             return;
 
         clearInterval(loader);
         $('#loader-wrapper').hide();
-    }, 2*1000)
+    }, 2*1000);
 });

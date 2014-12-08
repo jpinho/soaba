@@ -5,6 +5,14 @@ import soaba.core.api.IDatapoint.DATATYPE;
 import soaba.core.exception.DatapointReadonlyAccessTypeException;
 import soaba.core.exception.DatapointWriteonlyAccessTypeException;
 
+/**
+ * Data Point Value, represents the value carried back and forth for a given data point 
+ * through a generic gateway driver.
+ * 
+ * @author João Pinho (jpe.pinho@gmail.com)
+ * @since 0.5
+ * @param <T> The datatype of the value boxed by this class.
+ */
 public class DatapointValue<T> {
 
     private final IDatapoint datapoint;

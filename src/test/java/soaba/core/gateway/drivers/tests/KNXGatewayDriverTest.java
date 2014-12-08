@@ -18,6 +18,12 @@ import soaba.core.models.Datapoint;
 import soaba.core.models.DatapointValue;
 import tuwien.auto.calimero.exception.KNXTimeoutException;
 
+/**
+ * SOABA Unit Tests for KNX Gateway Driver featuring Calimero Framework.
+ * 
+ * @author João Pinho (jpe.pinho@gmail.com)
+ * @since 0.5
+ */
 public class KNXGatewayDriverTest {
 
     /**
@@ -69,6 +75,12 @@ public class KNXGatewayDriverTest {
         KNXGatewayDriver.dispose();
     }
 
+    /**
+     * Test a connection to a KNX gateway through the KNX Gateway Driver.
+     * 
+     * @throws UnknownHostException if the host cannot be resolved
+     * @throws GatewayDriverException if the driver as thrown an error while connecting
+     */
     @Test
     public final void testConnect() throws UnknownHostException, GatewayDriverException {
         try {
@@ -90,6 +102,12 @@ public class KNXGatewayDriverTest {
         }
     }
 
+    /**
+     * Test a connection to a KNX gateway through the KNX Gateway Driver.
+     * 
+     * @throws UnknownHostException if the host cannot be resolved
+     * @throws GatewayDriverException if the driver as thrown an error while disconnecting
+     */
     @Test
     public final void testDisconnect() throws GatewayDriverException, UnknownHostException {
         try {
@@ -117,6 +135,9 @@ public class KNXGatewayDriverTest {
         }
     }
 
+    /**
+     * Test datapoint readings to a KNX gateway through the KNX Gateway Driver.
+     */
     @Test
     public final void testDatapointReadings() {
         KNXGatewayDriver gateway = null;
@@ -172,6 +193,9 @@ public class KNXGatewayDriverTest {
         }
     }
 
+    /**
+     * Test datapoint writtings to a KNX gateway through the KNX Gateway Driver.
+     */
     @Test
     public final void testWriteDatapoint() {
         KNXGatewayDriver gateway = null;

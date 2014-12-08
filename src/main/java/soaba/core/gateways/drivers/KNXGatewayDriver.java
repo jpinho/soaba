@@ -46,6 +46,18 @@ import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
 import tuwien.auto.calimero.process.ProcessEvent;
 import tuwien.auto.calimero.process.ProcessListener;
 
+/**
+ * A Gateway Driver implementation to communicate through the KNX field bus.
+ * 
+ * This driver communicates with an Ethernet Gateway responsible for abstracting the
+ * field bus network protocol and the ethernet network protocols.
+ * 
+ * This implementation uses Calimero Framework to abstract protocol details such as type
+ * convertions, message formatting and handling.
+ * 
+ * @author João Pinho (jpe.pinho@gmail.com)
+ * @since 0.5
+ */
 public class KNXGatewayDriver
         implements IGatewayDriver, Serializable {
 
