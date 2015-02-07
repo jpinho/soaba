@@ -63,5 +63,5 @@ Check it out [Project Presentation](https://bitbucket.org/jpinho/soaba/downloads
 
 ### Rights and License ###
 
-This repository is a contribution to the Open Source Community, fill free to use this code how you like.
+This repository is a contribution to the Open Source Community, feel free to use this code how you like.
 If you have any difficulties putting this together, please drop me an email at jpe[dot]pinho[at]gmail[dot]com.
