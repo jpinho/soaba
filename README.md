@@ -6,7 +6,7 @@
 
 ### Build Status ###
 
-![](https://codeship.com/projects/5406c240-8ac7-0132-3357-4612f8cdd620/status?branch=master)
+[ ![Codeship Status for jpinho/SOABA](https://codeship.com/projects/5406c240-8ac7-0132-3357-4612f8cdd620/status?branch=master)](https://codeship.com/projects/60121)
 
 ### Project Goals ###
  
