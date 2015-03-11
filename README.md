@@ -4,6 +4,10 @@
 ![Building Automation](https://bitbucket.org/repo/enyMp6/images/1779593493-Screen%20Shot%202015-03-11%20at%2001.45.50.png)
 ](http://soaba.icodebox.net)
 
+### Build Status ###
+
+[ ![Codeship Status for jpinho/SOABA](https://codeship.com/projects/5406c240-8ac7-0132-3357-4612f8cdd620/status?branch=master)](https://codeship.com/projects/60121)
+
 ### Project Goals ###
  
 Development of a Gateway Driver for interaction with KNX devices. The Gateway Driver is configurable from a XML file containing all the KNX device addresses and their underlying types. The Gateway Driver will be accessible via HTTP by exposing a REST interface, receiving and sending serialized JSON data. The Web Prototype App will make use of this REST interface to control and expose the Gateway Driver functionalities.
