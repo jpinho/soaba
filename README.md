@@ -1,7 +1,8 @@
-## SOABA - A Service Oriented Architecture for Building Automation ##
+## SOABA - A Service Oriented Approach for Building Automation ##
 ##
-
+[
 ![Building Automation](https://bitbucket.org/repo/enyMp6/images/1779593493-Screen%20Shot%202015-03-11%20at%2001.45.50.png)
+](http://soaba.icodebox.net)
 
 ### Project Goals ###
  
@@ -55,9 +56,11 @@ Development of a Gateway Driver for interaction with KNX devices. The Gateway Dr
 
 ### Available Documentation ###
 
-Download the full project report [here](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf)!
+Checkout SOABA's Website: [soaba.icodebox.net](soaba.icodebox.net).
 
-Check it out [Project Presentation](https://bitbucket.org/jpinho/soaba/downloads/slides.pdf).
+- [Initial Project Report](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf)!
+
+- [Project Presentation](https://bitbucket.org/jpinho/soaba/downloads/slides.pdf).
 
 ### Rights and License ###
 
