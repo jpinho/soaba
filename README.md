@@ -1,7 +1,7 @@
 ## SOABA - A Service Oriented Architecture for Building Automation ##
 ##
 
- ![Building Automation](https://bitbucket.org/repo/enyMp6/images/4034431923-Screen%20Shot%202014-11-19%20at%2017.21.27.png)
+![Building Automation](https://bitbucket.org/repo/enyMp6/images/1779593493-Screen%20Shot%202015-03-11%20at%2001.45.50.png)
 
 ###### *Illustration/Photo Credit: Compexin Experience Innovation – http://compexin.ro*
 
