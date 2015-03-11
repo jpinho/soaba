@@ -58,9 +58,9 @@ Development of a Gateway Driver for interaction with KNX devices. The Gateway Dr
 
 Checkout SOABA's Website: [soaba.icodebox.net](soaba.icodebox.net).
 
-- [Initial Project Report](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf)!
+- [Initial Project Report](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf)
 
-- [Project Presentation](https://bitbucket.org/jpinho/soaba/downloads/slides.pdf).
+- [Project Presentation](https://bitbucket.org/jpinho/soaba/downloads/slides.pdf)
 
 ### Rights and License ###
 
