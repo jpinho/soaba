@@ -87,6 +87,15 @@ public class RestletServer extends
             System.out.printf("%s%s%n", addrStr, uri);
 
         System.out.println();
+        
+        System.out.println(
+                  "**\n* [SOABA Web Client]\n*\n"
+                + "* This web interface helps you test your datapoints and enables you to visualize your\n"
+                + "* datapoints through some web visual controls.\n*\n"
+                + "* To use this Web Client, drop the '/client' folder present in this folder\n"
+                + "* onto your local webserver wwwroot/www folder.\n*\n"
+                + "* NOTE: Do not open the '/client/index.html' directly because your browser will most\n"
+                + "* probably block all requests to a page served under the 'file:///' protocol :( !\n**\n");
     }
 
     /**

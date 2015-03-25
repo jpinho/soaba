@@ -40,9 +40,16 @@ import flexjson.JSONSerializer;
 public class BuildingDataService {
 
     private static AppConfig config = AppConfig.getInstance();
+    private static JSONSerializer currentJsonSerializer;
+
+    static {
+        currentJsonSerializer = new JSONSerializer()
+            .transform(new ExcludeTransformer(), void.class)
+            .prettyPrint(true);
+    }
 
     private static String toJSON(Object obj) {
-        return new JSONSerializer().deepSerialize(obj);
+        return currentJsonSerializer.deepSerialize(obj);
     }
 
     /**
@@ -56,10 +63,7 @@ public class BuildingDataService {
         @Get
         public String doGet() throws AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
-            JSONSerializer serializer = new JSONSerializer()
-                .transform(new ExcludeTransformer(), void.class)
-                .prettyPrint(true);
-            return serializer.deepSerialize(config.getDatapoints());
+            return toJSON(config.getDatapoints());
         }
     }
 
@@ -74,8 +78,7 @@ public class BuildingDataService {
         @Get
         public String doGet() {
             RestletServer.configureRestForm(getResponse());
-            JSONSerializer serializer = new JSONSerializer();
-            return serializer.deepSerialize(config.getGateways());
+            return toJSON(config.getGateways());
         }
     }
 
@@ -203,14 +206,14 @@ public class BuildingDataService {
 
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
             final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
-            
-            if(dpoint == null){
+
+            if (dpoint == null) {
                 Logger.getLogger(BuildingDataService.class).error("datapoint not found.");
                 return toJSON(new ServiceResourceErrorException("datapoint not found"));
             }
-                
+
             Logger.getLogger(BuildingDataService.class).info("gw address:" + dpoint.getGatewayAddress());
-            
+
             final IGatewayDriver gateway = config.findGateway(dpoint.getGatewayAddress());
 
             if (dpoint == null)
@@ -254,17 +257,12 @@ public class BuildingDataService {
                 DatapointWriteonlyAccessTypeException {
 
             /**
-             * Authentication Sample
-             * (under development)
-             * 
-                RestletServer app = (soaba.services.RestletServer) getApplication();
-                if (!app.authenticate(getRequest(), getResponse())) {
-                    // not authenticated
-                    getResponse().setStatus(Status.CLIENT_ERROR_FORBIDDEN);
-                    return null;
-                }
-            */
-            
+             * Authentication Sample (under development) RestletServer app =
+             * (soaba.services.RestletServer) getApplication(); if
+             * (!app.authenticate(getRequest(), getResponse())) { // not authenticated
+             * getResponse().setStatus(Status.CLIENT_ERROR_FORBIDDEN); return null; }
+             */
+
             RestletServer.configureRestForm(getResponse());
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
             final String dpointValue = getRequest().getAttributes().get("value").toString();
@@ -292,7 +290,8 @@ public class BuildingDataService {
     }
 
     /**
-     * Reads the datapoint value from the specied datapoint address through a specific gatway address.
+     * Reads the datapoint value from the specied datapoint address through a specific
+     * gatway address.
      */
     public static final class ReadDatapointFromGW extends
             ServerResource {
@@ -334,11 +333,11 @@ public class BuildingDataService {
             return toJSON(result);
         }
     }
-    
+
     /**
      * Releases all allocated resources, for this service.
      */
-    public static void dispose(){
+    public static void dispose() {
         KNXGatewayDriver.dispose();
     }
 }
