@@ -16,6 +16,7 @@ import soaba.core.api.IDatapoint.ACCESSTYPE;
 import soaba.core.api.IDatapoint.DATATYPE;
 import soaba.core.api.IGatewayDriver;
 import soaba.core.config.AppConfig;
+import soaba.core.config.ExcludeTransformer;
 import soaba.core.exception.DatapointInvalidValueTypeException;
 import soaba.core.exception.DatapointReadonlyAccessTypeException;
 import soaba.core.exception.DatapointWriteonlyAccessTypeException;
@@ -55,7 +56,9 @@ public class BuildingDataService {
         @Get
         public String doGet() throws AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
-            JSONSerializer serializer = new JSONSerializer();
+            JSONSerializer serializer = new JSONSerializer()
+                .transform(new ExcludeTransformer(), void.class)
+                .prettyPrint(true);
             return serializer.deepSerialize(config.getDatapoints());
         }
     }

@@ -15,6 +15,7 @@ import javax.activation.UnsupportedDataTypeException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import flexjson.JSON;
 import soaba.core.api.IDatapoint;
 import soaba.core.api.IGatewayDriver;
 import soaba.core.exception.DatapointInvalidValueTypeException;
@@ -71,15 +72,21 @@ public class KNXGatewayDriver
     private static final int DEFAULT_GATEWAY_PORT = 3671;
     private static final String BROADCAST_ADDRESS = "0.0.0.0";
     private static final Map<String, KNXNetworkLink> connectionPool = new TreeMap<String, KNXNetworkLink>();
+    private final static Logger logger = LogManager.getLogger(KNXGatewayDriver.class);
 
+    @JSON(include=false)
     private KNXNetworkLink knxLink;
+    @JSON(include=false)
     private ProcessCommunicator pc;
+    @JSON(include=false)
     private ProcessListener processListener;
+    @JSON(include=false)
     private boolean isConnected = false;
+    @JSON(include=false)
     private boolean isReconnecting = false;
+    
     private String description;
     private String address;
-    private final static Logger logger = LogManager.getLogger(KNXGatewayDriver.class);
 
     public KNXGatewayDriver() {
     }
@@ -311,7 +318,7 @@ public class KNXGatewayDriver
                 case PERCENTAGE:
                     pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
                             (Integer) (value.getValue() == null ? 0 : value.getValue()),
-                            ProcessCommunicationBase.SCALING);
+                            ProcessCommunicationBase.UNSCALED);
                     break;
                 case TEXT:
                     pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),

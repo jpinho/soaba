@@ -118,7 +118,7 @@ public class RestletServer extends
                 component.start();
                 serverBound = true;
             } catch (Exception e) {
-                System.out.println(String.format("Port %d is busy! Trying again in %.2f secs.", 
+                System.out.println(String.format("Port %d is busy! Trying again in %.0f secs.", 
                         SERVER_PORT, (BOUND_BACKOFF_PERIOD / 1000.0)));
                 try {
                     Thread.sleep(BOUND_BACKOFF_PERIOD);
