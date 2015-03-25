@@ -25,10 +25,12 @@ import org.restlet.security.ChallengeAuthenticator;
 import org.restlet.security.MapVerifier;
 import org.restlet.util.Series;
 
+import soaba.core.config.AppConfig;
+
 /**
- * Responsible for launching SOABA REST Service, this class orchestrates all server resources 
- * available through REST interfaces. This class creates the main endpoint for accessing SOABA, 
- * and ensures all content exchange is made via JSON only.
+ * Responsible for launching SOABA REST Service, this class orchestrates all server
+ * resources available through REST interfaces. This class creates the main endpoint for
+ * accessing SOABA, and ensures all content exchange is made via JSON only.
  * 
  * @author João Pinho (jpe.pinho@gmail.com)
  * @since 0.5
@@ -40,22 +42,22 @@ public class RestletServer extends
     final static int SERVER_PORT = 9095;
     private static final String ACCESS_CONTROL_ALLOW_ORIGIN = "Access-Control-Allow-Origin";
     private static final String ALLOW_ALL_FROM_ORIGIN = "*";
-    
+
     /**
-     * The exponential back-off base period between retries when bounding the endpoint to an 
-     * already in use port.
+     * The exponential back-off base period between retries when bounding the endpoint to
+     * an already in use port.
      */
     private static final int BOUND_BACKOFF_PERIOD = 15000;
     private static final String HEADERS_KEY = "org.restlet.http.headers";
     private static final Logger logger = Logger.getLogger(RestletServer.class);
-    
+
     /**
      * The map between server resources and their REST URIs.
      */
     @SuppressWarnings("rawtypes")
     private static final Map<String, Class> resx = new HashMap<String, Class>();
     private final static RestletServer singleton = new RestletServer();
-    
+
     static {
         /**
          * Server Resources Routes
@@ -87,9 +89,8 @@ public class RestletServer extends
             System.out.printf("%s%s%n", addrStr, uri);
 
         System.out.println();
-        
-        System.out.println(
-                  "**\n* [SOABA Web Client]\n*\n"
+
+        System.out.println("**\n* [SOABA Web Client]\n*\n"
                 + "* This web interface helps you test your datapoints and enables you to visualize your\n"
                 + "* datapoints through some web visual controls.\n*\n"
                 + "* To use this Web Client, drop the '/client' folder present in this folder\n"
@@ -99,8 +100,8 @@ public class RestletServer extends
     }
 
     /**
-     * Starts this application, which envolves launching an embedded HTTP server and binding it to 
-     * a predefined server port.
+     * Starts this application, which envolves launching an embedded HTTP server and
+     * binding it to a predefined server port.
      */
     private static void serverStart() {
         boolean serverBound = false;
@@ -116,7 +117,7 @@ public class RestletServer extends
                         }
                     }
                 }));
-                
+
                 // creating a new Restlet component w/ an HTTP server connector to it
                 Component component = new Component();
                 component.getServers().add(Protocol.HTTP, SERVER_PORT);
@@ -127,8 +128,8 @@ public class RestletServer extends
                 component.start();
                 serverBound = true;
             } catch (Exception e) {
-                System.out.println(String.format("Port %d is busy! Trying again in %.0f secs.", 
-                        SERVER_PORT, (BOUND_BACKOFF_PERIOD / 1000.0)));
+                System.out.println(String.format("Port %d is busy! Trying again in %.0f secs.", SERVER_PORT,
+                        (BOUND_BACKOFF_PERIOD / 1000.0)));
                 try {
                     Thread.sleep(BOUND_BACKOFF_PERIOD);
                 } catch (InterruptedException ex) {
@@ -165,14 +166,16 @@ public class RestletServer extends
 
     /**
      * This application instance.
+     * 
      * @return the current application
      */
     public static RestletServer getInstance() {
         return singleton;
     }
-    
+
     /**
      * The application available routes.
+     * 
      * @return the application routes
      */
     @SuppressWarnings("rawtypes")
@@ -190,6 +193,19 @@ public class RestletServer extends
         printAvailableEndpoints();
 
         System.out.println("Press ENTER to exit [SOABA Rest Server]");
+
+        /**
+         * Before blocking the current thread, fires the AppConfig instance to read new
+         * configurations from disk. This will enable the AppConfig to be ready before
+         * HTTP requests to the BuildingDataService.
+         */
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AppConfig.getInstance();
+            }
+        }).start();
+
         while (true) {
             try {
                 int c = System.in.read();
@@ -211,7 +227,7 @@ public class RestletServer extends
         System.out.println("Chillout time for my bits... Goodbye Human!");
         System.exit(0);
     }
-    
+
     /**
      * Used for authentication of server resources.
      */
@@ -237,15 +253,15 @@ public class RestletServer extends
 
         ChallengeAuthenticator auth = new ChallengeAuthenticator(context, optional, challengeScheme, realm, verifier) {
             @Override
-            protected boolean authenticate(Request request, Response response) {                
-                if(request.getCookies().getFirst("x-soaba-auth", true) == null){
+            protected boolean authenticate(Request request, Response response) {
+                if (request.getCookies().getFirst("x-soaba-auth", true) == null) {
                     response.getCookieSettings().add("x-soaba-auth", "");
                     return false;
                 }
-                
+
                 Cookie authCookie = request.getCookies().getFirst("x-soaba-auth", true);
-                return "login".equals(authCookie.getValue().split(":")[0]) &&
-                       "secrets".equals(authCookie.getValue().split(":")[1]);
+                return "login".equals(authCookie.getValue().split(":")[0])
+                        && "secrets".equals(authCookie.getValue().split(":")[1]);
             }
         };
 
@@ -253,7 +269,7 @@ public class RestletServer extends
     }
 
     /**
-     * Authenticates the given request and modifies the corresponding response with 
+     * Authenticates the given request and modifies the corresponding response with
      * authentication headers.
      * 
      * @param request the request requiring authentication
@@ -269,21 +285,22 @@ public class RestletServer extends
     }
 
     /**
-     * Binds all server resources to their corresponding URIs with the current application.
+     * Binds all server resources to their corresponding URIs with the current
+     * application.
      */
     @SuppressWarnings("unchecked")
     @Override
     public synchronized Restlet createInboundRoot() {
         final Router appRouter = new Router(getContext());
         this.authenticator = createAuthenticator();
-        
+
         for (String resxURI : resx.keySet())
             appRouter.attach(resxURI, (Class<ServerResource>) resx.get(resxURI));
 
         // attachs bonjour service, which presents the API UI
         appRouter.attach("", BonjourService.class);
         appRouter.attach("/", BonjourService.class);
-        
+
         authenticator.setNext(appRouter);
         return authenticator;
     }
