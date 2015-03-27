@@ -146,7 +146,10 @@ $(function(){
     });
 
     $('.soaba-footer').append(
-        $('<span>Release '+soaba.VERSION+' :: Developed by &nbsp;</span><a target="_blank" href="'+soaba.AUTHOR_URL+'"><b>'+soaba.AUTHOR+'</b></a>'));
+        $('<span>Release '+soaba.VERSION+' :: Developed by &nbsp;</span><a target="_blank" href="'
+            + soaba.AUTHOR_URL+'"><b>'+soaba.AUTHOR+'</b></a>'
+            + ' | <span>Visit SOABA </span><a href="http://soaba.icodebox.net" target="_blank"'
+            + ' style="text-transform: uppercase; font-size: 8pt"><b>online</b></a>'));
 
     var loader = setInterval(function(){
         if(soaba.appLoadingThreads.length > 0)

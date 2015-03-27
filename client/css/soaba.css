@@ -292,8 +292,7 @@ select[name='tblDatapoints_length']{ margin: 0 5px; height:25px; }
 
 .soaba-footer:hover span{
     color:#fff;
-    cursor:hand;
-    cursor:pointer;
+    cursor:crosshair;
 }
 
 .soaba-footer a:link,
