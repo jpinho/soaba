@@ -8,7 +8,7 @@
 var App = Ember.Application.create();
 
 var soaba = Ember.Namespace.create({
-    VERSION: '0.5.0-beta',
+    VERSION: '1.0.0-alpha',
     APP_URL: 'http://' + (window.location.hostname) + ':9095/soaba/',
     AUTHOR: 'João Pinho',
     AUTHOR_URL: 'http://pinho.icodebox.net',
@@ -123,27 +123,6 @@ $(function(){
 
     // Apply the theme
     Highcharts.setOptions(Highcharts.theme);
-
-    /** page navigation setup **/
-    $('.nav.nav-sidebar a').click(function(e){
-        e.preventDefault();
-
-        var $page;
-        if(($page = $($(this).attr('href'))).length != 0){
-            $page.siblings('.page').hide();
-            $page.show('fade');
-            $('.nav.nav-sidebar li').removeClass('active');
-            $(this).parent().addClass('active');
-
-            if($page.attr('loaded') != 'true'){
-                $('#loader-wrapper').show();
-                $('#loader-wrapper .loader-info').text('"'+ $(this).text() +'" is still loading... please wait!');
-                return;
-            }
-        }
-
-        return false;
-    });
 
     $('.soaba-footer').append(
         $('<span>Release '+soaba.VERSION+' :: Developed by &nbsp;</span><a target="_blank" href="'

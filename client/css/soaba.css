@@ -91,6 +91,8 @@ textarea {
  *  SOABA styles
  * ########################################################################### */
 
+html body .auth{ display: none; }
+
 html, body {
     width:100%;
     font-family: "Open Sans";
@@ -118,8 +120,12 @@ html, body {
 }
 
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{ margin-left: 20px; }
+.navbar-right{ padding-right: 10px !important; padding-top: 5px; }
+.navbar-right .separator{ position:relative; top: 8px; color: #9D9D9D; padding: 0px 5px; }
+.navbar-right li>a{ padding: 10px 5px; }
 
 .nav .header{ background-color: #F0F0F0; font-weight: normal;}
+
 
 table.table-details tr td:first-child{
     width: 170px;
