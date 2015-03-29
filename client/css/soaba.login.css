@@ -24,6 +24,20 @@ body.login-page {
     filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1);
 }
 
+.login .requestaccess{
+    margin: 15px auto;
+    color: #bbb;
+    font-size: 8pt;
+    text-shadow: 0px 0px 3px #086A9E;
+    white-space: nowrap;
+}
+
+.login .requestaccess:hover{
+    color: #eee;
+    cursor:hand;
+    cursor:pointer;
+}
+
 .login .btn {
     display: inline-block;
     *display: inline;
@@ -59,10 +73,10 @@ body.login-page {
 }
 
 .login .btn:hover,
-.btn:active,
-.btn.active,
-.btn.disabled,
-.btn[disabled] {
+.login .btn:active,
+.login .btn.active,
+.login .btn.disabled,
+.login .btn[disabled] {
     background-color: #e6e6e6;
 }
 
@@ -88,7 +102,7 @@ body.login-page {
 }
 
 .login .btn-primary,
-.btn-primary:hover {
+.login .btn-primary:hover {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     color: #ffffff;
 }
@@ -188,40 +202,40 @@ body.login-page {
 }
 
 .windows8 {
-position: relative;
-width: 20px;
-height:20px;
+    position: relative;
+    width: 20px;
+    height:20px;
 }
 
 .windows8 .wBall {
-position: absolute;
-width: 19px;
-height: 19px;
-opacity: 0;
--moz-transform: rotate(225deg);
--moz-animation: orbit 7.15s infinite;
--webkit-transform: rotate(225deg);
--webkit-animation: orbit 7.15s infinite;
--ms-transform: rotate(225deg);
--ms-animation: orbit 7.15s infinite;
--o-transform: rotate(225deg);
--o-animation: orbit 7.15s infinite;
-transform: rotate(225deg);
-animation: orbit 7.15s infinite;
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    opacity: 0;
+    -moz-transform: rotate(225deg);
+    -moz-animation: orbit 7.15s infinite;
+    -webkit-transform: rotate(225deg);
+    -webkit-animation: orbit 7.15s infinite;
+    -ms-transform: rotate(225deg);
+    -ms-animation: orbit 7.15s infinite;
+    -o-transform: rotate(225deg);
+    -o-animation: orbit 7.15s infinite;
+    transform: rotate(225deg);
+    animation: orbit 7.15s infinite;
 }
 
 .windows8 .wBall .wInnerBall{
-position: absolute;
-width: 3px;
-height: 3px;
-background: #FFFFFF;
-left:0px;
-top:0px;
--moz-border-radius: 3px;
--webkit-border-radius: 3px;
--ms-border-radius: 3px;
--o-border-radius: 3px;
-border-radius: 3px;
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #FFFFFF;
+    left:0px;
+    top:0px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
 }
 
 .windows8 #wBall_1 {

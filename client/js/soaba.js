@@ -21,6 +21,18 @@ var soaba = Ember.Namespace.create({
 $(function(){
     Highcharts.setOptions({ global: { useUTC: false }});
 
+    $('.help-ctn').hover(function(){
+        if(!$('.help .notice').is(':visible'))
+            $('.help .notice').show('fade');
+    });
+    $('.help .notice').hover(null, function(){
+        $('.help .notice').hide();
+    });
+    $('.login .requestaccess').click(function(){
+        if(!$('.help .notice').is(':visible'))
+            $('.help .notice').show('fade');
+    });
+
     /**
      * Sand-Signika theme for Highcharts JS
      * @author Torstein Honsi

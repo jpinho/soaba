@@ -127,7 +127,7 @@
         });
 
         var loader = setInterval(function(){
-            if(loadedDataCount == dataLength){
+            if(loadedDataCount >= dataLength){
                 $('.loader-info').html('loading of "Meteo Station" app completed');
                 soaba.appLoadingThreads.pop();
                 clearTimeout(loader);

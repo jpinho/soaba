@@ -16,17 +16,38 @@ $(function(){
 	  		, data: $.cookie('soaba.auth')
   			, success: function(result) { 
   				hidePreload();
-				if(result) 
+				if(result){
+					ga('set', 'username', $.parseJSON($.cookie('soaba.auth')).username);
+
+					ga('send', 'pageview', {
+					  'page': '/application',
+					  'title': 'Application Page'
+					});
 					loadApplication(); 
+				}
+				else{
+					ga('set', 'username', 'anonymous');
+					ga('send', 'pageview', {
+					  'page': '/login',
+					  'title': 'Login Page'
+					});
+				}
 			  }
 	  		, async: true
   		}).always(function(){
   			hidePreload();
   		});
+	} else{
+		ga('set', 'username', 'anonymous');
+		ga('send', 'pageview', {
+		  'page': '/login',
+		  'title': 'Login Page'
+		});
 	}
-	
+
 	$('#lkSignOut').click(function(){
-		$.removeCookie('soaba.auth');
+		$.cookie('soaba.auth', null, { path: '/' });
+		$.removeCookie('soaba.auth', { path: '/' });
 		window.location='';
 	});
 
