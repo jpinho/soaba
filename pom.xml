@@ -9,7 +9,7 @@
 
 	<properties>
 		<runSuite>**/AllTests.class</runSuite>
-		<restlet-version>2.2.2</restlet-version>
+		<restlet-version>2.3.1</restlet-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
