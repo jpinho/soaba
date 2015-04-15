@@ -50,7 +50,7 @@ Development of a Gateway Driver for interaction with KNX devices. The Gateway Dr
 #
 **Meteo Station**
 #
-![Meteo Station](resources/meteo-station.png)
+![Meteo Station](resources/meteostation.png)
 #
 **Energy Viewer**
 #
