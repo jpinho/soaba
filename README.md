@@ -1,7 +1,7 @@
 ## SOABA - A Service Oriented Approach for Building Automation ##
 ##
 [
-![Building Automation](https://bitbucket.org/repo/enyMp6/images/1779593493-Screen%20Shot%202015-03-11%20at%2001.45.50.png)
+![Building Automation](resources/website-splash.png)
 ](http://soaba.icodebox.net)
 
 ### Build Status ###
@@ -39,26 +39,26 @@ Development of a Gateway Driver for interaction with KNX devices. The Gateway Dr
 
 **Management Interface - Data Points Listing**
 #
-![Management Interface 1](https://bitbucket.org/jpinho/soaba/downloads/mminterface1.png)
+![Management Interface 1](resources/mminterface1.png)
 #
 **Management Interface - Data Points read/write Interface**
 #
-![Management Interface 2](https://bitbucket.org/jpinho/soaba/downloads/mminterface2.png)
+![Management Interface 2](resources/mminterface2.png)
 #
 #
 **Applications**
 #
 **Meteo Station**
 #
-![Meteo Station](https://bitbucket.org/jpinho/soaba/downloads/meteo-station.png)
+![Meteo Station](resources/meteo-station.png)
 #
 **Energy Viewer**
 #
-![Energy Viewer](https://bitbucket.org/jpinho/soaba/downloads/energyviewer.png)
+![Energy Viewer](resources/energyviewer.png)
 #
 **Control Panel**
 #
-![Control Panel](https://bitbucket.org/jpinho/soaba/downloads/controlpanel.png)
+![Control Panel](resources/controlpanel.png)
 #
 
 ### Available Documentation ###
@@ -67,9 +67,9 @@ Checkout SOABA's Website: [soaba.icodebox.net](soaba.icodebox.net).
 
 Initial project report and brochure are available bellow:
  
-- [Initial Project Report](https://bitbucket.org/jpinho/soaba/downloads/MEIC-TP-AI-66047_FINAL.pdf)
+- [Initial Project Report](docs/MEIC-TP-AI-66047_FINAL.pdf)
 
-- [Project Presentation](https://bitbucket.org/jpinho/soaba/downloads/slides.pdf)
+- [Project Presentation](docs/presentation/slides.pdf)
 
 ### Rights and License ###
 
