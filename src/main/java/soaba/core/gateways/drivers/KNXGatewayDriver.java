@@ -48,13 +48,11 @@ import tuwien.auto.calimero.process.ProcessEvent;
 import tuwien.auto.calimero.process.ProcessListener;
 
 /**
- * A Gateway Driver implementation to communicate through the KNX field bus.
- * 
- * This driver communicates with an Ethernet Gateway responsible for abstracting the
- * field bus network protocol and the ethernet network protocols.
- * 
- * This implementation uses Calimero Framework to abstract protocol details such as type
- * convertions, message formatting and handling.
+ * A Gateway Driver implementation to communicate through the KNX field bus. This driver
+ * communicates with an Ethernet Gateway responsible for abstracting the field bus network
+ * protocol and the ethernet network protocols. This implementation uses Calimero
+ * Framework to abstract protocol details such as type convertions, message formatting and
+ * handling.
  * 
  * @author João Pinho (jpe.pinho@gmail.com)
  * @since 0.5
@@ -74,17 +72,21 @@ public class KNXGatewayDriver
     private static final Map<String, KNXNetworkLink> connectionPool = new TreeMap<String, KNXNetworkLink>();
     private final static Logger logger = LogManager.getLogger(KNXGatewayDriver.class);
 
-    @JSON(include=false)
+    @JSON(include = false)
     private KNXNetworkLink knxLink;
-    @JSON(include=false)
-    private ProcessCommunicator pc;
-    @JSON(include=false)
-    private ProcessListener processListener;
-    @JSON(include=false)
-    private boolean isConnected = false;
-    @JSON(include=false)
-    private boolean isReconnecting = false;
     
+    @JSON(include = false)
+    private ProcessCommunicator pc;
+    
+    @JSON(include = false)
+    private ProcessListener processListener;
+    
+    @JSON(include = false)
+    private boolean isConnected = false;
+    
+    @JSON(include = false)
+    private boolean isReconnecting = false;
+
     private String description;
     private String address;
 
@@ -124,7 +126,7 @@ public class KNXGatewayDriver
             pc = new ProcessCommunicatorImpl(link);
             pc.setResponseTimeout(PROCESS_COMM_TIMEOUT);
             pc.setPriority(Priority.SYSTEM);
-            //attachProcessListener(pc);
+            attachProcessListener(pc);
 
             knxLink = link;
             isConnected = link.isOpen();
@@ -312,13 +314,14 @@ public class KNXGatewayDriver
                             (Float) (value.getValue() == null ? 0 : value.getValue()), false);
                     break;
                 case NUMBER:
+                    //TODO: test with 3rd parameter set to true.
                     pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
                             (Float) (value.getValue() == null ? 0 : value.getValue()), false);
                     break;
                 case PERCENTAGE:
                     pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
                             (Integer) (value.getValue() == null ? 0 : value.getValue()),
-                            ProcessCommunicationBase.UNSCALED);
+                            ProcessCommunicationBase.SCALING);
                     break;
                 case TEXT:
                     pc.write(new GroupAddress(value.getDatapoint().getWriteAddress()),
@@ -333,20 +336,19 @@ public class KNXGatewayDriver
     }
 
     @Override
-    public List<String> scanNetworkRouters() throws GatewayDriverException,
-            InterruptedException {
+    public List<String> scanNetworkRouters() throws GatewayDriverException, InterruptedException {
         if (isReconnecting)
             throw new GatewayConnectionLostException("Gateway Address: " + this.address);
 
-        ManagementProcedures man=null;
-        
+        ManagementProcedures man = null;
+
         try {
             man = new ManagementProceduresImpl(this.knxLink);
         } catch (KNXLinkClosedException e) {
             throw new GatewayConnectionLostException(e.getMessage());
         }
-        
-        IndividualAddress[] networkRouters=null;
+
+        IndividualAddress[] networkRouters = null;
         try {
             networkRouters = man.scanNetworkRouters();
         } catch (KNXTimeoutException e) {
@@ -354,7 +356,7 @@ public class KNXGatewayDriver
         } catch (KNXLinkClosedException e) {
             throw new GatewayConnectionLostException(e.getMessage());
         }
-        
+
         List<String> result = new ArrayList<String>();
         for (IndividualAddress addr : networkRouters)
             result.add(new String(addr.toByteArray()));
@@ -363,9 +365,7 @@ public class KNXGatewayDriver
     }
 
     @Override
-    public List<String> scanNetworkDevices(int area, int line) throws 
-            InterruptedException,
-            GatewayDriverException {
+    public List<String> scanNetworkDevices(int area, int line) throws InterruptedException, GatewayDriverException {
         if (isReconnecting)
             throw new GatewayConnectionLostException("Gateway Address: " + this.address);
 
@@ -375,8 +375,8 @@ public class KNXGatewayDriver
         } catch (KNXLinkClosedException e) {
             throw new GatewayConnectionLostException(e.getMessage());
         }
-        
-        IndividualAddress[] networkRouters=null;
+
+        IndividualAddress[] networkRouters = null;
         try {
             networkRouters = man.scanNetworkDevices(area, line);
         } catch (KNXTimeoutException e) {
@@ -384,7 +384,7 @@ public class KNXGatewayDriver
         } catch (KNXLinkClosedException e) {
             throw new GatewayConnectionLostException(e.getMessage());
         }
-        
+
         List<String> result = new ArrayList<String>();
         for (IndividualAddress addr : networkRouters)
             result.add(String.format("%d/%d/%d [typeof %s]", addr.getArea(), addr.getLine(), addr.getDevice(),
@@ -393,8 +393,7 @@ public class KNXGatewayDriver
         return result;
     }
 
-    public boolean isAddressOccupied(String addr) throws InterruptedException,
-            GatewayDriverException {
+    public boolean isAddressOccupied(String addr) throws InterruptedException, GatewayDriverException {
         if (isReconnecting)
             throw new GatewayConnectionLostException("Gateway Address: " + this.address);
 
