@@ -2,6 +2,9 @@ client/soabaclient.sublime-project
 client/soabaclient.sublime-workspace
 experiments/
 website/
+deploy/
+client.min/
+resources/.stormpath/
 
 #################
 ## Eclipse

@@ -11,18 +11,14 @@ import org.restlet.Application;
 import org.restlet.Component;
 import org.restlet.Context;
 import org.restlet.Message;
-import org.restlet.Request;
-import org.restlet.Response;
 import org.restlet.Restlet;
+import org.restlet.Server;
 import org.restlet.data.CacheDirective;
-import org.restlet.data.ChallengeScheme;
-import org.restlet.data.Cookie;
 import org.restlet.data.Header;
 import org.restlet.data.Protocol;
+import org.restlet.engine.Engine;
 import org.restlet.resource.ServerResource;
 import org.restlet.routing.Router;
-import org.restlet.security.ChallengeAuthenticator;
-import org.restlet.security.MapVerifier;
 import org.restlet.util.Series;
 
 import soaba.core.config.AppConfig;
@@ -70,6 +66,8 @@ public class RestletServer extends
         resx.put(BuildingDataService.DiscoverDevices.ROUTE_URI, BuildingDataService.DiscoverDevices.class);
         resx.put(BuildingDataService.ProbeDatapointStatus.ROUTE_URI, BuildingDataService.ProbeDatapointStatus.class);
         resx.put(BuildingDataService.ReadDatapointFromGW.ROUTE_URI, BuildingDataService.ReadDatapointFromGW.class);
+        resx.put(AuthService.AuthenticateUser.ROUTE_URI, AuthService.AuthenticateUser.class);
+        resx.put(AuthService.CheckUserAuth.ROUTE_URI, AuthService.CheckUserAuth.class);
     }
 
     /**
@@ -118,13 +116,14 @@ public class RestletServer extends
                     }
                 }));
 
-                // creating a new Restlet component w/ an HTTP server connector to it
+                Engine.setLogLevel(java.util.logging.Level.INFO);
                 Component component = new Component();
-                component.getServers().add(Protocol.HTTP, SERVER_PORT);
+                component.getLogService().setLoggerName("soaba.rest");
                 component.getDefaultHost().attach(ROOT_URI, RestletServer.getInstance());
-
+                //component.getServers().add(Protocol.HTTP, SERVER_PORT);
+                component.getServers().add(new Server(Protocol.HTTP, SERVER_PORT, component));
+                
                 // starting the component.
-                // note that the HTTP server connector is also automatically started.
                 component.start();
                 serverBound = true;
             } catch (Exception e) {
@@ -228,60 +227,8 @@ public class RestletServer extends
         System.exit(0);
     }
 
-    /**
-     * Used for authentication of server resources.
-     */
-    private ChallengeAuthenticator authenticator;
-
     private RestletServer() {
         /* singleton class */
-    }
-
-    /**
-     * Setups a Challenge Authenticator for this RestletServer resources.
-     * 
-     * @return the challenge authenticator properly configured
-     */
-    private ChallengeAuthenticator createAuthenticator() {
-        Context context = getContext();
-        boolean optional = true;
-        ChallengeScheme challengeScheme = ChallengeScheme.HTTP_BASIC;
-        String realm = "SOABA_REALM";
-
-        MapVerifier verifier = new MapVerifier();
-        verifier.getLocalSecrets().put("login", "secrets".toCharArray());
-
-        ChallengeAuthenticator auth = new ChallengeAuthenticator(context, optional, challengeScheme, realm, verifier) {
-            @Override
-            protected boolean authenticate(Request request, Response response) {
-                if (request.getCookies().getFirst("x-soaba-auth", true) == null) {
-                    response.getCookieSettings().add("x-soaba-auth", "");
-                    return false;
-                }
-
-                Cookie authCookie = request.getCookies().getFirst("x-soaba-auth", true);
-                return "login".equals(authCookie.getValue().split(":")[0])
-                        && "secrets".equals(authCookie.getValue().split(":")[1]);
-            }
-        };
-
-        return auth;
-    }
-
-    /**
-     * Authenticates the given request and modifies the corresponding response with
-     * authentication headers.
-     * 
-     * @param request the request requiring authentication
-     * @param response the requests' response
-     * @return true if the request was authenticated successfully, false if otherwise
-     */
-    public boolean authenticate(Request request, Response response) {
-        if (!request.getClientInfo().isAuthenticated()) {
-            authenticator.challenge(response, false);
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -291,8 +238,9 @@ public class RestletServer extends
     @SuppressWarnings("unchecked")
     @Override
     public synchronized Restlet createInboundRoot() {
-        final Router appRouter = new Router(getContext());
-        this.authenticator = createAuthenticator();
+        Context routerContext = getContext().createChildContext();
+        final Router appRouter = new Router(routerContext);
+        appRouter.attachDefault(BonjourService.class);
 
         for (String resxURI : resx.keySet())
             appRouter.attach(resxURI, (Class<ServerResource>) resx.get(resxURI));
@@ -301,8 +249,7 @@ public class RestletServer extends
         appRouter.attach("", BonjourService.class);
         appRouter.attach("/", BonjourService.class);
 
-        authenticator.setNext(appRouter);
-        return authenticator;
+        return appRouter;
     }
 
     /**
@@ -311,4 +258,4 @@ public class RestletServer extends
     public void shutdown() {
         BuildingDataService.dispose();
     }
-}
+}

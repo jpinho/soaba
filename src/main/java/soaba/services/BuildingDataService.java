@@ -63,6 +63,7 @@ public class BuildingDataService {
         @Get
         public String doGet() throws AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
+            AuthService.CheckAuthorization(getRequest().getResourceRef().getQueryAsForm());
             return toJSON(config.getDatapoints());
         }
     }
@@ -76,8 +77,9 @@ public class BuildingDataService {
         public final static String ROUTE_URI = "/gateways";
 
         @Get
-        public String doGet() {
+        public String doGet() throws AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
+            AuthService.CheckAuthorization(getRequest().getResourceRef().getQueryAsForm());
             return toJSON(config.getGateways());
         }
     }
@@ -100,9 +102,10 @@ public class BuildingDataService {
                 DatapointWriteonlyAccessTypeException,
                 InterruptedException,
                 KNXFormatException,
-                KNXException {
+                KNXException, AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
-
+            AuthService.CheckAuthorization(getRequest().getResourceRef().getQueryAsForm());
+            
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
             final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
             final IGatewayDriver gateway = config.findGateway(dpoint.getGatewayAddress());
@@ -138,9 +141,10 @@ public class BuildingDataService {
                 DatapointWriteonlyAccessTypeException,
                 KNXLinkClosedException,
                 KNXTimeoutException,
-                InterruptedException {
+                InterruptedException, AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
-
+            AuthService.CheckAuthorization(getRequest().getResourceRef().getQueryAsForm());
+            
             final String gwAddress = getRequest().getAttributes().get("gateway_address").toString();
             final String area = getRequest().getAttributes().get("area").toString();
             final String line = getRequest().getAttributes().get("line").toString();
@@ -174,9 +178,10 @@ public class BuildingDataService {
                 DatapointWriteonlyAccessTypeException,
                 KNXLinkClosedException,
                 KNXTimeoutException,
-                InterruptedException {
+                InterruptedException, AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
-
+            AuthService.CheckAuthorization(getRequest().getResourceRef().getQueryAsForm());
+            
             final String gwAddress = getRequest().getAttributes().get("gateway_address").toString();
             final IGatewayDriver gateway = config.findGateway(gwAddress);
 
@@ -201,9 +206,10 @@ public class BuildingDataService {
 
         @SuppressWarnings("unused")
         @Get("json")
-        public String doGet() {
+        public String doGet() throws AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
-
+            AuthService.CheckAuthorization(getRequest().getResourceRef().getQueryAsForm());
+            
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
             final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
 
@@ -254,16 +260,11 @@ public class BuildingDataService {
                 GatewayDriverException,
                 UnsupportedDataTypeException,
                 DatapointInvalidValueTypeException,
-                DatapointWriteonlyAccessTypeException {
-
-            /**
-             * Authentication Sample (under development) RestletServer app =
-             * (soaba.services.RestletServer) getApplication(); if
-             * (!app.authenticate(getRequest(), getResponse())) { // not authenticated
-             * getResponse().setStatus(Status.CLIENT_ERROR_FORBIDDEN); return null; }
-             */
+                DatapointWriteonlyAccessTypeException, AccessDeniedException {
 
             RestletServer.configureRestForm(getResponse());
+            AuthService.CheckAuthorization(getRequest().getResourceRef().getQueryAsForm());
+            
             final String dpointAddress = getRequest().getAttributes().get("datapointaddr").toString();
             final String dpointValue = getRequest().getAttributes().get("value").toString();
             final IDatapoint dpoint = config.findDatapoint(dpointAddress.replace('.', '/'));
@@ -303,9 +304,10 @@ public class BuildingDataService {
                 UnknownHostException,
                 DatapointReadonlyAccessTypeException,
                 UnsupportedDataTypeException,
-                DatapointWriteonlyAccessTypeException {
+                DatapointWriteonlyAccessTypeException, AccessDeniedException {
             RestletServer.configureRestForm(getResponse());
-
+            AuthService.CheckAuthorization(getRequest().getResourceRef().getQueryAsForm());
+            
             final String gwAddress = getRequest().getAttributes().get("gwaddr").toString();
             final String dpAddress = getRequest().getAttributes().get("datapointaddr").toString().replace(".", "/");
             final String dataType = getRequest().getAttributes().get("datapointtype").toString().toUpperCase();

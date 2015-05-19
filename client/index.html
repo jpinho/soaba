@@ -1,344 +1,159 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>SOABA</title>
-        <meta name="description" content="Service Oriented Architecture for Building Automation" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-        <link rel="apple-touch-icon" sizes="142x142" href="apple-touch-icon-precomposed.png" />
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-
-        <!-- styles: third-party -->
-        <link rel="stylesheet" href="css/normalize.css" />
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css" />
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css" />
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.1.0/css/bootstrap3/bootstrap-switch.css" />
-
-        <!-- styles: soaba application -->
-        <link rel="stylesheet" href="css/dashboard.css" />
-        <link rel="stylesheet" href="css/plugins.css" />
-        <link rel="stylesheet" href="css/soaba.css" />
-
-        <!-- scripts: framework libraries -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.3/js/jquery.dataTables.js"></script>
-        <script src="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.1.0/js/bootstrap-switch.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
-        <script src="http://code.highcharts.com/highcharts.js"></script>
-        <script src="http://code.highcharts.com/highcharts-more.js"></script>
-        <script src="http://code.highcharts.com/modules/exporting.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.8.1/ember.min.js"></script>
-        <script src="js/vendor/jquery.cookie.js"></script>
-
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <!-- scripts: soaba application -->
-        <script src="js/soaba.js"></script>
-        <script src="js/soaba.plugins.js"></script>
-        <script src="js/soaba.utils.js"></script>
-
-        <script src="js/soaba.pages.datapoints.js"></script>
-        <script src="js/soaba.pages.gateways.js"></script>
-        <script src="js/soaba.pages.meteo.js"></script>
-        <script src="js/soaba.pages.eviewer.js"></script>
-        <script src="js/soaba.pages.cpanel.js"></script>
-
-        <!-- scripts: unit tests: add "?test" to query string for activation -->
-        <script src="tests/runner.js"></script>
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">
-                        <img src="favicon.ico" class="logo-brand" />
-                        <span>SOABA</span>
-                    </a>
-
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#" onclick="return false;">Settings</a></li>
-                        <li><a href="#" onclick="return false;">Help</a></li>
-                    </ul>
-                    <form class="navbar-form navbar-right">
-                        <input type="text" class="form-control" placeholder="Search..." readonly>
-                    </form>
-                </div>
-            </div>
-        </nav>
-
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>SOABA</title>
+    <meta name="description" content="Service Oriented Architecture for Building Automation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="142x142" href="apple-touch-icon-precomposed.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <!-- styles: third-party -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.1.0/css/bootstrap3/bootstrap-switch.css" />
+    <!-- styles: soaba application -->
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/plugins.css" />
+    <link rel="stylesheet" href="css/soaba.css" />
+    <link rel="stylesheet" href="css/soaba.login.css" />
+    <!-- scripts: framework libraries -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.3/js/jquery.dataTables.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.1.0/js/bootstrap-switch.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-more.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.8.1/ember.min.js"></script>
+    <script src="js/vendor/jquery.cookie.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+	        <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	        <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	        <![endif]-->
+    <script src="js/soaba.js"></script>
+    <script src="js/soaba.security.js"></script>
+    <!-- scripts: unit tests: add "?test" to query string for activation -->
+    <script src="tests/runner.js"></script>
+</head>
+<body class="login-page">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
-            <div class="row" style="padding-bottom: 20px;">
-                <div class="col-sm-3 col-md-2 sidebar">
-                    <ul class="nav nav-sidebar">
-                        <li><a href="#" class="header">Configuration</a></li>
-                        <li class="active"><a href="#pageDatapoints">Datapoints</a></li>
-                        <li><a href="#pageGateways">Gateways</a></li>
-                        <li><br/></li>
-                        <li><br/></li>
-                        <li><a href="#" class="header">Applications</a></li>
-                        <li><a href="#pageMeteoStation">Meteo Station</a></li>
-                        <li><a href="#pageEnergyViewer">Energy Viewer</a></li>
-                        <li><a href="#pageSwitchControlPanel">Control Panel</a></li>
-                    </ul>
-                </div>
-                <div id="loader-wrapper">
-                    <div id="loader"></div>
-                    <div class="loader-info"></div>
-
-                    <div class="loader-section section-left"></div>
-                    <div class="loader-section section-right"></div>
-
-                </div>
-                <div id="pageDatapoints" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
-                    <ol class="breadcrumb">
-                        <li><a href="#">SOABA</a></li>
-                        <li class="active">Datapoints</li>
-                    </ol>
-                    <h1 class="page-header">Datapoints</h1>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Available Datapoints <span id="datapointsCount" class="label label-success">New</span>
-                        </div>
-                        <table id="tblDatapoints" class="table table-striped table-condensed table-hover"
-                               cellPadding="0" cellSpacing="0" width="100%">
-                        </table>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Datapoint Details
-                        </div>
-
-                        <div class="datapointMetaPanel">
-                            <ul class="nav nav-pills tabs gateway" role="tablist">
-                                <li role="presentation" class="active"><a href="#tabDatapointInfo" role="tab" data-toggle="tab">Info</a></li>
-                                <li role="presentation">
-                                    <div class="btn-group operations">
-                                        <button type="button" class="btn btn-default">Operations</button>
-                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul id="lstDPTabOperations" class="dropdown-menu" role="menu">
-                                            <li><a href="#tabDatapointOperations" id="tbDPRead" role="tab" data-toggle="tab">Read</a></li>
-                                            <li><a href="#tabDatapointOperations" id="tbDPWrite" role="tab" data-toggle="tab">Write</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="tabDatapointInfo">
-                                    <table class="table table-details">
-                                        <tr>
-                                            <td><label for="txtDatapointName">Name:</label></td>
-                                            <td><input type="text" id="txtDatapointName" class="form-control" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="txtGatewayAddress">Gateway (IP Address):</label></td>
-                                            <td><input type="text" id="txtGatewayAddress" class="form-control" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="txtDatapointAccess">Access:</label></td>
-                                            <td><input type="text" id="txtDatapointAccess" class="form-control" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="txtDatapointDataType">Data Type:</label></td>
-                                            <td><input type="text" id="txtDatapointDataType" class="form-control" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="txtDatapointReadAddress">Read Address:</label></td>
-                                            <td><input type="text" id="txtDatapointReadAddress" class="form-control datapoint-read-address" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="txtDatapointWriteAddress">Write Address:</label></td>
-                                            <td><input type="text" id="txtDatapointWriteAddress" class="form-control datapoint-write-address" readonly /></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="tabDatapointOperations">
-                                    <table class="table table-details">
-                                        <tr>
-                                            <td><label for="txtDReadAddr">Read Address:</label></td>
-                                            <td><input id="txtDReadAddr" type="text" class="form-control datapoint-read-address" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="txtDWriteAddr">Write Address:</label></td>
-                                            <td><input id="txtDWriteAddr" type="text" class="form-control datapoint-write-address" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label>Value:</label></td>
-                                            <td>
-                                                <div id="contDValue">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2" class="operations">
-                                                <button type="button" id="btnDatapointRead" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off" style="display: none">
-                                                    Execute Read
-                                                </button>
-                                                <button type="button" id="btnDatapointWrite" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off" style="display: none">
-                                                    Execute Write
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr id="dpOperationResult" style="display:none">
-                                            <td colspan="2">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">Result</div>
-                                                    <div class="panel-body">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="pageGateways" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
-                    <ol class="breadcrumb">
-                        <li><a href="#">SOABA</a></li>
-                        <li><a href="#">Gateways</a></li>
-                        <li class="active">Drivers</li>
-                    </ol>
-
-                    <h1 class="page-header">Gateways</h1>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Available Gateways <span id="gatewaysCount" class="label label-success">New</span>
-                        </div>
-                        <table id="tblGatewayDrivers" class="table table-striped table-condensed table-hover" cellPadding="0" cellSpacing="0" width="100%"></table>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Gateway Details
-                        </div>
-
-                        <div class="gatewayMetaPanel">
-                            <ul class="nav nav-pills tabs gateway" role="tablist">
-                                <li role="presentation" class="active"><a href="#tabGatewaysInfo" role="tab" data-toggle="tab">Info</a></li>
-                            </ul>
-
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="tabGatewaysInfo">
-                                    <table class="table table-details">
-                                        <tr>
-                                            <td><label for="txtGatewayDriver">Driver Type:</label></td>
-                                            <td><input type="text" id="txtGatewayDriver" class="form-control" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="txtGatewayIPAddress">Gateway IP Address:</label></td>
-                                            <td><input type="text" id="txtGatewayIPAddress" class="form-control" readonly /></td>
-                                        </tr>
-                                        <tr>
-                                            <td><label for="ckbGatewayConnected">Is Connected:</label></td>
-                                            <td><input  name="ckbGatewayConnected" id="ckbGatewayConnected" type="checkbox" checked disabled /></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="pageMeteoStation" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
-                    <ol class="breadcrumb">
-                        <li><a href="#">SOABA</a></li>
-                        <li><a href="#">Applications</a></li>
-                        <li class="active">Meteo Station</li>
-                    </ol>
-                    <h1 class="page-header">Sensors Live Feed</h1>
-
-                    <div class="row">
-                        <div class="col-md-5" style="padding-right: 0px;">
-                            <div id="gaugeContainer"></div>
-                        </div>
-                        <div class="col-md-7" style="padding-left: 0px; padding-right: 0px;">
-                            <div id="lineChartContainer"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="pageEnergyViewer" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
-                    <ol class="breadcrumb">
-                        <li><a href="#">SOABA</a></li>
-                        <li><a href="#">Applications</a></li>
-                        <li class="active">Energy Viewer</li>
-                    </ol>
-                    <h1 class="page-header">Sensors Live Feed</h1>
-
-                    <div class="row">
-                        <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
-                            <div id="energyLineChartContainer"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12" style="padding-right: 0px;">
-                            <div id="energyGaugeContainer"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="pageSwitchControlPanel" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main page" style="display:none;">
-                    <ol class="breadcrumb">
-                        <li><a href="#">SOABA</a></li>
-                        <li><a href="#">Applications</a></li>
-                        <li class="active">Control Panel</li>
-                    </ol>
-                    <h1 class="page-header">Switch Control</h1>
-                    <div id="switchControls"></div>
-
-                    <br>
-                    <br>
-
-                    <h1 class="page-header" style="display: block;clear: both;padding-top: 40px;">Dim / Blind Control</h1>
-                    <div id="percentageControls"></div>
-
-                    <br>
-                    <br>
-
-                    <h1 class="page-header" style="display: block;clear: both;padding-top: 40px;">HVAC Control</h1>
-                    <div id="hvacControls"></div>
-                </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" onclick="javascript:window.location='';"> <img src="favicon.ico" class="logo-brand" /> <span>SOABA</span>
+                </a>
             </div>
-            <footer class="soaba-footer">
-            </footer>
-        </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="auth"><a href="#" onclick="return false;">Hello <span id="username">João Pinho</span></a></li>
+                    <li class="auth"><span class="separator">|</span></li>
+                    <li class="auth"><a id="lkSignOut" href="#" onclick="return false;">Sign Out</a></li>
+                    <li class="auth"><span class="separator">|</span></li>
+                    <li class="help">
+                        <a class="help-ctn" href="#" onclick="return false;">Help</a>
+                        <div class="notice" style="display:none;">
+                                <span style="text-transform:uppercase; font-size:9pt; font-weight:bold;">Welcome to SOABA!</span>
+                                <br><br>
+                                This software was developed by João Pinho, during his free time and it's not affiliated with any corporative or university entity.<br/><br/>I am also a MSc Student at Instituto Superior Técnico, Taguspark.<br/>
+                                For professional references, please check my linked in profile <a href="http://pt.linkedin.com/in/joaoppinho/pt" target="_blank">here</a>!
 
-        <script>
-          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-          ga('create', 'UA-61299498-1', 'auto');
-          ga('send', 'pageview');
-        </script>
-    </body>
+                                <br><br>This software is provided "AS IS", without warranties of any kind.
+                                <br>If you liked this software, pay me a coffee, I'll be glad ;).
+                                <br><br>
+                                To get access to this software, please contact me at <a href="mailto:jpe.pinho@gmail.com?subject=Access Request&amp;body=Dear Joao Pinho, I would like to have access to SOABA.">jpe.pinho@gmail.com</a>.
+                          </div>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" style="display: none;">
+                    <input type="text" class="form-control" placeholder="Search..." readonly>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row" style="padding-bottom: 20px;">
+            <div class="login">
+                <div class="app-preloader" style="width: 250px; margin: 0 auto; margin-top:45%; display:none;">
+                    <div style="width: 20px; margin: 0 auto;"> 
+                        <div class="windows8">
+                            <div class="wBall" id="wBall_1">
+                                <div class="wInnerBall"></div>
+                            </div>
+                            <div class="wBall" id="wBall_2">
+                                <div class="wInnerBall"></div>
+                            </div>
+                            <div class="wBall" id="wBall_3">
+                                <div class="wInnerBall"></div>
+                            </div>
+                            <div class="wBall" id="wBall_4">
+                                <div class="wInnerBall"></div>
+                            </div>
+                            <div class="wBall" id="wBall_5">
+                                <div class="wInnerBall"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div style="text-align:center; color:#fff;">Checking your user credentials...</div>
+                </div>
+
+                <h1>Login</h1>
+                <form method="post">
+                    <input type="text" name="u" placeholder="Username" required="required" />
+                    <input type="password" name="p" placeholder="Password" required="required" />
+                    <div class="alert-box error ui-widget-content" style="width: 300px; height: 37px; position: relative;">
+                        <p>
+                            <span>Error: </span>Access denied, wrong credentials.
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-large">
+                        <span class="text">Let me in.</span>
+                        <div class="wait" style="display:none; margin:0 auto; width: 20px;">
+							<div class="windows8">
+								<div class="wBall" id="wBall_1">
+									<div class="wInnerBall"></div>
+								</div>
+								<div class="wBall" id="wBall_2">
+									<div class="wInnerBall"></div>
+								</div>
+								<div class="wBall" id="wBall_3">
+									<div class="wInnerBall"></div>
+								</div>
+								<div class="wBall" id="wBall_4">
+									<div class="wInnerBall"></div>
+								</div>
+								<div class="wBall" id="wBall_5">
+									<div class="wInnerBall"></div>
+								</div>
+							</div>
+						</div>
+                    </button>
+
+
+                    <div class="requestaccess">Need access? Click the 'Help' button for more information!</div>
+                </form>
+            </div>
+        </div>
+        <footer class="soaba-footer"></footer>
+    </div>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-61299498-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+</body>
 </html>

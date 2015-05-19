@@ -5,7 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import soaba.core.api.IDatapoint;
 import soaba.core.api.IGatewayDriver;
 import soaba.core.gateways.drivers.KNXGatewayDriver;
 import soaba.core.models.Datapoint;
+import soaba.core.models.Session;
 import flexjson.JSON;
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
@@ -30,6 +33,9 @@ public class AppConfig {
     private static final String APP_CONFIG_FILE = "resources/soaba.config";
     private static AppConfig instance;
     private static final Logger logger = LoggerFactory.getLogger(AppConfig.class);
+    
+    @JSON(include = false)
+    private Map<String, Session> sessions = new HashMap<String, Session>(); 
     
     @JSON(include = true)
     private List<IGatewayDriver> gateways = new ArrayList<IGatewayDriver>();
@@ -194,5 +200,13 @@ public class AppConfig {
 
     public void setDatapoints(List<IDatapoint> datapoints) {
         this.datapoints = datapoints;
+    }
+
+    public Map<String, Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(Map<String, Session> sessions) {
+        this.sessions = sessions;
     }
 }
